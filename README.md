@@ -1,17 +1,19 @@
 # 프로젝트 이름
 
-- 새로운 <strong style="color:yellow">프로젝트 이름</strong>에 오신걸 환영합니다!
-- [프로젝트 노션 방문하기 👉](https://example.com)
+- <strong style="color:yellow">29CM 모바일 클론 코딩</strong>
+- 로그인, 장바구니, 상품 등록 기능 구현
+- [프로젝트 블로그 👉](https://www.notion.so/yuziwoo2/29cm-Clone-6d878d55288d4e65940cb9223f30a358?pvs=4)
 
 ## Develop
 
-- date :
+- date : 2024.02.11 - 
 
 - language
 
   - Main : React, TypeScript
   - Used Library
 
+    - test : storybook
     - Fetching : TanStack Query, Axios,
     - CSS : Styled Components
     - Router: react-router-dom@6.21
