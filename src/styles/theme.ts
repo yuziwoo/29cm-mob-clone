@@ -10,7 +10,9 @@ const color = {
 
 const gradient = {};
 
-const zIndex = {};
+const zIndex = {
+  HEADER: 2000,
+};
 
 const animation = {};
 
@@ -25,6 +27,20 @@ const fontFamily = {
   INTER: `'Inter', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'sans-serif'`,
 };
 
+const size = {
+  MAX_WIDTH: '550px',
+  PRIMARY_FONT_SIZE: '10px',
+  VIEWPORT_FONT_SIZE: '1.8181818vw',
+};
+
+const padding = {
+  BODY: '0 16px',
+};
+
+const transition = {
+  SPEED_DEFAULT: '0.3s',
+};
+
 export const theme = {
   color,
   gradient,
@@ -32,6 +48,9 @@ export const theme = {
   animation,
   lineHeight,
   fontFamily,
+  size,
+  padding,
+  transition,
 } as const;
 
 export type Theme = typeof theme;
