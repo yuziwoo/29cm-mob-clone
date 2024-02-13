@@ -8,6 +8,7 @@ import { ROUTE_PATH } from '../../../constants/path';
 import IconSearch from '../../icons/IconSearch';
 import IconAlert from '../../icons/IconAlert';
 import IconCart from '../../icons/IconCart';
+import { fetchGoogleLogin, fetchGoogleLogout } from '../../../api/firebase';
 
 const Header = () => {
   // header 카테고리 강조 효과
@@ -74,10 +75,10 @@ const Header = () => {
             <button>
               <IconSearch color={theme.color.WHITE} />
             </button>
-            <button>
+            <button onClick={() => {fetchGoogleLogout()}}>
               <IconAlert color={theme.color.WHITE} />
             </button>
-            <button>
+            <button onClick={() => {fetchGoogleLogin()}}>
               <IconCart color={theme.color.WHITE} />
             </button>
           </S.Icons>
