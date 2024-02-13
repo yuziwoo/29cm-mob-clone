@@ -82,6 +82,26 @@ const Header = () => {
             </button>
           </S.Icons>
         </S.MainHeader>
+
+        <S.Category>
+          <S.CategoryWrap>
+            <Link to={ROUTE_PATH.man} className={location === 'man' ? 'active' : ''}>
+              <p>맨</p>
+            </Link>
+            <Link to={ROUTE_PATH.root} className={location === '' ? 'active' : ''}>
+              <p>홈</p>
+            </Link>
+            <Link to={ROUTE_PATH.life} className={location === 'life' ? 'active' : ''}>
+              <p>라이프</p>
+            </Link>
+            <Link to={ROUTE_PATH.woman} className={location === 'woman' ? 'active' : ''}>
+              <p>우먼</p>
+            </Link>
+            <Link to={ROUTE_PATH.best} className={location === 'best' ? 'active' : ''}>
+              <p>베스트</p>
+            </Link>
+          </S.CategoryWrap>
+        </S.Category>
       </S.Header>
     </>
   );

@@ -37,6 +37,10 @@ const padding = {
   BODY: '0 16px',
 };
 
+const transition = {
+  SPEED_DEFAULT: '0.3s',
+};
+
 export const theme = {
   color,
   gradient,
@@ -46,6 +50,7 @@ export const theme = {
   fontFamily,
   size,
   padding,
+  transition,
 } as const;
 
 export type Theme = typeof theme;
