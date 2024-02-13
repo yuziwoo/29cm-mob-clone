@@ -1,3 +1,4 @@
+import { size } from './../../node_modules/postcss-minify-font-values/types/lib/keywords.d';
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
 
@@ -126,6 +127,16 @@ img {
 *::selection {
   background-color: ${theme.color.SELECTION_BG};
   color: white; ${theme.color.SELECTION_COLOR};
+}
+
+:root {
+  font-size: ${theme.size.PRIMARY_FONT_SIZE};
+}
+
+@media screen and (max-width: ${theme.size.MAX_WIDTH}) {
+  :root {
+    font-size: ${theme.size.VIEWPORT_FONT_SIZE};
+  }
 }
 
 `;
