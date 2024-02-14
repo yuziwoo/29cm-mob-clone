@@ -7,6 +7,7 @@ import { theme } from '../../../../styles/theme';
 const HeaderIcons = () => {
   const handleClickAlert = () => {};
   const handleClickCart = () => {};
+  
   return (
     <S.Icons className="icons">
       <button>

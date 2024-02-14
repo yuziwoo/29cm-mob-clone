@@ -1,5 +1,3 @@
-import { keyframes } from 'styled-components';
-
 const color = {
   BLACK: '#000',
   WHITE: '#fff',

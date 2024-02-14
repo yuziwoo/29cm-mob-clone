@@ -4,8 +4,8 @@ import * as S from './HeaderShadow.styled';
 const HeaderShadow = () => {
   // header shadow 효과 : 0 ~ 19px 스크롤 이동되면 opacity 0 ~ 0.95로 증가
   const [shadowOpacity, setShadowOpacity] = useState(0);
-  const SHADOW_EVENT_RANGE = 19;
-  const MAX_SHADOW_OPACITY = 0.95;
+  const SHADOW_EVENT_RANGE = 30;
+  const MAX_SHADOW_OPACITY = 0.6;
   const MAX_SHADOW_EVENT_RANGE = 120;
   const shadowStep = SHADOW_EVENT_RANGE / MAX_SHADOW_OPACITY;
 

@@ -1,4 +1,3 @@
-import { size } from './../../node_modules/postcss-minify-font-values/types/lib/keywords.d';
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
 

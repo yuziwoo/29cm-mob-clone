@@ -12,6 +12,7 @@ export const Header = styled.header<{ $location: string }>`
   overflow: hidden;
   padding: ${theme.padding.BODY};
   background: ${theme.color.WHITE};
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 
   ${({ $location }) => {

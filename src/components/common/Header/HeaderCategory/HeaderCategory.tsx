@@ -3,10 +3,10 @@ import { ROUTE_PATH } from '../../../../constants/path';
 import { Link } from 'react-router-dom';
 
 interface HeaderCategoryProps {
-  location: string;
+  location?: string;
 }
 
-const HeaderCategory = ({ location }: HeaderCategoryProps) => {
+const HeaderCategory = ({ location = '' }: HeaderCategoryProps) => {
   
   return (
     <S.Category className="category">
