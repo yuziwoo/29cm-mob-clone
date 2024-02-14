@@ -16,7 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "5.0.1",
     "styled-components": "^6.1.8",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -49,18 +49,19 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.6.14",
-    "@storybook/addon-interactions": "^7.6.14",
-    "@storybook/addon-links": "^7.6.14",
+    "@storybook/addon-essentials": "^7.6.15",
+    "@storybook/addon-interactions": "^7.6.15",
+    "@storybook/addon-links": "^7.6.15",
+    "@storybook/addon-mdx-gfm": "^7.6.15",
     "@storybook/addon-onboarding": "^1.0.11",
-    "@storybook/blocks": "^7.6.14",
-    "@storybook/preset-create-react-app": "^4.1.0",
-    "@storybook/react": "^7.6.14",
-    "@storybook/react-webpack5": "^7.6.14",
-    "@storybook/test": "^7.6.14",
+    "@storybook/blocks": "^7.6.15",
+    "@storybook/preset-create-react-app": "^7.6.15",
+    "@storybook/react": "^7.6.15",
+    "@storybook/react-webpack5": "^7.6.15",
+    "@storybook/test": "^7.6.15",
     "eslint-plugin-storybook": "^0.6.15",
     "prop-types": "^15.8.1",
-    "storybook": "^7.6.14",
+    "storybook": "^7.6.15",
     "webpack": "^5.90.1"
   }
 }
