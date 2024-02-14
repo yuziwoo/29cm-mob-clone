@@ -7,6 +7,7 @@ import { formatLocation } from '../../../utils/formatLocation';
 import IconLogo from '../../icons/IconLogo';
 import HeaderShadow from './HeaderShadow/HeaderShadow';
 import HeaderIcons from './HeaderIcons/HeaderIcons';
+import HeaderCategory from './HeaderCategory/HeaderCategory';
 
 const Header = () => {
   // header 카테고리 강조 효과
@@ -39,25 +40,7 @@ const Header = () => {
           {location !== 'login' && <HeaderIcons />}
         </S.MainHeader>
 
-        <S.Category className="category">
-          <S.CategoryWrap>
-            <Link to={ROUTE_PATH.man} className={location === 'man' ? 'active' : ''}>
-              <p>맨</p>
-            </Link>
-            <Link to={ROUTE_PATH.root} className={location === '' ? 'active' : ''}>
-              <p>홈</p>
-            </Link>
-            <Link to={ROUTE_PATH.life} className={location === 'life' ? 'active' : ''}>
-              <p>라이프</p>
-            </Link>
-            <Link to={ROUTE_PATH.woman} className={location === 'woman' ? 'active' : ''}>
-              <p>우먼</p>
-            </Link>
-            <Link to={ROUTE_PATH.best} className={location === 'best' ? 'active' : ''}>
-              <p>베스트</p>
-            </Link>
-          </S.CategoryWrap>
-        </S.Category>
+        {location !== 'login' && <HeaderCategory location={location} />}
       </S.Header>
     </>
   );
