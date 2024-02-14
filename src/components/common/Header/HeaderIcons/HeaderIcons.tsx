@@ -7,6 +7,8 @@ import { useRecoilState } from 'recoil';
 import { userState } from '../../../../recoil/auth';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_PATH } from '../../../../constants/path';
+import { motion } from 'framer-motion';
+import { motionStyle } from '../../../../styles/motion';
 
 const HeaderIcons = () => {
   const [user] = useRecoilState(userState);
@@ -29,15 +31,26 @@ const HeaderIcons = () => {
 
   return (
     <S.Icons className="icons">
-      <button>
+      <motion.button
+        whileTap={motionStyle.primaryButton.whileTap}
+        transition={motionStyle.primaryButton.transition}
+      >
         <IconSearch color={theme.color.WHITE} />
-      </button>
-      <button onClick={handleClickAlert}>
+      </motion.button>
+      <motion.button
+        onClick={handleClickAlert}
+        whileTap={motionStyle.primaryButton.whileTap}
+        transition={motionStyle.primaryButton.transition}
+      >
         <IconAlert color={theme.color.WHITE} />
-      </button>
-      <button onClick={handleClickCart}>
+      </motion.button>
+      <motion.button
+        onClick={handleClickCart}
+        whileTap={motionStyle.primaryButton.whileTap}
+        transition={motionStyle.primaryButton.transition}
+      >
         <IconCart color={theme.color.WHITE} />
-      </button>
+      </motion.button>
     </S.Icons>
   );
 };

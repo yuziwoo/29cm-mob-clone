@@ -50,12 +50,7 @@ export const Logo = styled.div`
   height: 1.9rem;
   min-height: 17px;
 
-  & a {
-    display: block;
-    height: 100%;
-  }
-
-  & a svg {
+  & svg {
     display: block;
     height: 100%;
   }
