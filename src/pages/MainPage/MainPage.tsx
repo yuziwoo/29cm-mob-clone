@@ -1,7 +1,7 @@
 const MainPage = () => {
   return (
     <div>
-      <h1>Main Page</h1>
+      <h1 style={{ fontSize: '300px' }}>Main Page</h1>
     </div>
   );
 };

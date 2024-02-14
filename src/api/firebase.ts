@@ -19,23 +19,29 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
+export const onAuthStateChange = (callback: (user: User | null) => void) => {
+  onAuthStateChanged(auth, (user) => {
+    callback(user);
+    /**
+     * user = {
+     *   displayName: 이름
+     *   email: 이메일 주소
+     *   photoUrl: 이미지 URL
+     *   providerId: google.com | firebase | github.com ...
+     * }
+     */
+  });
+};
+
+// 구글
 export const fetchGoogleLogin = async () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
-      const user = result.user;
-      console.log(user);
-      console.log(user.displayName);
-      console.log(user.email);
-      console.log(user.photoURL);
+      // const token = credential?.accessToken;
+      // const user = result.user;
     })
     .catch((error) => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // const email = error.customData.email;
-      // const credential = GoogleAuthProvider.credentialFromError(error);
-
       console.error(error);
     });
 };
@@ -43,15 +49,9 @@ export const fetchGoogleLogin = async () => {
 export const fetchGoogleLogout = async () => {
   signOut(auth)
     .then(() => {
-      console.log('logout');
+      console.log('로그아웃 하였습니다.');
     })
     .catch((error) => {
       console.log(error);
     });
-};
-
-export const onAuthStateChange = (callback: (user: User | null) => void) => {
-  onAuthStateChanged(auth, (user) => {
-    callback(user);
-  });
 };

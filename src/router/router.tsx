@@ -17,6 +17,7 @@ import ProductDetailPageSkeleton from '../pages/ProductDetailPage/ProductDetailP
 import BrandDetailPageSkeleton from '../pages/BrandDetailPage/BrandDetailPageSkeleton';
 import SearchDetailPageSkeleton from '../pages/SearchDetailPage/SearchDetailPageSkeleton';
 import ShowcaseDetailPageSkeleton from '../pages/ShowcaseDetailPage/ShowcaseDetailPageSkeleton';
+import LoginPageSkeleton from '../pages/LoginPage/LoginPageSkeleton';
 
 const router = createBrowserRouter([
   {
@@ -117,6 +118,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<ShowcaseDetailPageSkeleton />}>
             <Lazy.LazyShowcaseDetailPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.login,
+        element: (
+          <Suspense fallback={<LoginPageSkeleton />}>
+            <Lazy.LazyLoginPage />
           </Suspense>
         ),
       },

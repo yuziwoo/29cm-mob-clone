@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const Header = styled.header<{ $location: string; $useBlur: boolean }>`
+export const Header = styled.header<{ $location: string }>`
   width: 100%;
   max-width: ${theme.size.MAX_WIDTH};
   position: fixed;
@@ -11,17 +11,26 @@ export const Header = styled.header<{ $location: string; $useBlur: boolean }>`
   top: 0;
   overflow: hidden;
   padding: ${theme.padding.BODY};
-
-  ${({ $useBlur }) =>
-    $useBlur &&
-    css`
-      backdrop-filter: blur(20px);
-    `}
+  background: ${theme.color.WHITE};
+  backdrop-filter: blur(20px);
 
   ${({ $location }) => {
     if ($location === '') {
       return css`
-        // height: 100px;
+        background: transparent;
+      `;
+    }
+    if ($location === 'login') {
+      return css`
+        & svg path {
+          fill: ${theme.color.BLACK};
+        }
+        & .main-header .icons {
+          display: none;
+        }
+        & .category {
+          display: none;
+        }
       `;
     }
   }}
@@ -31,20 +40,15 @@ export const Header = styled.header<{ $location: string; $useBlur: boolean }>`
   }
 `;
 
-export const Shadow = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: #6c6c6c;
+export const RelatedHeaderPosition = styled.div<{ $height: number | null }>`
+  height: ${({ $height }) => ($height === null ? '100vh' : `${$height}px`)};
 `;
 
 export const MainHeader = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding: 20px 0;
 `;
 
 export const Logo = styled.div`
@@ -62,32 +66,8 @@ export const Logo = styled.div`
   }
 `;
 
-export const Icons = styled.div`
-  display: flex;
-
-  & button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.8rem;
-    height: 2.8rem;
-    min-width: 23px;
-    min-height: 23px;
-    margin-right: 2rem;
-  }
-
-  & button:last-child {
-    margin-right: 0;
-  }
-
-  & button svg {
-    width: 80%;
-    height: 80%;
-  }
-`;
-
 export const Category = styled.section`
-  padding: 1.5rem 0 3rem;
+  padding: 1.2rem 0 2.4rem;
 `;
 
 export const CategoryWrap = styled.nav`
