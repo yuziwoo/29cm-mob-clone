@@ -26,7 +26,7 @@ export const onAuthStateChange = (callback: (user: User | null) => void) => {
      * user = {
      *   displayName: 이름
      *   email: 이메일 주소
-     *   photoUrl: 이미지 URL
+     *   photoURL: 이미지 URL
      *   providerId: google.com | firebase | github.com ...
      * }
      */
