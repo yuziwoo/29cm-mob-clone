@@ -17,7 +17,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
-const auth = getAuth();
+const auth = getAuth(app);
 
 export const onAuthStateChange = (callback: (user: User | null) => void) => {
   onAuthStateChanged(auth, (user) => {
@@ -33,7 +33,7 @@ export const onAuthStateChange = (callback: (user: User | null) => void) => {
   });
 };
 
-// 구글
+// 구글 로그인
 export const fetchGoogleLogin = async () => {
   signInWithPopup(auth, provider)
     .then((result) => {
@@ -55,3 +55,7 @@ export const fetchGoogleLogout = async () => {
       console.log(error);
     });
 };
+
+// 이메일 로그인
+
+// 깃허브 로그인

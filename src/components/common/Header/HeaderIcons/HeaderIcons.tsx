@@ -10,7 +10,11 @@ import { ROUTE_PATH } from '../../../../constants/path';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../../styles/motion';
 
-const HeaderIcons = () => {
+interface HeaderIconsProps {
+  color: string;
+}
+
+const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
   const [user] = useRecoilState(userState);
   const navigate = useNavigate();
 
@@ -35,21 +39,21 @@ const HeaderIcons = () => {
         whileTap={motionStyle.primaryButton.whileTap}
         transition={motionStyle.primaryButton.transition}
       >
-        <IconSearch color={theme.color.WHITE} />
+        <IconSearch color={color} />
       </motion.button>
       <motion.button
         onClick={handleClickAlert}
         whileTap={motionStyle.primaryButton.whileTap}
         transition={motionStyle.primaryButton.transition}
       >
-        <IconAlert color={theme.color.WHITE} />
+        <IconAlert color={color} />
       </motion.button>
       <motion.button
         onClick={handleClickCart}
         whileTap={motionStyle.primaryButton.whileTap}
         transition={motionStyle.primaryButton.transition}
       >
-        <IconCart color={theme.color.WHITE} />
+        <IconCart color={color} />
       </motion.button>
     </S.Icons>
   );

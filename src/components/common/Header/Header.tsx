@@ -11,6 +11,9 @@ import HeaderCategory from './HeaderCategory/HeaderCategory';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import { scrollTop } from '../../../utils/scrollTop';
+import { useRecoilState } from 'recoil';
+import { headerStateRecoil } from '../../../recoil/headerState';
+import IconLeftArrow from '../../icons/IconLeftArrow';
 
 const Header = () => {
   // header 카테고리 강조 효과
@@ -38,25 +41,45 @@ const Header = () => {
     navigate(ROUTE_PATH.root);
   };
 
+  // header view State
+  const [{ color, viewLogo, viewBackButton, viewShadow, viewCategory, viewIcons }] =
+    useRecoilState(headerStateRecoil);
+
   return (
     <>
       <S.RelatedHeaderPosition $height={headerHeight} />
+
       <S.Header ref={headerRef} $location={location}>
-        {location === '' && <HeaderShadow />}
+        {viewShadow && <HeaderShadow />}
         <S.MainHeader className="main-header">
-          <motion.button
-            whileTap={motionStyle.primaryButton.whileTap}
-            transition={motionStyle.primaryButton.transition}
-            onClick={handleClickLogo}
-          >
-            <S.Logo>
-              <IconLogo color={theme.color.WHITE} />
-            </S.Logo>
-          </motion.button>
-          {location !== 'login' && <HeaderIcons />}
+          {viewLogo && (
+            <motion.button
+              whileTap={motionStyle.primaryButton.whileTap}
+              transition={motionStyle.primaryButton.transition}
+              onClick={handleClickLogo}
+            >
+              <S.Logo>
+                <IconLogo color={color} />
+              </S.Logo>
+            </motion.button>
+          )}
+
+          {viewBackButton && (
+            <motion.button
+              whileTap={motionStyle.primaryButton.whileTap}
+              transition={motionStyle.primaryButton.transition}
+              onClick={handleClickLogo}
+            >
+              <S.BackButton>
+                <IconLeftArrow color={color} />
+              </S.BackButton>
+            </motion.button>
+          )}
+
+          {viewIcons && <HeaderIcons color={color} />}
         </S.MainHeader>
 
-        {location !== 'login' && <HeaderCategory location={location} />}
+        {viewCategory && <HeaderCategory location={location} />}
       </S.Header>
     </>
   );

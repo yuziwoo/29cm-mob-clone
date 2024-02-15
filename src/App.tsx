@@ -1,18 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import Header from './components/common/Header/Header';
-import styled from 'styled-components';
-import { theme } from './styles/theme';
 import { useRecoilState } from 'recoil';
 import { userState } from './recoil/auth';
 import { onAuthStateChange } from './api/firebase';
 import { useEffect } from 'react';
-
-const Content = styled.main`
-  overflow: hidden;
-  width: 100%;
-  max-width: ${theme.size.MAX_WIDTH};
-  margin: auto;
-`;
+import * as S from './App.styled';
+import Header from './components/common/Header/Header';
+import Footer from './components/common/Footer/Footer';
 
 function App() {
   const [user, setUser] = useRecoilState(userState);
@@ -30,12 +23,13 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{ overflow: 'hidden', width: '100%' }}>
+    <S.App className="App">
       <Header />
-      <Content>
+      <S.Content>
         <Outlet />
-      </Content>
-    </div>
+      </S.Content>
+      <Footer />
+    </S.App>
   );
 }
 

@@ -3,6 +3,7 @@ import HeaderIcons from './HeaderIcons';
 import GlobalStyle from '../../../../styles/GlobalStyle';
 import { RecoilRoot } from 'recoil';
 import { BrowserRouter } from 'react-router-dom';
+import { theme } from '../../../../styles/theme';
 
 const meta = {
   title: 'common/Header/HeaderIcons',
@@ -12,7 +13,7 @@ const meta = {
     (Story) => (
       <BrowserRouter>
         <RecoilRoot>
-          <div style={{ background: 'grey' }}>
+          <div style={{ background: 'rgb(0, 0, 0, 0.3)' }}>
             <GlobalStyle />
             <Story />
           </div>
@@ -27,5 +28,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: { color: theme.color.WHITE },
+};
+
+export const Black: Story = {
+  args: { color: theme.color.BLACK },
 };
