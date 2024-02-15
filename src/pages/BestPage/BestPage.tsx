@@ -1,15 +1,8 @@
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { headerStateDefault, headerStateRecoil } from '../../recoil/headerState';
+import { headerStateDefault } from '../../recoil/headerState';
+import useSetHeaderState from '../../hooks/useSetHeaderState';
 
 const BestPage = () => {
-  const [headerState, setHeaderState] = useRecoilState(headerStateRecoil);
-  useEffect(() => {
-    if (headerState !== headerStateDefault) {
-      setHeaderState(headerStateDefault);
-    }
-    // eslint-disable-next-line
-  }, []);
+  useSetHeaderState(headerStateDefault);
 
   return <div>BestPage</div>;
 };

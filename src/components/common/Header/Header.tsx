@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Header.styled';
-import { theme } from '../../../styles/theme';
 import { ROUTE_PATH } from '../../../constants/path';
 import { formatLocation } from '../../../utils/formatLocation';
 import IconLogo from '../../icons/IconLogo';

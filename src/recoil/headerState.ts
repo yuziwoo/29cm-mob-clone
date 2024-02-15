@@ -1,7 +1,16 @@
 import { atom } from 'recoil';
 import { theme } from '../styles/theme';
 
-export const headerStateRecoil = atom({
+export type HeaderStateProps = {
+  color: string;
+  viewLogo: boolean;
+  viewBackButton: boolean;
+  viewShadow: boolean;
+  viewCategory: boolean;
+  viewIcons: boolean;
+};
+
+export const headerStateRecoil = atom<HeaderStateProps>({
   key: 'headerState',
   default: {
     color: theme.color.WHITE,

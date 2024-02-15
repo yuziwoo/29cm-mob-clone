@@ -1,15 +1,8 @@
-import { useRecoilState } from 'recoil';
-import { headerStateOnlyBackButton, headerStateRecoil } from '../../recoil/headerState';
-import { useEffect } from 'react';
+import { headerStateOnlyBackButton } from '../../recoil/headerState';
+import useSetHeaderState from '../../hooks/useSetHeaderState';
 
 const LoginPage = () => {
-  const [headerState, setHeaderState] = useRecoilState(headerStateRecoil);
-  useEffect(() => {
-    if (headerState !== headerStateOnlyBackButton) {
-      setHeaderState(headerStateOnlyBackButton);
-    }
-    // eslint-disable-next-line
-  }, []);
+  useSetHeaderState(headerStateOnlyBackButton);
 
   return <div>login</div>;
 };
