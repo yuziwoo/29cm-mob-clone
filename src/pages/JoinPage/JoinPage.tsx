@@ -11,7 +11,7 @@ import { ROUTE_PATH } from '../../constants/path';
 import useSetHeaderState from '../../hooks/useSetHeaderState';
 import { headerStateOnlyBackButton } from '../../recoil/headerState';
 import { useLocation } from 'react-router-dom';
-import CreateAcountForm from '../../components/join/CreateAcountForm/CreateAcountForm';
+import CreateAccountForm from '../../components/join/CreateAccountForm/CreateAccountForm';
 
 const JoinPage = () => {
   // login 유저 redirect
@@ -61,7 +61,7 @@ const JoinPage = () => {
           </h1>
         </S.Intro>
         
-        <CreateAcountForm redirectPath={redirectPath} />
+        <CreateAccountForm redirectPath={redirectPath} />
       </S.SectionJoin>
     </motion.div>
   );

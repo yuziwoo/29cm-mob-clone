@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as S from './CreateAcountForm.styled';
+import * as S from './CreateAccountForm.styled';
 import { validateEmail } from '../../../utils/validateEmail';
 import { LoginInputProps, LoginPasswordProps } from '../../../types/login';
 import IconEye from '../../icons/IconEye';
@@ -12,7 +12,7 @@ import { motionStyle } from '../../../styles/motion';
 
 const initialInputState = { state: '', smallLabel: false, isValid: null, message: '' };
 
-const CreateAcountForm = ({ redirectPath }: { redirectPath: string }) => {
+const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
   const [id, setId] = useState<LoginInputProps>(initialInputState);
   const [password, setPassword] = useState<LoginPasswordProps>({
     ...initialInputState,
@@ -121,4 +121,4 @@ const CreateAcountForm = ({ redirectPath }: { redirectPath: string }) => {
   );
 };
 
-export default CreateAcountForm;
+export default CreateAccountForm;

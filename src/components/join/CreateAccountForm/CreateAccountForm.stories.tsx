@@ -2,11 +2,11 @@ import { Meta, StoryObj } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from '../../../styles/GlobalStyle';
 import { RecoilRoot } from 'recoil';
-import SocialLogin from './SocialLogin';
+import CreateAccountForm from './CreateAccountForm';
 
 const meta = {
-  title: 'login/SocialLogin',
-  component: SocialLogin,
+  title: 'join/CreateAccountForm',
+  component: CreateAccountForm,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
@@ -20,7 +20,7 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof SocialLogin>;
+} satisfies Meta<typeof CreateAccountForm>;
 
 export default meta;
 
