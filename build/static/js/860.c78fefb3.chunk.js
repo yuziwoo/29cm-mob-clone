@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunk_28cm=self.webpackChunk_28cm||[]).push([[860],{860:(e,s,c)=>{c.r(s),c.d(s,{default:()=>r});var a=c(560),n=c(496);const r=()=>{const{id:e}=(0,a.W4)();return(0,n.jsxs)("div",{children:["BrandDetailPage ",e]})}}}]);
+//# sourceMappingURL=860.c78fefb3.chunk.js.map
