@@ -11,5 +11,6 @@ export const ROUTE_PATH = {
   brandDetail: '/brand/:id',
   searchDetail: '/search/:keyword',
   showcaseDetail: '/showcase/:id',
-  login: '/login'
+  login: '/login',
+  join: '/join'
 } as const;

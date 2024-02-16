@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Header.styled';
 import { ROUTE_PATH } from '../../../constants/path';
 import { formatLocation } from '../../../utils/formatLocation';
@@ -15,22 +15,25 @@ import { headerStateRecoil } from '../../../recoil/headerState';
 import IconLeftArrow from '../../icons/IconLeftArrow';
 
 const Header = () => {
-  // header 카테고리 강조 효과
+  // location에 맞춰서 header 카테고리 강조 효과
   const { pathname } = useLocation();
   const [location, setLocation] = useState('');
+
+  useEffect(() => {
+    setLocation(formatLocation(pathname));
+  }, [pathname]);
 
   // header height만큼 content padding 적용하기
   const headerRef = useRef<null | HTMLElement>(null);
   const [headerHeight, setHeaderHeight] = useState<null | number>(null);
 
   useEffect(() => {
-    setLocation(formatLocation(pathname));
-
     if (headerRef.current !== null) {
       setHeaderHeight(headerRef.current.offsetHeight);
     }
-  }, [pathname]);
+  }, [headerRef.current?.offsetHeight]);
 
+  // 로고 클릭 이벤트 핸들링
   const navigate = useNavigate();
   const handleClickLogo = () => {
     if (location === '') {
