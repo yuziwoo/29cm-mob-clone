@@ -86,7 +86,7 @@ export type EmailFormProps = { email: string; password: string };
 export const fetchEmailLogin = async ({ email, password }: EmailFormProps) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      const user = userCredential.user;
+      // const user = userCredential.user;
     })
     .catch((error) => {
       window.alert('이메일 주소 또는 비밀번호가 잘못되었습니다.');

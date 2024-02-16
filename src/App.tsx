@@ -8,7 +8,7 @@ import Header from './components/common/Header/Header';
 import Footer from './components/common/Footer/Footer';
 
 function App() {
-  const [user, setUser] = useRecoilState(userState);
+  const setUser = useRecoilState(userState)[1];
 
   useEffect(() => {
     onAuthStateChange((user) => {
