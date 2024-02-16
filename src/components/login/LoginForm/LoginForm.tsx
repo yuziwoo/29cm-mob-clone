@@ -37,13 +37,11 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!id.isValid) {
-      window.alert('이메일 주소를 확인해주세요.');
+    if (!id.isValid || !password.isValid) {
+      window.alert(!id.isValid ? '이메일 주소를 확인해주세요.' : '패스워드를 입력해주세요.');
+      return;
     }
-    if (!password.isValid) {
-      window.alert('패스워드를 입력해주세요.');
-    }
-    fetchEmailLogin({ email: id.state, password: password.state }).then(() => {
+    fetchEmailLogin({ email: id.state, password: password.state }, () => {
       navigate(redirectPath);
     });
   };

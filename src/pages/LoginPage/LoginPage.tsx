@@ -12,6 +12,7 @@ import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
 import { motion } from 'framer-motion';
 import { useRouter } from '../../hooks/useRouter';
+import { fetchLogout } from '../../api/firebase';
 
 const LoginPage = () => {
   // login 유저 redirect
@@ -45,7 +46,7 @@ const LoginPage = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.55, delay: 0.1 }}
       >
-        <S.Logo>
+        <S.Logo onClick={() => fetchLogout()}>
           <IconLogo color={theme.color.BLACK} />
         </S.Logo>
 

@@ -61,8 +61,6 @@ export const fetchGoogleLogin = async (callback: (result: UserCredential) => voi
       })
       .catch((error) => {
         console.error(error);
-        window.alert(error.message)
-        window.alert('모바일 기기에서 로그인 Redirect를 지원하지 않습니다.');
       });
     return;
   }
@@ -83,13 +81,17 @@ export const fetchGoogleLogin = async (callback: (result: UserCredential) => voi
 // 이메일 로그인
 export type EmailFormProps = { email: string; password: string };
 
-export const fetchEmailLogin = async ({ email, password }: EmailFormProps) => {
+export const fetchEmailLogin = async (
+  { email, password }: EmailFormProps,
+  callback: (userCredential?: UserCredential) => void
+) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // const user = userCredential.user;
+      callback(userCredential);
     })
     .catch((error) => {
-      window.alert('이메일 주소 또는 비밀번호가 잘못되었습니다.');
+      console.log(error);
+      window.alert('잘못된 이메일 또는 패스워드 입력입니다.')
     });
 };
 

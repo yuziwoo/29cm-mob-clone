@@ -84,7 +84,7 @@ export const Password = styled.div<{
   }
 `;
 
-export const PasswordSecurity = styled.button`
+export const PasswordSecurity = styled.div`
   position: absolute;
   right: 20px;
   top: 16px;
