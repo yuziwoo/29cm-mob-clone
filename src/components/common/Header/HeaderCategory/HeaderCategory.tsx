@@ -3,7 +3,7 @@ import { ROUTE_PATH } from '../../../../constants/path';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../../styles/motion';
 import { scrollTop } from '../../../../utils/scrollTop';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from '../../../../hooks/useRouter';
 
 interface HeaderCategoryProps {
   location?: string;
@@ -18,7 +18,7 @@ const HeaderCategory = ({ location = '' }: HeaderCategoryProps) => {
     { path: ROUTE_PATH.best, locationKey: 'best', text: '베스트' },
   ];
 
-  const navigate = useNavigate();
+  const { navigate } = useRouter();
 
   const handleClickButton = ({ path, locationKey }: { path: string; locationKey: string }) => {
     if (location === locationKey) {

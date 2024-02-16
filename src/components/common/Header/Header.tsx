@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import * as S from './Header.styled';
 import { ROUTE_PATH } from '../../../constants/path';
 import { formatLocation } from '../../../utils/formatLocation';
@@ -13,6 +13,7 @@ import { scrollTop } from '../../../utils/scrollTop';
 import { useRecoilState } from 'recoil';
 import { headerStateRecoil } from '../../../recoil/headerState';
 import IconLeftArrow from '../../icons/IconLeftArrow';
+import { useRouter } from '../../../hooks/useRouter';
 
 const Header = () => {
   // location에 맞춰서 header 카테고리 강조 효과
@@ -27,14 +28,20 @@ const Header = () => {
   const headerRef = useRef<null | HTMLElement>(null);
   const [headerHeight, setHeaderHeight] = useState<null | number>(null);
 
-  useEffect(() => {
+  const handleSetHeaderHeight = () => {
     if (headerRef.current !== null) {
       setHeaderHeight(headerRef.current.offsetHeight);
     }
-  }, [headerRef.current?.offsetHeight]);
+  };
+  useEffect(() => {
+    handleSetHeaderHeight();
+    setTimeout(() => {
+      handleSetHeaderHeight();
+    }, 100);
+  }, [pathname]);
 
   // 로고 클릭 이벤트 핸들링
-  const navigate = useNavigate();
+  const { navigate } = useRouter();
   const handleClickLogo = () => {
     if (location === '') {
       scrollTop();
@@ -70,7 +77,7 @@ const Header = () => {
             <motion.button
               whileTap={motionStyle.primaryButton.whileTap}
               transition={motionStyle.primaryButton.transition}
-              onClick={handleClickLogo}
+              onClick={() => navigate(-1)}
             >
               <S.BackButton>
                 <IconLeftArrow color={color} />

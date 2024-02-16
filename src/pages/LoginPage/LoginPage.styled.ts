@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
 export const SectionLogin = styled.section`
-  padding: ${theme.padding.BODY};
+  padding: ${theme.padding.BODY_WITH_BOTTOM_MARGIN};
 `;
 
 export const Logo = styled.div`

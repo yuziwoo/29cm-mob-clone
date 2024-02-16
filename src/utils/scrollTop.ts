@@ -4,7 +4,7 @@ interface ScrollTopProps {
 }
 
 export const scrollTop = (
-  { element, targetY }: ScrollTopProps = { element: window, targetY: 0 }
+  { element, targetY }: ScrollTopProps = { element: document.documentElement, targetY: 0 }
 ) => {
   element.scrollTo({ left: 0, top: targetY, behavior: 'smooth' });
 };

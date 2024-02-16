@@ -9,8 +9,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   deleteUser,
-  GithubAuthProvider,
+  UserCredential,
+  signInWithRedirect,
 } from 'firebase/auth';
+import { getIsMobile } from '../utils/getIsMobile';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,7 +23,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
 const auth = getAuth(app);
 
 export const onAuthStateChange = (callback: (user: User | null) => void) => {
@@ -50,25 +51,29 @@ export const fetchLogout = async () => {
 };
 
 // 구글 로그인
-export const fetchGoogleLogin = async () => {
+export const fetchGoogleLogin = async (callback: (result: UserCredential) => void) => {
+  const isMobile = getIsMobile();
+
+  if (isMobile) {
+    signInWithRedirect(auth, googleProvider)
+      .then((result) => {
+        callback(result);
+      })
+      .catch((error) => {
+        console.error(error);
+        window.alert(error.message)
+        window.alert('모바일 기기에서 로그인 Redirect를 지원하지 않습니다.');
+      });
+    return;
+  }
   signInWithPopup(auth, googleProvider)
     .then((result) => {
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential?.accessToken;
-      // const user = result.user;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
-
-// 깃허브 로그인
-export const fetchGithubLogin = async () => {
-  signInWithPopup(auth, githubProvider)
-    .then((result) => {
-      // const credential = GithubAuthProvider.credentialFromResult(result);
-      // const token = credential?.accessToken;
-      // const user = result.user;
+      callback(result);
+      /**
+       * const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
+      const user = result.user;
+       */
     })
     .catch((error) => {
       console.error(error);
@@ -81,9 +86,11 @@ export type EmailFormProps = { email: string; password: string };
 export const fetchEmailLogin = async ({ email, password }: EmailFormProps) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // const user = userCredential.user;
+      const user = userCredential.user;
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      window.alert('이메일 주소 또는 비밀번호가 잘못되었습니다.');
+    });
 };
 
 export const createEmailUser = async ({ email, password }: EmailFormProps) => {
