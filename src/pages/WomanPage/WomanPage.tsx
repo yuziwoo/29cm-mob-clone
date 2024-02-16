@@ -1,7 +1,10 @@
+import { headerStateDefault } from '../../recoil/headerState';
+import useSetHeaderState from '../../hooks/useSetHeaderState';
+
 const WomanPage = () => {
-  return (
-    <div>WomanPage</div>
-  )
+  useSetHeaderState(headerStateDefault);
+
+  return <div>WomanPage</div>;
 };
 
-export default WomanPage
+export default WomanPage;

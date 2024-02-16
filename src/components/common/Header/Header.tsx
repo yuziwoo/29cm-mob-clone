@@ -1,107 +1,94 @@
-import { Link, useLocation } from 'react-router-dom';
-import * as S from './Header.styled';
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import * as S from './Header.styled';
+import { ROUTE_PATH } from '../../../constants/path';
 import { formatLocation } from '../../../utils/formatLocation';
 import IconLogo from '../../icons/IconLogo';
-import { theme } from '../../../styles/theme';
-import { ROUTE_PATH } from '../../../constants/path';
-import IconSearch from '../../icons/IconSearch';
-import IconAlert from '../../icons/IconAlert';
-import IconCart from '../../icons/IconCart';
+import HeaderShadow from './HeaderShadow/HeaderShadow';
+import HeaderIcons from './HeaderIcons/HeaderIcons';
+import HeaderCategory from './HeaderCategory/HeaderCategory';
+import { motion } from 'framer-motion';
+import { motionStyle } from '../../../styles/motion';
+import { scrollTop } from '../../../utils/scrollTop';
+import { useRecoilState } from 'recoil';
+import { headerStateRecoil } from '../../../recoil/headerState';
+import IconLeftArrow from '../../icons/IconLeftArrow';
+import { useRouter } from '../../../hooks/useRouter';
 
 const Header = () => {
-  // header 카테고리 강조 효과
+  // location에 맞춰서 header 카테고리 강조 효과
   const { pathname } = useLocation();
   const [location, setLocation] = useState('');
 
-  // header height만큼 content padding 적용하기
-  const headerRef = useRef<null | HTMLElement>(null);
-  const initialHeaderHeight = 10000;
-  const [headerHeight, setHeaderHeight] = useState(initialHeaderHeight);
-
   useEffect(() => {
     setLocation(formatLocation(pathname));
+  }, [pathname]);
 
+  // header height만큼 content padding 적용하기
+  const headerRef = useRef<null | HTMLElement>(null);
+  const [headerHeight, setHeaderHeight] = useState<null | number>(null);
+
+  const handleSetHeaderHeight = () => {
     if (headerRef.current !== null) {
       setHeaderHeight(headerRef.current.offsetHeight);
     }
+  };
+  useEffect(() => {
+    handleSetHeaderHeight();
+    setTimeout(() => {
+      handleSetHeaderHeight();
+    }, 100);
   }, [pathname]);
 
-  // header shadow 효과 : 0 ~ 19px 스크롤 이동되면 opacity 0 ~ 0.95로 증가
-  const [shadowOpacity, setShadowOpacity] = useState(0);
-  const MAX_SHADOW_EVENT_RANGE = 19;
-  const MAX_SHADOW_OPACITY = 0.95;
+  // 로고 클릭 이벤트 핸들링
+  const { navigate } = useRouter();
+  const handleClickLogo = () => {
+    if (location === '') {
+      scrollTop();
+      return;
+    }
+    navigate(ROUTE_PATH.root);
+  };
 
-  useEffect(() => {
-    const handleShadowOpacity = () => {
-      const top = -document.body.getBoundingClientRect().top;
-      if (top < 120) {
-        if (top > MAX_SHADOW_EVENT_RANGE) {
-          setShadowOpacity(MAX_SHADOW_OPACITY);
-          return;
-        }
-        setShadowOpacity(top / 20);
-      }
-    };
-
-    handleShadowOpacity();
-    window.addEventListener('scroll', handleShadowOpacity);
-
-    return () => {
-      window.removeEventListener('scroll', handleShadowOpacity);
-    };
-  }, []);
+  // header view State
+  const [{ color, viewLogo, viewBackButton, viewShadow, viewCategory, viewIcons }] =
+    useRecoilState(headerStateRecoil);
 
   return (
     <>
-      <div
-        className="header-clone"
-        style={{ height: headerHeight !== initialHeaderHeight ? `${headerHeight}px` : '100vh' }}
-      ></div>
-      <S.Header
-        ref={headerRef}
-        $location={location}
-        $useBlur={shadowOpacity === MAX_SHADOW_OPACITY}
-      >
-        <S.Shadow style={{ opacity: shadowOpacity }} />
-        <S.MainHeader>
-          <S.Logo>
-            <Link to={ROUTE_PATH.root}>
-              <IconLogo color={theme.color.WHITE} />
-            </Link>
-          </S.Logo>
-          <S.Icons>
-            <button>
-              <IconSearch color={theme.color.WHITE} />
-            </button>
-            <button>
-              <IconAlert color={theme.color.WHITE} />
-            </button>
-            <button>
-              <IconCart color={theme.color.WHITE} />
-            </button>
-          </S.Icons>
+      <S.RelatedHeaderPosition $height={headerHeight} />
+
+      <S.Header ref={headerRef} $location={location}>
+        {viewShadow && <HeaderShadow />}
+        <S.MainHeader className="main-header">
+          {viewLogo && (
+            <motion.button
+              whileTap={motionStyle.primaryButton.whileTap}
+              transition={motionStyle.primaryButton.transition}
+              onClick={handleClickLogo}
+            >
+              <S.Logo>
+                <IconLogo color={color} />
+              </S.Logo>
+            </motion.button>
+          )}
+
+          {viewBackButton && (
+            <motion.button
+              whileTap={motionStyle.primaryButton.whileTap}
+              transition={motionStyle.primaryButton.transition}
+              onClick={() => navigate(-1)}
+            >
+              <S.BackButton>
+                <IconLeftArrow color={color} />
+              </S.BackButton>
+            </motion.button>
+          )}
+
+          {viewIcons && <HeaderIcons color={color} />}
         </S.MainHeader>
 
-        <S.Category>
-          <S.CategoryWrap>
-            <Link to={ROUTE_PATH.man} className={location === 'man' ? 'active' : ''}>
-              <p>맨</p>
-            </Link>
-            <Link to={ROUTE_PATH.root} className={location === '' ? 'active' : ''}>
-              <p>홈</p>
-            </Link>
-            <Link to={ROUTE_PATH.life} className={location === 'life' ? 'active' : ''}>
-              <p>라이프</p>
-            </Link>
-            <Link to={ROUTE_PATH.woman} className={location === 'woman' ? 'active' : ''}>
-              <p>우먼</p>
-            </Link>
-            <Link to={ROUTE_PATH.best} className={location === 'best' ? 'active' : ''}>
-              <p>베스트</p>
-            </Link>
-          </S.CategoryWrap>
-        </S.Category>
+        {viewCategory && <HeaderCategory location={location} />}
       </S.Header>
     </>
   );

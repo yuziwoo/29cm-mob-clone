@@ -18,3 +18,4 @@ export const LazySearchDetailPage = lazy(
 export const LazyShowcaseDetailPage = lazy(
   () => import('../pages/ShowcaseDetailPage/ShowcaseDetailPage')
 );
+export const LazyLoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));

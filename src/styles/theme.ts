@@ -1,11 +1,14 @@
-import { keyframes } from 'styled-components';
-
 const color = {
   BLACK: '#000',
   WHITE: '#fff',
+  GRAY3: '#DADADB',
 
   SELECTION_BG: '#182B8E',
   SELECTION_COLOR: '#fff',
+
+  INPUT_VALID: '#34B305',
+  INPUT_INVALID: '#D30005',
+  INPUT_GRAY: '#C5C5C5',
 };
 
 const gradient = {};
@@ -35,6 +38,7 @@ const size = {
 
 const padding = {
   BODY: '0 16px',
+  BODY_WITH_BOTTOM_MARGIN: '0 16px 120px',
 };
 
 const transition = {

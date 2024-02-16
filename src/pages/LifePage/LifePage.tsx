@@ -1,7 +1,10 @@
+import { headerStateDefault } from '../../recoil/headerState';
+import useSetHeaderState from '../../hooks/useSetHeaderState';
+
 const LifePage = () => {
-  return (
-    <div>LifePage</div>
-  )
+  useSetHeaderState(headerStateDefault);
+
+  return <div>LifePage</div>;
 };
 
-export default LifePage
+export default LifePage;

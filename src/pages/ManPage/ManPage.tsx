@@ -1,7 +1,10 @@
+import { headerStateDefault } from '../../recoil/headerState';
+import useSetHeaderState from '../../hooks/useSetHeaderState';
+
 const ManPage = () => {
-  return (
-    <div>ManPage</div>
-  )
+  useSetHeaderState(headerStateDefault);
+
+  return <div>ManPage</div>;
 };
 
-export default ManPage
+export default ManPage;

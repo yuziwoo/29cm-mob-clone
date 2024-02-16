@@ -6,19 +6,25 @@
 
 ## Develop
 
-- date : 2024.02.11 - 
+- date : 2024.02.11 -
 
 - language
 
   - Main : React, TypeScript
   - Used Library
 
-    - test : storybook
-    - Fetching : TanStack Query, Axios,
-    - CSS : Styled Components
+    - Test: storybook, jest
+    - State: Recoil
+    - Fetching: TanStack Query, Axios
+    - CSS: Styled Components, framer-motion
     - Router: react-router-dom@6.21
 
-  - API :
+  - API
+
+    - Auth: Firebase
+    - DB: Firebase
+    - Files: Cloudinary
+    - 배포: Netlify
 
 ## Commit Convention
 
