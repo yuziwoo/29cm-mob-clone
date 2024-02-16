@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import * as S from './LoginForm.styled';
+import * as S from './CreateAcountForm.styled';
 import { validateEmail } from '../../../utils/validateEmail';
 import { LoginInputProps, LoginPasswordProps } from '../../../types/login';
 import IconEye from '../../icons/IconEye';
 import { theme } from '../../../styles/theme';
 import IconEyeSlash from '../../icons/IconEyeSlash';
-import { fetchEmailLogin } from '../../../api/firebase';
+import { createEmailUser } from '../../../api/firebase';
 import { useRouter } from '../../../hooks/useRouter';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 
 const initialInputState = { state: '', smallLabel: false, isValid: null, message: '' };
 
-const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
+const CreateAcountForm = ({ redirectPath }: { redirectPath: string }) => {
   const [id, setId] = useState<LoginInputProps>(initialInputState);
   const [password, setPassword] = useState<LoginPasswordProps>({
     ...initialInputState,
@@ -24,15 +24,15 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
   const handleIdInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.target.value;
     const isValid = validateEmail(email);
-    const message = isValid ? '' : '잘못된 이메일 주소입니다.';
+    const message = isValid ? '' : '잘못된 형식의 이메일 주소입니다.';
 
     setId({ state: email, smallLabel: true, isValid, message });
   };
 
   const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputPassword = e.target.value;
-    const isValid = inputPassword.length > 0;
-    const message = isValid ? '' : '패스워드를 입력해주세요.';
+    const isValid = inputPassword.length >= 6;
+    const message = isValid ? '' : '패스워드는 6자 이상 입력해주세요.';
 
     setPassword((prevState) => ({ ...prevState, state: inputPassword, isValid, message }));
   };
@@ -43,13 +43,13 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
       window.alert(!id.isValid ? '이메일 주소를 확인해주세요.' : '패스워드를 입력해주세요.');
       return;
     }
-    fetchEmailLogin({ email: id.state, password: password.state }, () => {
+    createEmailUser({ email: id.state, password: password.state }, () => {
       navigate(redirectPath);
     });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <S.CreateAccount onSubmit={handleSubmit}>
       <S.Id $isValid={id.isValid} $smallLabel={id.smallLabel}>
         <label htmlFor="login-id">이메일*</label>
         <input
@@ -109,15 +109,16 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
       </S.Password>
 
       <motion.div
+        style={{ display: 'inline-block' }}
         whileTap={motionStyle.scaleButton.whileTap}
         transition={motionStyle.scaleButton.transition}
       >
         <S.Submit>
-          <p>로그인</p>
+          <p>회원가입</p>
         </S.Submit>
       </motion.div>
-    </form>
+    </S.CreateAccount>
   );
 };
 
-export default LoginForm;
+export default CreateAcountForm;

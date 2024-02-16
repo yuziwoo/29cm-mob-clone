@@ -12,7 +12,7 @@ import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
 import { motion } from 'framer-motion';
 import { useRouter } from '../../hooks/useRouter';
-import { fetchLogout } from '../../api/firebase';
+import { motionStyle } from '../../styles/motion';
 
 const LoginPage = () => {
   // login 유저 redirect
@@ -29,7 +29,7 @@ const LoginPage = () => {
   // 헤더 상태 변경
   useSetHeaderState(headerStateOnlyBackButton);
 
-  //
+  // 이전에 방문하려던 페이지 저장
   const location = useLocation();
   const [redirectPath, setRedirectPath] = useState(ROUTE_PATH.root);
 
@@ -42,11 +42,11 @@ const LoginPage = () => {
   return (
     <S.SectionLogin>
       <motion.div
-        initial={{ y: 15, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55, delay: 0.1 }}
+        initial={motionStyle.pageOpen.initial}
+        animate={motionStyle.pageOpen.animate}
+        transition={motionStyle.pageOpen.transition}
       >
-        <S.Logo onClick={() => fetchLogout()}>
+        <S.Logo>
           <IconLogo color={theme.color.BLACK} />
         </S.Logo>
 
@@ -61,7 +61,7 @@ const LoginPage = () => {
             href={ROUTE_PATH.join}
             onClick={(e) => {
               e.preventDefault();
-              navigate(ROUTE_PATH.join);
+              navigate(ROUTE_PATH.join, { state: { path: redirectPath } });
             }}
           >
             계정 만들기

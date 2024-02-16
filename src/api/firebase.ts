@@ -91,23 +91,28 @@ export const fetchEmailLogin = async (
     })
     .catch((error) => {
       console.log(error);
-      window.alert('잘못된 이메일 또는 패스워드 입력입니다.')
+      window.alert('잘못된 이메일 또는 패스워드 입력입니다.');
     });
 };
 
-export const createEmailUser = async ({ email, password }: EmailFormProps) => {
+export const createEmailUser = async (
+  { email, password }: EmailFormProps,
+  callback: (userCredential?: UserCredential) => void
+) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // const user = userCredential.user;
+      callback(userCredential);
     })
     .catch((error) => console.error(error));
 };
 
-export const deleteEmailUser = async () => {
+export const deleteEmailUser = async (callback: () => void) => {
   const user = auth.currentUser;
   if (user) {
     deleteUser(user)
-      .then(() => {})
+      .then(() => {
+        callback();
+      })
       .catch((error) => console.error(error));
   }
 };

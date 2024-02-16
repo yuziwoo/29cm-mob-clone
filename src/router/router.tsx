@@ -18,6 +18,7 @@ import BrandDetailPageSkeleton from '../pages/BrandDetailPage/BrandDetailPageSke
 import SearchDetailPageSkeleton from '../pages/SearchDetailPage/SearchDetailPageSkeleton';
 import ShowcaseDetailPageSkeleton from '../pages/ShowcaseDetailPage/ShowcaseDetailPageSkeleton';
 import LoginPageSkeleton from '../pages/LoginPage/LoginPageSkeleton';
+import JoinPageSkeleton from '../pages/JoinPage/JoinPageSkeleton';
 
 const router = createBrowserRouter([
   {
@@ -126,6 +127,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoginPageSkeleton />}>
             <Lazy.LazyLoginPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.join,
+        element: (
+          <Suspense fallback={<JoinPageSkeleton />}>
+            <Lazy.LazyJoinPage />
           </Suspense>
         ),
       },
