@@ -6,6 +6,10 @@ import {
   signOut,
   onAuthStateChanged,
   User,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  deleteUser,
+  GithubAuthProvider,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -16,7 +20,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 const auth = getAuth(app);
 
 export const onAuthStateChange = (callback: (user: User | null) => void) => {
@@ -33,11 +38,22 @@ export const onAuthStateChange = (callback: (user: User | null) => void) => {
   });
 };
 
+// 로그아웃
+export const fetchLogout = async () => {
+  signOut(auth)
+    .then(() => {
+      console.log('로그아웃 하였습니다.');
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 // 구글 로그인
 export const fetchGoogleLogin = async () => {
-  signInWithPopup(auth, provider)
+  signInWithPopup(auth, googleProvider)
     .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
       // const token = credential?.accessToken;
       // const user = result.user;
     })
@@ -46,16 +62,43 @@ export const fetchGoogleLogin = async () => {
     });
 };
 
-export const fetchGoogleLogout = async () => {
-  signOut(auth)
-    .then(() => {
-      console.log('로그아웃 하였습니다.');
+// 깃허브 로그인
+export const fetchGithubLogin = async () => {
+  signInWithPopup(auth, githubProvider)
+    .then((result) => {
+      // const credential = GithubAuthProvider.credentialFromResult(result);
+      // const token = credential?.accessToken;
+      // const user = result.user;
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 };
 
 // 이메일 로그인
+export type EmailFormProps = { email: string; password: string };
 
-// 깃허브 로그인
+export const fetchEmailLogin = async ({ email, password }: EmailFormProps) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // const user = userCredential.user;
+    })
+    .catch((error) => console.error(error));
+};
+
+export const createEmailUser = async ({ email, password }: EmailFormProps) => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // const user = userCredential.user;
+    })
+    .catch((error) => console.error(error));
+};
+
+export const deleteEmailUser = async () => {
+  const user = auth.currentUser;
+  if (user) {
+    deleteUser(user)
+      .then(() => {})
+      .catch((error) => console.error(error));
+  }
+};
