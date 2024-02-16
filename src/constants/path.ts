@@ -12,5 +12,8 @@ export const ROUTE_PATH = {
   searchDetail: '/search/:keyword',
   showcaseDetail: '/showcase/:id',
   login: '/login',
-  join: '/join'
+  join: '/join',
+  category: '/category',
+  like: '/like',
+  my: '/my',
 } as const;
