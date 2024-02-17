@@ -2,6 +2,7 @@ const color = {
   BLACK: '#000',
   WHITE: '#fff',
   GRAY3: '#DADADB',
+  GRAY5: '#A1A1A1',
   ACTIVE: '#000',
 
   SELECTION_BG: '#FF4800',

@@ -5,8 +5,13 @@ import { userState } from '../../recoil/auth';
 import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useRouter } from '../../hooks/useRouter';
-import { theme } from '../../styles/theme';
+import * as S from './MyPage.styled';
 import MyUserInfo from '../../components/my/MyUserInfo/MyUserInfo';
+import { motion } from 'framer-motion';
+import { motionStyle } from '../../styles/motion';
+import IconRightArrow2 from '../../components/icons/IconRightArrow2';
+import { theme } from '../../styles/theme';
+import MyInfoBalloon from '../../components/my/MyInfoBalloon/MyInfoBalloon';
 
 const MyPage = () => {
   useSetHeaderState(headerStateBlack);
@@ -23,9 +28,11 @@ const MyPage = () => {
   if (user === null) return <div></div>;
 
   return (
-    <section style={{ padding: theme.padding.BODY_WITH_BOTTOM_MARGIN }}>
+    <S.SectionMyPage>
       <MyUserInfo user={user} />
-    </section>
+      <MyInfoBalloon />
+      
+    </S.SectionMyPage>
   );
 };
 

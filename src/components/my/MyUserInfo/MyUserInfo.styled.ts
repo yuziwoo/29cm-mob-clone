@@ -12,11 +12,6 @@ export const Info = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
-  & h1 {
-    font-size: 18px;
-    font-weight: 700;
-  }
 `;
 
 export const ImgWrap = styled.div`
