@@ -32,8 +32,8 @@ const getActiveButton = (location: string) => {
     case 'like': {
       return 'like';
     }
-    case 'best': {
-      return 'best';
+    case 'my': {
+      return 'my';
     }
     default:
       return 'undefined';

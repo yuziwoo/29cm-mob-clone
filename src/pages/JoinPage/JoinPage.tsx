@@ -45,7 +45,11 @@ const JoinPage = () => {
       transition={motionStyle.pageOpen.transition}
     >
       <S.SectionJoin>
-        <S.Logo>
+        <S.Logo
+          onClick={() => {
+            navigate(ROUTE_PATH.root);
+          }}
+        >
           <IconLogo color={theme.color.BLACK} />
         </S.Logo>
 
@@ -60,7 +64,7 @@ const JoinPage = () => {
             모두 존재하지 않는 허구인 점 참고 부탁드립니다.
           </h1>
         </S.Intro>
-        
+
         <CreateAccountForm redirectPath={redirectPath} />
       </S.SectionJoin>
     </motion.div>

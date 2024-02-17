@@ -15,6 +15,10 @@ export const CategoryWrap = styled.nav`
     overflow: hidden;
   }
 
+  & .list:first-child {
+    margin-left: 0;
+  }
+
   & .active {
     border: 1px solid rgba(255, 255, 255, 1);
   }

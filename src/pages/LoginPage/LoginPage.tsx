@@ -19,13 +19,6 @@ const LoginPage = () => {
   const [user] = useRecoilState(userState);
   const { navigate } = useRouter();
 
-  useEffect(() => {
-    if (user) {
-      navigate(ROUTE_PATH.root);
-    }
-    // eslint-disable-next-line
-  }, []);
-
   // 헤더 상태 변경
   useSetHeaderState(headerStateOnlyBackButton);
 
@@ -39,14 +32,25 @@ const LoginPage = () => {
     }
   }, [location?.state]);
 
+  useEffect(() => {
+    if (user) {
+      navigate(redirectPath);
+    }
+    // eslint-disable-next-line
+  }, [user]);
+
   return (
     <S.SectionLogin>
       <motion.div
         initial={motionStyle.pageOpen.initial}
         animate={motionStyle.pageOpen.animate}
-        transition={motionStyle.pageOpen.transition}
+        transition={{ duration: 0.55, delay: 0.3 }}
       >
-        <S.Logo>
+        <S.Logo
+          onClick={() => {
+            navigate(ROUTE_PATH.root);
+          }}
+        >
           <IconLogo color={theme.color.BLACK} />
         </S.Logo>
 

@@ -20,3 +20,4 @@ export const LazyShowcaseDetailPage = lazy(
 );
 export const LazyLoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 export const LazyJoinPage = lazy(() => import('../pages/JoinPage/JoinPage'));
+export const LazyMyPage = lazy(() => import('../pages/MyPage/MyPage'));

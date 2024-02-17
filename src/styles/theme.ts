@@ -2,9 +2,9 @@ const color = {
   BLACK: '#000',
   WHITE: '#fff',
   GRAY3: '#DADADB',
-  ACTIVE: '#FF4800',
+  ACTIVE: '#000',
 
-  SELECTION_BG: '#182B8E',
+  SELECTION_BG: '#FF4800',
   SELECTION_COLOR: '#fff',
 
   INPUT_VALID: '#34B305',

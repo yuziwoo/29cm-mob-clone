@@ -12,8 +12,12 @@ const Footer = () => {
     setLocation(formatLocation(pathname));
   }, [pathname]);
 
+  const hideFooterPage = ['login', 'join'];
+
   return (
-    <S.SectionFooter>
+    <S.SectionFooter
+      style={{ transform: `translate(-50%, ${hideFooterPage.includes(location) ? 100 : 0}%)` }}
+    >
       <MainFooter location={location} />
     </S.SectionFooter>
   );
