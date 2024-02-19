@@ -9,6 +9,7 @@ import { createEmailUser } from '../../../api/firebase';
 import { useRouter } from '../../../hooks/useRouter';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
+import TextInput from '../../common/TextInput/TextInput';
 
 const initialInputState = { state: '', smallLabel: false, isValid: null, message: '' };
 
@@ -48,8 +49,25 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
     });
   };
 
+  const [validData, setValidData] = useState({
+    id: false,
+    password: false,
+  });
+
   return (
     <S.CreateAccount onSubmit={handleSubmit}>
+      <TextInput
+        type="email"
+        id="login-form-id"
+        validator={(text: string) => validateEmail(text)}
+        onIsValidChange={(isValid: boolean | null) => {
+          setValidData((prevData) => ({ ...prevData, id: isValid ? true : false }));
+        }}
+        placeholder="이메일*"
+        maxLength={50}
+        required={true}
+        invalidMessage="잘못된 형식의 이메일 주소입니다."
+      />
       <S.Id $isValid={id.isValid} $smallLabel={id.smallLabel}>
         <label htmlFor="login-id">이메일*</label>
         <input

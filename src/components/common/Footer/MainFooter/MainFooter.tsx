@@ -45,7 +45,6 @@ const MainFooter = ({ location = '' }: MainFooterProps) => {
 
   useEffect(() => {
     setActiveButton(getActiveButton(location));
-    console.log(location, getActiveButton(location));
   }, [location]);
 
   const { navigate } = useRouter();
