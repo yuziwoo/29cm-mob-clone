@@ -50,3 +50,17 @@ export const SectionMyPage = styled.section`
   }
 `;
 
+export const ListWrap = styled.div`
+  padding: 3rem 2rem 0;
+`;
+
+export const ListTitle = styled.h2`
+  padding: 20px 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: ${theme.color.BLACK};
+
+  @media screen and (max-width: 400px) {
+    font-size: 20px;
+  }
+`;

@@ -106,12 +106,14 @@ export const createEmailUser = async (
     .catch((error) => console.error(error));
 };
 
-export const deleteEmailUser = async (callback: () => void) => {
+export const fetchDeleteUser = async (callback?: () => void) => {
   const user = auth.currentUser;
   if (user) {
     deleteUser(user)
       .then(() => {
-        callback();
+        if (callback) {
+          callback();
+        }
       })
       .catch((error) => console.error(error));
   }
