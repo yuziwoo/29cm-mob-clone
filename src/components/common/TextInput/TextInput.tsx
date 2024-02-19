@@ -7,13 +7,12 @@ import * as S from './TextInput.styled';
 interface TextInputProps {
   type: 'email' | 'text' | 'password';
   id: string;
-  validator: (text: string) => boolean;
   placeholder: string;
-  onIsValidChange: (isValid: boolean | null) => void;
+  isValid: boolean | null;
   maxLength?: number;
   onFocus?: () => void;
   onBlur?: () => void;
-  onChange?: () => void;
+  onChange?: (input: string) => void;
   required?: boolean;
   fixedPaddingBottom?: string;
   invalidMessage?: string;
@@ -28,13 +27,12 @@ const TextInput = (props: TextInputProps) => {
   const {
     type,
     id,
-    validator,
     placeholder,
+    isValid,
     maxLength = 50,
-    onIsValidChange,
     onFocus = () => {},
     onBlur = () => {},
-    onChange = () => {},
+    onChange = (input) => {},
     required = false,
     fixedPaddingBottom,
     invalidMessage = '잘못된 입력입니다.',
@@ -43,24 +41,21 @@ const TextInput = (props: TextInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [text, setText] = useState('');
   const [smallLabel, setSmallLabel] = useState(false);
-  const [isValid, setIsValid] = useState<null | boolean>(null);
   const [paddingBottom, setPaddingBottom] = useState(
     fixedPaddingBottom ? fixedPaddingBottom : '20px'
   );
 
   useEffect(() => {
     setPaddingBottom(fixedPaddingBottom ? fixedPaddingBottom : isValid === false ? '40px' : '20px');
-    onIsValidChange(isValid);
-  }, [isValid, fixedPaddingBottom, onIsValidChange]);
+    // eslint-disable-next-line
+  }, [isValid, fixedPaddingBottom]);
 
   const handleChangeInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setText(e.target.value);
-      const validatorResult = validator(e.target.value);
-      setIsValid(validatorResult);
-      onChange();
+      onChange(e.target.value);
     },
-    [onChange, validator]
+    [onChange]
   );
 
   const handleFocusInput = useCallback(() => {
@@ -87,7 +82,7 @@ const TextInput = (props: TextInputProps) => {
       </S.Label>
       <S.Input
         $isValid={isValid}
-        type={type !== 'password' ? type : isPasswordVisible ? 'password' : 'text'}
+        type={type !== 'password' ? type : isPasswordVisible ? 'text' : 'password'}
         id={id}
         name={id}
         maxLength={maxLength}
