@@ -3,4 +3,7 @@ export type UserInfo = {
   email: string | null;
   photoURL: string | null;
   providerId: string;
+  isAdmin?: boolean;
 };
+
+export type AdminList = string[];

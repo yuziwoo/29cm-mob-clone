@@ -13,6 +13,8 @@ import {
   signInWithRedirect,
 } from 'firebase/auth';
 import { getIsMobile } from '../utils/getIsMobile';
+import { get, getDatabase, ref } from 'firebase/database';
+import { AdminList } from '../types/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -117,4 +119,18 @@ export const fetchDeleteUser = async (callback?: () => void) => {
       })
       .catch((error) => console.error(error));
   }
+};
+
+// Realtime Database
+const databse = getDatabase(app);
+
+export const getAdminUserList = async (): Promise<AdminList> => {
+  const admins = await get(ref(databse, 'admins'))
+    .then((snapshot) => {
+      return snapshot.val();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  return admins;
 };

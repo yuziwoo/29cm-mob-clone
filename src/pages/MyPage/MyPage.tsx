@@ -54,8 +54,8 @@ const MyPage = () => {
     {
       text: '회원 탈퇴',
       onClick: async () => {
-        if (user?.email === 'test@yuziwoo.com') {
-          window.alert('테스트 계정을 삭제하지 말아주세요.😢');
+        if (user?.isAdmin) {
+          window.alert('어드민 계정은 삭제할 수 없습니다.');
           return;
         }
         const confirm = await window.confirm('정말로 탈퇴하시겠습니까?');

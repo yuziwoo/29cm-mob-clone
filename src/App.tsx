@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userState } from './recoil/auth';
-import { onAuthStateChange } from './api/firebase';
+import { getAdminUserList, onAuthStateChange } from './api/firebase';
 import { useEffect } from 'react';
 import * as S from './App.styled';
 import Header from './components/common/Header/Header';
@@ -11,10 +11,11 @@ function App() {
   const setUser = useRecoilState(userState)[1];
 
   useEffect(() => {
-    onAuthStateChange((user) => {
+    onAuthStateChange(async (user) => {
       if (user) {
-        const { displayName, email, photoURL, providerId } = user;
-        setUser({ displayName, email, photoURL, providerId });
+        const admins = await getAdminUserList();
+        const { displayName, email, photoURL, providerId, uid } = user;
+        setUser({ displayName, email, photoURL, providerId, isAdmin: admins.includes(uid) });
         return;
       }
       setUser(null);
