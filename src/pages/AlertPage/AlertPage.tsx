@@ -10,7 +10,7 @@ const AlertPage = () => {
 
   useEffect(() => {
     if (user) return;
-    navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.alert } });
+    navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.alert }, replace: true });
     // eslint-disable-next-line
   }, []);
   return <div>AlertPage</div>;

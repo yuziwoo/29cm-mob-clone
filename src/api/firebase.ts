@@ -28,7 +28,7 @@ const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 
 export const onAuthStateChange = (callback: (user: User | null) => void) => {
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     callback(user);
     /**
      * user = {

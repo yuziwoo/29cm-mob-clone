@@ -21,7 +21,7 @@ const MyPage = () => {
 
   useEffect(() => {
     if (user) return;
-    navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.my } });
+    navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.my }, replace: true });
     // eslint-disable-next-line
   }, []);
 
