@@ -7,16 +7,7 @@ import { motionStyle } from '../../../styles/motion';
 import TextInput from '../../common/TextInput/TextInput';
 import { validateEmail } from '../../../utils/validateEmail';
 import { validatePassword } from '../../../utils/validatePassword';
-
-type InputData = {
-  state: string;
-  isValid: null | boolean;
-};
-
-type FormData = {
-  id: InputData;
-  password: InputData;
-};
+import { FormData } from '../../../types/login';
 
 const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
   const { navigate } = useRouter();
