@@ -20,6 +20,7 @@ import ShowcaseDetailPageSkeleton from '../pages/ShowcaseDetailPage/ShowcaseDeta
 import LoginPageSkeleton from '../pages/LoginPage/LoginPageSkeleton';
 import JoinPageSkeleton from '../pages/JoinPage/JoinPageSkeleton';
 import MyPageSkeleton from '../pages/MyPage/MyPageSkeleton';
+import MyEditInfoPageSkeleton from '../pages/MyEditInfoPage/MyEditInfoPageSkeleton';
 
 const router = createBrowserRouter([
   {
@@ -144,6 +145,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<MyPageSkeleton />}>
             <Lazy.LazyMyPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.myEditInfo,
+        element: (
+          <Suspense fallback={<MyEditInfoPageSkeleton />}>
+            <Lazy.LazyMyEditInfoPage />
           </Suspense>
         ),
       },

@@ -11,6 +11,7 @@ import {
   deleteUser,
   UserCredential,
   signInWithRedirect,
+  updateProfile,
 } from 'firebase/auth';
 import { getIsMobile } from '../utils/getIsMobile';
 import { get, getDatabase, ref } from 'firebase/database';
@@ -118,6 +119,30 @@ export const fetchDeleteUser = async (callback?: () => void) => {
         }
       })
       .catch((error) => console.error(error));
+  }
+};
+
+interface FetchUpdateUserProfileProps {
+  displayName?: string;
+  photoURL?: string;
+  callback?: () => void;
+}
+
+export const fetchUpdateUserProfile = async ({
+  displayName,
+  photoURL,
+  callback,
+}: FetchUpdateUserProfileProps) => {
+  const user = auth.currentUser;
+  if (user) {
+    updateProfile(user, {
+      displayName,
+      photoURL,
+    }).then(() => {
+      if (callback) {
+        callback();
+      }
+    });
   }
 };
 

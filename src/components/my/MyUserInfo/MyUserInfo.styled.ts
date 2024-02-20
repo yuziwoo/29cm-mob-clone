@@ -20,11 +20,8 @@ export const ImgWrap = styled.div`
   border-radius: 50%;
   overflow: hidden;
   margin-right: 2rem;
-
-  & img {
-    width: 100%;
-    display: block;
-  }
+  background-size: cover;
+  background-position: center center;
 `;
 
 const textslide = keyframes`
