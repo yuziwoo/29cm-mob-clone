@@ -10,6 +10,7 @@ export const Logo = styled.div`
   height: 45px;
   margin-top: 20px;
   display: inline-block;
+  cursor: pointer;
 
   & svg {
     width: 100%;

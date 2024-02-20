@@ -19,4 +19,13 @@ export class Http<T> {
   static async getWithoutClient<T>(url: string) {
     return axios.get<T>(url);
   }
+
+  static async postWithoutClient<T>({ url, data }: { url: string; data: FormData }) {
+    // https://axios-http.com/docs/post_example
+    return axios<T>({
+      method: 'post',
+      url,
+      data,
+    });
+  }
 }

@@ -12,20 +12,13 @@ export const Header = styled.header<{ $location: string }>`
   overflow: hidden;
   padding: ${theme.padding.BODY};
   background: ${theme.color.WHITE};
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
 
   ${({ $location }) => {
     if ($location === '') {
       return css`
         background: transparent;
-      `;
-    }
-    if ($location === 'login') {
-      return css`
-        & svg path {
-          fill: ${theme.color.BLACK};
-        }
       `;
     }
   }}

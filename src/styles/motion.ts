@@ -3,8 +3,21 @@ const primaryButton = {
   transition: { duration: 0.15 },
 };
 
+const scaleButton = {
+  whileTap: { scale: 0.95 },
+  transition: { duration: 0.15 },
+};
+
+const pageOpen = {
+  initial: { y: 15, opacity: 0 },
+  animate: { y: 0, opacity: 1 },
+  transition: { duration: 0.55, delay: 0.1 },
+};
+
 export const motionStyle = {
   primaryButton,
+  scaleButton,
+  pageOpen,
 } as const;
 
 export type MotionStyle = typeof motionStyle;

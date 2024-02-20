@@ -10,7 +10,7 @@ import { useRouter } from '../../../hooks/useRouter';
 const SocialLogin = ({ redirectPath }: { redirectPath: string }) => {
   const { navigate } = useRouter();
   const handleTestAccountLogin = () => {
-    fetchEmailLogin(testEmail).then(() => {
+    fetchEmailLogin(testEmail, () => {
       navigate(redirectPath);
     });
   };

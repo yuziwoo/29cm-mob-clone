@@ -18,6 +18,9 @@ import BrandDetailPageSkeleton from '../pages/BrandDetailPage/BrandDetailPageSke
 import SearchDetailPageSkeleton from '../pages/SearchDetailPage/SearchDetailPageSkeleton';
 import ShowcaseDetailPageSkeleton from '../pages/ShowcaseDetailPage/ShowcaseDetailPageSkeleton';
 import LoginPageSkeleton from '../pages/LoginPage/LoginPageSkeleton';
+import JoinPageSkeleton from '../pages/JoinPage/JoinPageSkeleton';
+import MyPageSkeleton from '../pages/MyPage/MyPageSkeleton';
+import MyEditInfoPageSkeleton from '../pages/MyEditInfoPage/MyEditInfoPageSkeleton';
 
 const router = createBrowserRouter([
   {
@@ -126,6 +129,30 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoginPageSkeleton />}>
             <Lazy.LazyLoginPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.join,
+        element: (
+          <Suspense fallback={<JoinPageSkeleton />}>
+            <Lazy.LazyJoinPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.my,
+        element: (
+          <Suspense fallback={<MyPageSkeleton />}>
+            <Lazy.LazyMyPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.myEditInfo,
+        element: (
+          <Suspense fallback={<MyEditInfoPageSkeleton />}>
+            <Lazy.LazyMyEditInfoPage />
           </Suspense>
         ),
       },

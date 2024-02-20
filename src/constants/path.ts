@@ -4,13 +4,19 @@ export const ROUTE_PATH = {
   woman: '/woman',
   life: '/life',
   best: '/best',
-  search: '/search',
   alert: '/alert',
   cart: '/cart',
+  login: '/login',
+  join: '/join',
+  category: '/category',
+  like: '/like',
   productDetail: '/product/:id',
   brandDetail: '/brand/:id',
-  searchDetail: '/search/:keyword',
   showcaseDetail: '/showcase/:id',
-  login: '/login',
-  join: '/join'
+
+  search: '/search',
+  searchDetail: '/search/:keyword',
+
+  my: '/my',
+  myEditInfo: '/my/edit/info',
 } as const;

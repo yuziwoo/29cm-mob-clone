@@ -3,8 +3,6 @@ import IconAlert from '../../../icons/IconAlert';
 import IconCart from '../../../icons/IconCart';
 import IconSearch from '../../../icons/IconSearch';
 import { theme } from '../../../../styles/theme';
-import { useRecoilState } from 'recoil';
-import { userState } from '../../../../recoil/auth';
 import { ROUTE_PATH } from '../../../../constants/path';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../../styles/motion';
@@ -15,22 +13,13 @@ interface HeaderIconsProps {
 }
 
 const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
-  const [user] = useRecoilState(userState);
   const { navigate } = useRouter();
 
   const handleClickAlert = () => {
-    if (user) {
-      navigate(ROUTE_PATH.alert);
-      return;
-    }
-    navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.alert } });
+    navigate(ROUTE_PATH.alert);
   };
   const handleClickCart = () => {
-    if (user) {
-      navigate(ROUTE_PATH.cart);
-      return;
-    }
-    navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.cart } });
+    navigate(ROUTE_PATH.cart);
   };
 
   return (

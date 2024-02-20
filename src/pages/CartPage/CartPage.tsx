@@ -10,7 +10,7 @@ const CartPage = () => {
 
   useEffect(() => {
     if (user) return;
-    navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.cart } });
+    navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.cart }, replace: true });
     // eslint-disable-next-line
   }, []);
 

@@ -39,3 +39,12 @@ export const headerStateOnlyBackButton = {
   viewCategory: false,
   viewIcons: false,
 };
+
+export const headerStateBlack = {
+  color: theme.color.BLACK,
+  viewLogo: true,
+  viewBackButton: false,
+  viewShadow: false,
+  viewCategory: false,
+  viewIcons: true,
+};

@@ -2,19 +2,25 @@ const color = {
   BLACK: '#000',
   WHITE: '#fff',
   GRAY3: '#DADADB',
+  GRAY5: '#A1A1A1',
+  ACTIVE: '#000',
 
-  SELECTION_BG: '#182B8E',
+  SELECTION_BG: '#FF4800',
   SELECTION_COLOR: '#fff',
 
   INPUT_VALID: '#34B305',
   INPUT_INVALID: '#D30005',
   INPUT_GRAY: '#C5C5C5',
+
+  FOOTER_BG: 'rgba(246, 246, 246, 0.85)',
+  FOOTER_INACTIVE: '#5D5D5D',
 };
 
 const gradient = {};
 
 const zIndex = {
   HEADER: 2000,
+  FOOTER: 3000,
 };
 
 const animation = {};

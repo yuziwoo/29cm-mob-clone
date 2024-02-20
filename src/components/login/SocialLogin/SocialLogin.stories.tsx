@@ -10,7 +10,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div>
+      <div style={{ width: '100%', padding: '0 16px', maxWidth: '550px', margin: 'auto' }}>
         <BrowserRouter>
           <RecoilRoot>
             <GlobalStyle />

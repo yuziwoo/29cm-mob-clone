@@ -1,10 +1,9 @@
-export type LoginInputProps = {
+export type InputData = {
   state: string;
-  smallLabel: boolean;
   isValid: null | boolean;
-  message: string;
 };
 
-export type LoginPasswordProps = LoginInputProps & {
-  security: boolean;
-}
+export type FormData = {
+  id: InputData;
+  password: InputData;
+};

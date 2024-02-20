@@ -11,8 +11,12 @@ import {
   deleteUser,
   UserCredential,
   signInWithRedirect,
+  updateProfile,
 } from 'firebase/auth';
 import { getIsMobile } from '../utils/getIsMobile';
+import { get, getDatabase, ref } from 'firebase/database';
+import { AdminList } from '../types/auth';
+import { sessionStorageKey } from '../constants/sessionStorage';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -26,7 +30,7 @@ const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 
 export const onAuthStateChange = (callback: (user: User | null) => void) => {
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     callback(user);
     /**
      * user = {
@@ -39,10 +43,15 @@ export const onAuthStateChange = (callback: (user: User | null) => void) => {
   });
 };
 
+const removeSessionStorage = () => {
+  sessionStorage.removeItem(sessionStorageKey.USER);
+};
+
 // 로그아웃
 export const fetchLogout = async () => {
   signOut(auth)
     .then(() => {
+      removeSessionStorage();
       console.log('로그아웃 하였습니다.');
     })
     .catch((error) => {
@@ -61,8 +70,6 @@ export const fetchGoogleLogin = async (callback: (result: UserCredential) => voi
       })
       .catch((error) => {
         console.error(error);
-        window.alert(error.message)
-        window.alert('모바일 기기에서 로그인 Redirect를 지원하지 않습니다.');
       });
     return;
   }
@@ -83,29 +90,79 @@ export const fetchGoogleLogin = async (callback: (result: UserCredential) => voi
 // 이메일 로그인
 export type EmailFormProps = { email: string; password: string };
 
-export const fetchEmailLogin = async ({ email, password }: EmailFormProps) => {
+export const fetchEmailLogin = async (
+  { email, password }: EmailFormProps,
+  callback: (userCredential?: UserCredential) => void
+) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // const user = userCredential.user;
+      callback(userCredential);
     })
     .catch((error) => {
-      window.alert('이메일 주소 또는 비밀번호가 잘못되었습니다.');
+      console.log(error);
+      window.alert('잘못된 이메일 또는 패스워드 입력입니다.');
     });
 };
 
-export const createEmailUser = async ({ email, password }: EmailFormProps) => {
+export const createEmailUser = async (
+  { email, password }: EmailFormProps,
+  callback: (userCredential?: UserCredential) => void
+) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // const user = userCredential.user;
+      callback(userCredential);
     })
     .catch((error) => console.error(error));
 };
 
-export const deleteEmailUser = async () => {
+export const fetchDeleteUser = async (callback?: () => void) => {
   const user = auth.currentUser;
   if (user) {
     deleteUser(user)
-      .then(() => {})
+      .then(() => {
+        removeSessionStorage();
+        if (callback) {
+          callback();
+        }
+      })
       .catch((error) => console.error(error));
   }
+};
+
+interface FetchUpdateUserProfileProps {
+  displayName?: string;
+  photoURL?: string;
+  callback?: () => void;
+}
+
+export const fetchUpdateUserProfile = async ({
+  displayName,
+  photoURL,
+  callback,
+}: FetchUpdateUserProfileProps) => {
+  const user = auth.currentUser;
+  if (user) {
+    updateProfile(user, {
+      displayName,
+      photoURL,
+    }).then(() => {
+      if (callback) {
+        callback();
+      }
+    });
+  }
+};
+
+// Realtime Database
+const databse = getDatabase(app);
+
+export const getAdminUserList = async (): Promise<AdminList> => {
+  const admins = await get(ref(databse, 'admins'))
+    .then((snapshot) => {
+      return snapshot.val();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  return admins;
 };
