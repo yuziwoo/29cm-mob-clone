@@ -16,6 +16,7 @@ import {
 import { getIsMobile } from '../utils/getIsMobile';
 import { get, getDatabase, ref } from 'firebase/database';
 import { AdminList } from '../types/auth';
+import { sessionStorageKey } from '../constants/sessionStorage';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -42,10 +43,15 @@ export const onAuthStateChange = (callback: (user: User | null) => void) => {
   });
 };
 
+const removeSessionStorage = () => {
+  sessionStorage.removeItem(sessionStorageKey.USER);
+};
+
 // 로그아웃
 export const fetchLogout = async () => {
   signOut(auth)
     .then(() => {
+      removeSessionStorage();
       console.log('로그아웃 하였습니다.');
     })
     .catch((error) => {
@@ -114,6 +120,7 @@ export const fetchDeleteUser = async (callback?: () => void) => {
   if (user) {
     deleteUser(user)
       .then(() => {
+        removeSessionStorage();
         if (callback) {
           callback();
         }
