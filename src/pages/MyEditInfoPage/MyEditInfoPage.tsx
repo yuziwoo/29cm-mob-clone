@@ -13,6 +13,7 @@ import { userPlaceholder } from '../../constants/user';
 import { uploadeImage } from '../../api/uploader';
 import { fetchUpdateUserProfile } from '../../api/firebase';
 import { UserInfo } from '../../types/auth';
+import MyEditInfoProfileImg from '../../components/myEditInfo/MyEditInfoProfileImg/MyEditInfoProfileImg';
 
 const MyEditInfoPage = () => {
   useSetHeaderState(headerStateOnlyBackButton);
@@ -64,35 +65,11 @@ const MyEditInfoPage = () => {
 
   return (
     <S.SectionMyEditInfo>
-      <motion.label
-        htmlFor="my-edit-profileImg"
-        style={{ display: 'inline-block', position: 'relative' }}
-        whileTap={motionStyle.scaleButton.whileTap}
-        transition={motionStyle.scaleButton.transition}
-      >
-        {userProfileImg === null ? (
-          <S.ProfileImg
-            style={{
-              backgroundImage: `url(${user?.photoURL ? user.photoURL : userPlaceholder.PHOTO_URL})`,
-            }}
-          />
-        ) : (
-          <S.ProfileImg
-            style={{
-              backgroundImage: `url(${URL.createObjectURL(userProfileImg)})`,
-            }}
-          />
-        )}
-
-        <S.ProfileEditMessage>프로필 사진 바꾸기</S.ProfileEditMessage>
-        <S.ImgInput
-          type="file"
-          accept="image/*"
-          name="my-edit-profileImg"
-          id="my-edit-profileImg"
-          onChange={handleChangeProfileImg}
-        />
-      </motion.label>
+      <MyEditInfoProfileImg
+        defaultImg={user?.photoURL ? user.photoURL : userPlaceholder.PHOTO_URL}
+        changedImg={userProfileImg}
+        onChangeImg={handleChangeProfileImg}
+      />
 
       <S.InfoWrap>
         <li>
