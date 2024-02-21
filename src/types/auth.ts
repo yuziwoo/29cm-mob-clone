@@ -7,4 +7,14 @@ export type UserInfo = {
   isAdmin?: boolean;
 };
 
+export type LoginFormProps = {
+  email: string;
+  password: string;
+};
+
+export type UserProfileUpdateProps = {
+  displayName: string;
+  photoURL: string;
+};
+
 export type AdminList = string[];
