@@ -1,10 +1,20 @@
 import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
-import { handleAuthStateChanged } from '../../api/firebase/auth/auth';
-import { UserInfo } from '../../types/auth';
+import {
+  authLoginEmail,
+  authLoginGoogle,
+  authLogout,
+  createEmailUser,
+  deleteEmailUser,
+  handleAuthStateChanged,
+  updateUserProfile,
+} from '../../api/firebase/auth/auth';
+import { UserInfo, UserProfileUpdateProps } from '../../types/auth';
 import { sessionStorageKey } from '../../constants/sessionStorage';
 import { getAuth } from 'firebase/auth';
 import { getAdminUsers } from '../../api/firebase/database/admin';
+import { useMutation } from '@tanstack/react-query';
+import { EmailFormProps } from '../../api/firebase';
 
 export const useAuth = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -41,6 +51,7 @@ export const useAuth = () => {
         return;
       }
       setUser(null);
+      sessionStorageUser.removeData();
     });
   };
 
@@ -65,5 +76,49 @@ export const useAuth = () => {
     setTempData();
   };
 
-  return { initializeAuth };
+  const loginGoogle = useMutation({
+    mutationFn: () => {
+      return authLoginGoogle();
+    },
+  });
+
+  const loginEmail = useMutation({
+    mutationFn: ({ email, password }: EmailFormProps) => {
+      return authLoginEmail({ email, password });
+    },
+  });
+
+  const logout = useMutation({
+    mutationFn: () => {
+      return authLogout();
+    },
+  });
+
+  const createAccount = useMutation({
+    mutationFn: ({ email, password }: EmailFormProps) => {
+      return createEmailUser({ email, password });
+    },
+  });
+
+  const deleteAccount = useMutation({
+    mutationFn: () => {
+      return deleteEmailUser();
+    },
+  });
+
+  const updateProfile = useMutation({
+    mutationFn: ({ displayName, photoURL }: UserProfileUpdateProps) => {
+      return updateUserProfile({ displayName, photoURL });
+    },
+  });
+
+  return {
+    initializeAuth,
+    loginGoogle,
+    loginEmail,
+    logout,
+    createAccount,
+    deleteAccount,
+    updateProfile,
+  };
 };

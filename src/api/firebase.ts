@@ -29,20 +29,6 @@ const app = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 
-export const onAuthStateChange = (callback: (user: User | null) => void) => {
-  onAuthStateChanged(auth, async (user) => {
-    callback(user);
-    /**
-     * user = {
-     *   displayName: 이름
-     *   email: 이메일 주소
-     *   photoURL: 이미지 URL
-     *   providerId: google.com | firebase | github.com ...
-     * }
-     */
-  });
-};
-
 const removeSessionStorage = () => {
   sessionStorage.removeItem(sessionStorageKey.USER);
 };
