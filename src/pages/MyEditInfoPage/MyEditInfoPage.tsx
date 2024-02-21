@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
 import { userPlaceholder } from '../../constants/user';
 import { uploadeImage } from '../../api/uploader';
-import { UserInfo } from '../../types/auth';
 import MyEditInfoProfileImg from '../../components/myEditInfo/MyEditInfoProfileImg/MyEditInfoProfileImg';
 import MyEditInfoList from '../../components/myEditInfo/MyEditInfoList/MyEditInfoList';
 import { useAuth } from '../../hooks/auth/useAuth';
@@ -17,7 +16,7 @@ const MyEditInfoPage = () => {
   useSetHeaderState(headerStateOnlyBackButton);
 
   const { navigate } = useRouter();
-  const { user, setUser, updateProfile } = useAuth();
+  const { user, updateProfile } = useAuth();
 
   useEffect(() => {
     if (user) return;

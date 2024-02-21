@@ -1,6 +1,6 @@
 import { Http } from './http';
 
-// https://cloudinary.com/documentation/upload_images#landingpage
+// docs: https://cloudinary.com/documentation/upload_images#landingpage
 export const uploadeImage = async (file: File) => {
   const data = new FormData();
   data.append('file', file);
