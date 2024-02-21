@@ -154,10 +154,10 @@ export const fetchUpdateUserProfile = async ({
 };
 
 // Realtime Database
-const databse = getDatabase(app);
+const database = getDatabase(app);
 
 export const getAdminUserList = async (): Promise<AdminList> => {
-  const admins = await get(ref(databse, 'admins'))
+  const admins = await get(ref(database, 'admins'))
     .then((snapshot) => {
       return snapshot.val();
     })

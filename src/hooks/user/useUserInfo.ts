@@ -13,6 +13,7 @@ export const useUserInfo = () => {
         const admins = await getAdminUserList();
         const { displayName, email, photoURL, providerId, uid } = user;
         const userData = {
+          uid,
           displayName,
           email,
           photoURL,

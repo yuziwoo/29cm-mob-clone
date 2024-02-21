@@ -29,6 +29,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     user: {
+      uid: '',
       displayName: null,
       email: '',
       photoURL: null,
@@ -40,6 +41,7 @@ export const Default: Story = {
 export const WithUserName: Story = {
   args: {
     user: {
+      uid: '',
       displayName: '사용자 이름',
       email: '',
       photoURL: null,
