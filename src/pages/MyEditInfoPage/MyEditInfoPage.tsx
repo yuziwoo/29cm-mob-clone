@@ -8,11 +8,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
-import { InfoTableDescription } from './MyEditInfoPage.styled';
 import { userPlaceholder } from '../../constants/user';
 import { uploadeImage } from '../../api/uploader';
 import { fetchUpdateUserProfile } from '../../api/firebase';
 import { UserInfo } from '../../types/auth';
+import MyEditInfoProfileImg from '../../components/myEditInfo/MyEditInfoProfileImg/MyEditInfoProfileImg';
+import MyEditInfoList from '../../components/myEditInfo/MyEditInfoList/MyEditInfoList';
 
 const MyEditInfoPage = () => {
   useSetHeaderState(headerStateOnlyBackButton);
@@ -64,61 +65,18 @@ const MyEditInfoPage = () => {
 
   return (
     <S.SectionMyEditInfo>
-      <motion.label
-        htmlFor="my-edit-profileImg"
-        style={{ display: 'inline-block', position: 'relative' }}
-        whileTap={motionStyle.scaleButton.whileTap}
-        transition={motionStyle.scaleButton.transition}
-      >
-        {userProfileImg === null ? (
-          <S.ProfileImg
-            style={{
-              backgroundImage: `url(${user?.photoURL ? user.photoURL : userPlaceholder.PHOTO_URL})`,
-            }}
-          />
-        ) : (
-          <S.ProfileImg
-            style={{
-              backgroundImage: `url(${URL.createObjectURL(userProfileImg)})`,
-            }}
-          />
-        )}
+      <MyEditInfoProfileImg
+        defaultImg={user?.photoURL ? user.photoURL : userPlaceholder.PHOTO_URL}
+        changedImg={userProfileImg}
+        onChangeImg={handleChangeProfileImg}
+      />
 
-        <S.ProfileEditMessage>프로필 사진 바꾸기</S.ProfileEditMessage>
-        <S.ImgInput
-          type="file"
-          accept="image/*"
-          name="my-edit-profileImg"
-          id="my-edit-profileImg"
-          onChange={handleChangeProfileImg}
-        />
-      </motion.label>
-
-      <S.InfoWrap>
-        <li>
-          <label htmlFor="my-edit-DisplayName" style={{ display: 'inline-block' }}>
-            <S.InfoTableHead>이름</S.InfoTableHead>
-          </label>
-          <S.InfoTableInput
-            type="text"
-            name="my-edit-DisplayName"
-            id="my-edit-DisplayName"
-            placeholder={userDisplayName}
-            maxLength={10}
-            onChange={handleChangeUserDisplayName}
-          />
-        </li>
-        <li>
-          <S.InfoTableHead>이메일</S.InfoTableHead>
-          <InfoTableDescription>{user?.email ? user.email : '없음'}</InfoTableDescription>
-        </li>
-        <li>
-          <S.InfoTableHead>계정연동</S.InfoTableHead>
-          <InfoTableDescription>
-            {user?.providerId !== 'firebase' ? user?.providerId : '없음'}
-          </InfoTableDescription>
-        </li>
-      </S.InfoWrap>
+      <MyEditInfoList
+        placeholder={userDisplayName}
+        onChangeInput={handleChangeUserDisplayName}
+        email={user?.email ? user.email : '없음'}
+        providerId={user?.providerId !== 'firebase' ? user?.providerId : '없음'}
+      />
 
       <S.Confirm>
         <motion.button
