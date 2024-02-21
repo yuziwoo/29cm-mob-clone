@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const SectionProfileImg = styled.section`
+export const SectionProfileImg = styled.div`
   width: 100%;
   display: flex;
   justify-conent: center;

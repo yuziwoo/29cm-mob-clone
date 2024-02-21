@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
 export const SectionMyEditInfo = styled.section`
@@ -7,45 +7,6 @@ export const SectionMyEditInfo = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 4rem 16px 120px;
-`;
-
-export const InfoWrap = styled.ul`
-  width: 100%;
-  padding: 3rem 0;
-
-  & li {
-    padding: 2rem 0;
-    border-bottom: 1px solid ${theme.color.GRAY3};
-    display: flex;
-    align-items: center;
-  }
-
-  & li:last-child {
-    border-bottom: none;
-  }
-`;
-
-const infoFont = css`
-  font-size: 18px;
-  font-weight: 500;
-  color: ${theme.color.BLACK};
-
-  @media screen and (max-width: 400px) {
-    font-size: 16px;
-  }
-`;
-
-export const InfoTableHead = styled.p`
-  ${infoFont}
-  width: 115px;
-`;
-
-export const InfoTableInput = styled.input`
-  ${infoFont}
-`;
-
-export const InfoTableDescription = styled.p`
-  ${infoFont}
 `;
 
 export const Confirm = styled.div`
