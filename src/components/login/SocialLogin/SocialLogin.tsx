@@ -1,26 +1,26 @@
 import * as S from './SocialLogin.styled';
 import IconGoogle from '../../icons/IconGoogle';
-import { fetchEmailLogin, fetchGoogleLogin } from '../../../api/firebase';
 import { testEmail } from '../../../mock/testEmail';
-import { UserCredential } from 'firebase/auth';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import { useRouter } from '../../../hooks/useRouter';
+import { useAuth } from '../../../hooks/auth/useAuth';
 
 const SocialLogin = ({ redirectPath }: { redirectPath: string }) => {
   const { navigate } = useRouter();
-  const handleTestAccountLogin = () => {
-    fetchEmailLogin(testEmail, () => {
+  const { loginGoogle, loginEmail } = useAuth();
+  const handleTestAccountLogin = async () => {
+    await loginEmail.mutate(testEmail);
+    if (loginEmail.isSuccess) {
       navigate(redirectPath);
-    });
+    }
   };
 
-  const handleGoogleLogin = () => {
-    fetchGoogleLogin((result: UserCredential) => {
-      if (result.user) {
-        navigate(redirectPath);
-      }
-    });
+  const handleGoogleLogin = async () => {
+    await loginGoogle.mutate();
+    if (loginGoogle.isSuccess) {
+      navigate(redirectPath);
+    }
   };
 
   return (

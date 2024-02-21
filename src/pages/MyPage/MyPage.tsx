@@ -1,7 +1,5 @@
 import { headerStateBlack } from '../../recoil/headerState';
 import useSetHeaderState from '../../hooks/useSetHeaderState';
-import { useRecoilState } from 'recoil';
-import { userState } from '../../recoil/auth';
 import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useRouter } from '../../hooks/useRouter';
@@ -11,12 +9,13 @@ import MyInfoBalloon from '../../components/my/MyInfoBalloon/MyInfoBalloon';
 import MyListButton from '../../components/my/MyListButton/MyListButton';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
-import { fetchDeleteUser, fetchLogout } from '../../api/firebase';
+import { useAuth } from '../../hooks/auth/useAuth';
 
 const MyPage = () => {
   useSetHeaderState(headerStateBlack);
 
-  const [user] = useRecoilState(userState);
+  // const [user] = useRecoilState(userState);
+  const { user, logout, deleteAccount } = useAuth();
   const { navigate } = useRouter();
 
   useEffect(() => {
@@ -45,26 +44,14 @@ const MyPage = () => {
       text: '로그아웃',
       onClick: async () => {
         const confirm = await window.confirm('로그아웃하시겠습니까?');
-        if (confirm) {
-          fetchLogout();
-          navigate(ROUTE_PATH.root);
-        }
+        if (confirm) logout.mutate();
       },
     },
     {
       text: '회원 탈퇴',
       onClick: async () => {
-        if (user?.isAdmin) {
-          window.alert('어드민 계정은 삭제할 수 없습니다.');
-          return;
-        }
         const confirm = await window.confirm('정말로 탈퇴하시겠습니까?');
-        if (confirm) {
-          fetchDeleteUser(() => {
-            window.alert('정상적으로 삭제되었습니다. 이용해주셔서 감사합니다.');
-            navigate(ROUTE_PATH.root);
-          });
-        }
+        if (confirm) deleteAccount.mutate();
       },
     },
   ];

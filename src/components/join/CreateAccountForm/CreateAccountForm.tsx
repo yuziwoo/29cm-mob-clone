@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import * as S from './CreateAccountForm.styled';
-import { createEmailUser } from '../../../api/firebase';
 import { useRouter } from '../../../hooks/useRouter';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
@@ -8,11 +7,13 @@ import TextInput from '../../common/TextInput/TextInput';
 import { validateEmail } from '../../../utils/validateEmail';
 import { validatePassword } from '../../../utils/validatePassword';
 import { FormData } from '../../../types/login';
+import { useAuth } from '../../../hooks/auth/useAuth';
 
 const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
   const { navigate } = useRouter();
+  const { createAccount } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.id.isValid || !formData.password.isValid) {
       window.alert(
@@ -20,9 +21,10 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
       );
       return;
     }
-    createEmailUser({ email: formData.id.state, password: formData.password.state }, () => {
+    await createAccount.mutate({ email: formData.id.state, password: formData.password.state });
+    if (createAccount.isSuccess) {
       navigate(redirectPath);
-    });
+    }
   };
 
   const [formData, setFormData] = useState<FormData>({

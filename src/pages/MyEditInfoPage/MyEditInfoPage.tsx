@@ -1,8 +1,6 @@
-import { useRecoilState } from 'recoil';
 import useSetHeaderState from '../../hooks/useSetHeaderState';
 import { headerStateOnlyBackButton } from '../../recoil/headerState';
 import * as S from './MyEditInfoPage.styled';
-import { userState } from '../../recoil/auth';
 import { useRouter } from '../../hooks/useRouter';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
@@ -10,16 +8,16 @@ import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
 import { userPlaceholder } from '../../constants/user';
 import { uploadeImage } from '../../api/uploader';
-import { fetchUpdateUserProfile } from '../../api/firebase';
 import { UserInfo } from '../../types/auth';
 import MyEditInfoProfileImg from '../../components/myEditInfo/MyEditInfoProfileImg/MyEditInfoProfileImg';
 import MyEditInfoList from '../../components/myEditInfo/MyEditInfoList/MyEditInfoList';
+import { useAuth } from '../../hooks/auth/useAuth';
 
 const MyEditInfoPage = () => {
   useSetHeaderState(headerStateOnlyBackButton);
 
-  const [user, setUser] = useRecoilState(userState);
   const { navigate } = useRouter();
+  const { user, setUser, updateProfile } = useAuth();
 
   useEffect(() => {
     if (user) return;
@@ -50,16 +48,7 @@ const MyEditInfoPage = () => {
     if (userProfileImg) {
       photoURL = (await uploadeImage(userProfileImg)) as string;
     }
-    fetchUpdateUserProfile({
-      photoURL,
-      displayName,
-      callback: () => {
-        setUser({ ...(user as UserInfo), displayName, photoURL });
-        window.alert('프로필이 업데이트되었습니다.');
-        navigate(-1);
-      },
-    });
-
+    await updateProfile.mutate({ photoURL, displayName });
     // eslint-disable-next-line
   }, [userProfileImg, userDisplayName, user?.displayName, user?.photoURL]);
 

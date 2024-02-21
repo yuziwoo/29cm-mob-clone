@@ -9,15 +9,17 @@ import {
   handleAuthStateChanged,
   updateUserProfile,
 } from '../../api/firebase/auth/auth';
-import { UserInfo, UserProfileUpdateProps } from '../../types/auth';
+import { LoginFormProps, UserInfo, UserProfileUpdateProps } from '../../types/auth';
 import { sessionStorageKey } from '../../constants/sessionStorage';
 import { getAuth } from 'firebase/auth';
 import { getAdminUsers } from '../../api/firebase/database/admin';
 import { useMutation } from '@tanstack/react-query';
-import { EmailFormProps } from '../../api/firebase';
+import { useRouter } from '../useRouter';
+import { ROUTE_PATH } from '../../constants/path';
 
 export const useAuth = () => {
   const [user, setUser] = useRecoilState(userState);
+  const { navigate } = useRouter();
 
   const sessionStorageUser = {
     removeData() {
@@ -83,7 +85,7 @@ export const useAuth = () => {
   });
 
   const loginEmail = useMutation({
-    mutationFn: ({ email, password }: EmailFormProps) => {
+    mutationFn: ({ email, password }: LoginFormProps) => {
       return authLoginEmail({ email, password });
     },
   });
@@ -92,23 +94,34 @@ export const useAuth = () => {
     mutationFn: () => {
       return authLogout();
     },
+    onSuccess: () => {
+      navigate(ROUTE_PATH.root);
+    },
   });
 
   const createAccount = useMutation({
-    mutationFn: ({ email, password }: EmailFormProps) => {
+    mutationFn: ({ email, password }: LoginFormProps) => {
       return createEmailUser({ email, password });
     },
   });
 
   const deleteAccount = useMutation({
     mutationFn: () => {
-      return deleteEmailUser();
+      return deleteEmailUser(user?.isAdmin);
+    },
+    onSuccess: () => {
+      navigate(ROUTE_PATH.root);
     },
   });
 
   const updateProfile = useMutation({
     mutationFn: ({ displayName, photoURL }: UserProfileUpdateProps) => {
       return updateUserProfile({ displayName, photoURL });
+    },
+    onSuccess: (data, variables) => {
+      setUser({ ...(user as UserInfo), ...variables });
+      window.alert('프로필이 업데이트되었습니다.');
+      navigate(-1);
     },
   });
 
@@ -120,5 +133,7 @@ export const useAuth = () => {
     createAccount,
     deleteAccount,
     updateProfile,
+    user,
+    setUser,
   };
 };

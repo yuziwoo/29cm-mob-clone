@@ -2,16 +2,17 @@ import { useCallback, useState } from 'react';
 import * as S from './LoginForm.styled';
 import { validateEmail } from '../../../utils/validateEmail';
 import { FormData } from '../../../types/login';
-import { fetchEmailLogin } from '../../../api/firebase';
 import { useRouter } from '../../../hooks/useRouter';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import TextInput from '../../common/TextInput/TextInput';
+import { useAuth } from '../../../hooks/auth/useAuth';
 
 const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
   const { navigate } = useRouter();
+  const { loginEmail } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.id.isValid || !formData.password.isValid) {
       window.alert(
@@ -19,9 +20,10 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
       );
       return;
     }
-    fetchEmailLogin({ email: formData.id.state, password: formData.password.state }, () => {
+    await loginEmail.mutate({ email: formData.id.state, password: formData.password.state });
+    if (loginEmail.isSuccess) {
       navigate(redirectPath);
-    });
+    }
   };
 
   const [formData, setFormData] = useState<FormData>({
