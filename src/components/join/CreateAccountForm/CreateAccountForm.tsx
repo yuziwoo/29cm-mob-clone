@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useId, useState } from 'react';
 import * as S from './CreateAccountForm.styled';
 import { useRouter } from '../../../hooks/useRouter';
 import { motion } from 'framer-motion';
@@ -12,6 +12,7 @@ import { useAuth } from '../../../hooks/auth/useAuth';
 const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
   const { navigate } = useRouter();
   const { createAccount } = useAuth();
+  const uniqueId = useId();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,7 +57,7 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
     <S.CreateAccount onSubmit={handleSubmit}>
       <TextInput
         type="email"
-        id="login-form-id"
+        id={`${uniqueId}-id`}
         onChange={handleIdInputChange}
         isValid={formData.id.isValid}
         placeholder="이메일*"
@@ -66,7 +67,7 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
       />
       <TextInput
         type="password"
-        id="login-form-password"
+        id={`${uniqueId}-password`}
         isValid={formData.password.isValid}
         onChange={handlePasswordInputChange}
         placeholder="패스워드*"
