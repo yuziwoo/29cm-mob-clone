@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { queryAPI } from '../../constants/query';
 import { addLikeItem, getLikeItems, removeLikeItem } from '../../api/firebase/database/like';
 
-export const useLike = () => {
+export const useLikeList = () => {
   const [user] = useRecoilState(userState);
   const uid = user?.uid || '';
   const queryClient = useQueryClient();

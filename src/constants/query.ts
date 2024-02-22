@@ -8,6 +8,7 @@ const queryKey = {
   cart: 'carts',
   admin: 'admins',
   like: 'likes',
+  product: 'products',
 };
 
 export const queryAPI = {

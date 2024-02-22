@@ -9,13 +9,16 @@
       "2": "L"
     },
     "salesVolume": 0,
-    "thumb": 2,
+    "thumb": {
+      "0": "../img/products/p1001-1.jpg",
+      "1": "../img/products/p1001-2.jpg"
+    },
     "imgURL": "../img/products/p1001-1.jpg",
     "brandId": 100,
     "brandName": "쿠어",
     "price": 210000,
     "discount": 190000,
-    "like": 321,
+    "likes": 321,
     "review": 276,
     "reviewRating": 95
   },
@@ -29,13 +32,17 @@
       "2": "L"
     },
     "salesVolume": 3,
-    "thumb": 2,
+    "thumb": {
+      "0": "../img/products/p1002-1.jpg",
+      "1": "../img/products/p1002-2.jpg",
+      "2": "../img/products/p1002-3.jpg"
+    },
     "imgURL": "../img/products/p1002-1.jpg",
     "brandId": 100,
     "brandName": "쿠어",
     "price": 210000,
     "discount": 190000,
-    "like": 192,
+    "likes": 192,
     "review": 176,
     "reviewRating": 85
   },
@@ -49,13 +56,15 @@
       "2": "L"
     },
     "salesVolume": 10,
-    "thumb": 1,
+    "thumb": {
+      "0": "../img/products/p1003-1.jpg"
+    },
     "imgURL": "../img/products/p1003-1.jpg",
     "brandId": 100,
     "brandName": "쿠어",
     "price": 195000,
     "discount": 185000,
-    "like": 362,
+    "likes": 362,
     "review": 406,
     "reviewRating": 98
   },
@@ -65,13 +74,16 @@
     "categoryMedium": "상의",
     "option": {},
     "salesVolume": 32,
-    "thumb": 2,
+    "thumb": {
+      "0": "../img/products/p1004-1.jpg",
+      "1": "../img/products/p1004-2.jpg"
+    },
     "imgURL": "../img/products/p1004-1.jpg",
     "brandId": 101,
     "brandName": "어랜",
     "price": 56000,
     "discount": 10,
-    "like": 860,
+    "likes": 860,
     "review": 326,
     "reviewRating": 94
   },
@@ -81,13 +93,16 @@
     "categoryMedium": "상의",
     "option": {},
     "salesVolume": 2,
-    "thumb": 2,
+    "thumb": {
+      "0": "../img/products/p1005-1.jpg",
+      "1": "../img/products/p1005-2.jpg"
+    },
     "imgURL": "../img/products/p1005-1.jpg",
     "brandId": 101,
     "brandName": "어랜",
     "price": 93000,
     "discount": 76000,
-    "like": 10,
+    "likes": 10,
     "review": 0,
     "reviewRating": 80
   },
@@ -100,13 +115,16 @@
       "1": "2"
     },
     "salesVolume": 62,
-    "thumb": 2,
+    "thumb": {
+      "0": "../img/products/p1006-1.jpg",
+      "1": "../img/products/p1006-2.jpg"
+    },
     "imgURL": "../img/products/p1006-1.jpg",
     "brandId": 101,
     "brandName": "어랜",
     "price": 76000,
     "discount": 53000,
-    "like": 982,
+    "likes": 982,
     "review": 663,
     "reviewRating": 95
   },
@@ -120,13 +138,17 @@
       "2": "미드나잇 블루"
     },
     "salesVolume": 13,
-    "thumb": 3,
+    "thumb": {
+      "0": "../img/products/p1007-1.jpg",
+      "1": "../img/products/p1007-2.jpg",
+      "2": "../img/products/p1007-3.jpg"
+    },
     "imgURL": "../img/products/p1007-1.jpg",
     "brandId": 102,
     "brandName": "소니",
     "price": 499000,
     "discount": 399000,
-    "like": 982,
+    "likes": 982,
     "review": 663,
     "reviewRating": 95
   },
@@ -139,13 +161,16 @@
       "1": "플래티넘 실버"
     },
     "salesVolume": 60,
-    "thumb": 2,
+    "thumb": {
+      "0": "../img/products/p1008-1.jpg",
+      "1": "../img/products/p1008-2.jpg"
+    },
     "imgURL": "../img/products/p1008-1.jpg",
     "brandId": 102,
     "brandName": "소니",
     "price": 359000,
     "discount": 299000,
-    "like": 284,
+    "likes": 284,
     "review": 36,
     "reviewRating": 100
   }

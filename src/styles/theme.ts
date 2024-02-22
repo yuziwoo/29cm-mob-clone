@@ -4,6 +4,7 @@ const color = {
   GRAY3: '#DADADB',
   GRAY5: '#A1A1A1',
   ACTIVE: '#000',
+  SIGNATURE: '#FF4800',
 
   SELECTION_BG: '#FF4800',
   SELECTION_COLOR: '#fff',
