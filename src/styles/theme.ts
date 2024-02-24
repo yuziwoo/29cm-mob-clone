@@ -3,6 +3,7 @@ const color = {
   WHITE: '#fff',
   GRAY3: '#DADADB',
   GRAY5: '#A1A1A1',
+  GRAY7: '#7D7D7D',
   ACTIVE: '#000',
   SIGNATURE: '#FF4800',
 

@@ -33,8 +33,28 @@ const Header = () => {
       setHeaderHeight(headerRef.current.offsetHeight);
     }
   };
+
+  useEffect(() => {
+    let resizeTimeout: NodeJS.Timeout | null;
+    const resizeHandler = () => {
+      if (resizeTimeout) {
+        clearTimeout(resizeTimeout);
+      }
+
+      resizeTimeout = setTimeout(() => {
+        handleSetHeaderHeight();
+      }, 100);
+    };
+    window.addEventListener('resize', resizeHandler);
+
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
+
   useEffect(() => {
     handleSetHeaderHeight();
+
     setTimeout(() => {
       handleSetHeaderHeight();
     }, 100);
@@ -56,7 +76,10 @@ const Header = () => {
 
   return (
     <>
-      <S.RelatedHeaderPosition $height={headerHeight} />
+      <div
+        className="header-related-height"
+        style={{ height: headerHeight ? `${headerHeight}px` : '100vh' }}
+      ></div>
 
       <S.Header ref={headerRef} $location={location}>
         {viewShadow && <HeaderShadow />}

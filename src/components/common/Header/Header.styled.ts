@@ -28,10 +28,6 @@ export const Header = styled.header<{ $location: string }>`
   }
 `;
 
-export const RelatedHeaderPosition = styled.div<{ $height: number | null }>`
-  height: ${({ $height }) => ($height === null ? '100vh' : `${$height}px`)};
-`;
-
 export const MainHeader = styled.section`
   display: flex;
   justify-content: space-between;
