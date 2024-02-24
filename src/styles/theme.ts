@@ -1,3 +1,5 @@
+import { keyframes } from 'styled-components';
+
 const color = {
   BLACK: '#000',
   WHITE: '#fff',
@@ -26,7 +28,16 @@ const zIndex = {
   FOOTER: 3000,
 };
 
-const animation = {};
+const animation = {
+  SKELETON_BG: keyframes`
+  0%, 100% {
+    background-color: rgba(100, 100, 100, 0.1);
+  }
+  50% {
+    background-color: rgba(100, 100, 100, 0.25);
+  }
+  `,
+};
 
 const lineHeight = {
   BASIC: 1.4,
