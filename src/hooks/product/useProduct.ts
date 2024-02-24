@@ -7,13 +7,14 @@ import {
   getProducts,
   subtractProductLike,
 } from '../../api/firebase/database/product';
+import { Products } from '../../types/product';
 
 export const useProduct = () => {
   const [user] = useRecoilState(userState);
   const uid = user?.uid || '';
   const queryKey = [queryAPI.queryKey.product, uid];
 
-  const productQuery = useQuery({
+  const productQuery = useQuery<Products>({
     queryKey,
     queryFn: async () => {
       const result = await getProducts();
@@ -34,5 +35,12 @@ export const useProduct = () => {
     },
   });
 
-  return { productQuery, addLikes, subtractLikes };
+  const getProduct = (productId: string) => {
+    if (productQuery.data && Object.keys(productQuery.data).includes(productId))  {
+      return productQuery.data[productId];
+    }
+    return null;
+  }
+
+  return { productQuery, addLikes, subtractLikes, getProduct };
 };
