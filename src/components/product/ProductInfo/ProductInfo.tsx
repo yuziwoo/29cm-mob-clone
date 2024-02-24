@@ -4,6 +4,7 @@ import ProductLikes from '../ProductLikes/ProductLikes';
 import IconRightArrow2 from '../../icons/IconRightArrow2';
 import { theme } from '../../../styles/theme';
 import { useRouter } from '../../../hooks/useRouter';
+import StarRating from '../StarRating/StarRating';
 
 interface ProductInfoProps {
   product: ProductProps;
@@ -31,6 +32,13 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
       </S.BrandAndLikesWrap>
 
       <S.ProductName>{name}</S.ProductName>
+
+      <S.Review>
+        <S.Star>
+          <StarRating percentage={reviewRating} />
+        </S.Star>
+        <p>{review}개 리뷰 보기</p>
+      </S.Review>
     </S.SectionInfo>
   );
 };

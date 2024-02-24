@@ -41,3 +41,21 @@ export const ProductName = styled.h2`
   color: ${theme.color.BLACK};
   padding: 14px 0 18px;
 `;
+
+export const Review = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  & p {
+    text-decoration: underline;
+    font-size: 12px;
+    font-weight: 500;
+    color: ${theme.color.GRAY7};
+  }
+`;
+
+export const Star = styled.div`
+  width: 60px;
+  margin-right: 8px;
+`;

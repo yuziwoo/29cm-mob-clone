@@ -36,7 +36,7 @@ const ProductLikes = ({ isReady }: { isReady: boolean }) => {
 };
 
 const meta = {
-  title: 'ProductDetail/ProductLikes',
+  title: 'Product/ProductLikes',
   component: ProductLikes,
   tags: ['autodocs'],
   decorators: [

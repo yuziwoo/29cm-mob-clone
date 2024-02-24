@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import ProductDetailMainSwiper from './ProductDetailMainSwiper';
 
 const meta = {
-  title: 'ProductDetail/ProductDetailMainSwiper',
+  title: 'Product/ProductDetailMainSwiper',
   component: ProductDetailMainSwiper,
   tags: ['autodocs'],
   decorators: [
