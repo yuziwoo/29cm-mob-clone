@@ -16,3 +16,8 @@ export type ProductProps = {
 };
 
 export type Products = Record<string, ProductProps>;
+
+export type DiscountDetail = {
+  name: string;
+  discount: number;
+};

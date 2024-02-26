@@ -3,12 +3,15 @@ import { keyframes } from 'styled-components';
 const color = {
   BLACK: '#000',
   WHITE: '#fff',
+  GRAY1: '#F0F0F0',
   GRAY2: '#E4E4E4',
   GRAY3: '#DADADB',
+  GRAY4: '#CECECE',
   GRAY5: '#A1A1A1',
   GRAY7: '#7D7D7D',
   ACTIVE: '#000',
   SIGNATURE: '#FF4800',
+  BLUE: '#375FFF',
 
   SELECTION_BG: '#FF4800',
   SELECTION_COLOR: '#fff',
@@ -63,6 +66,9 @@ const padding = {
 
 const transition = {
   SPEED_DEFAULT: '0.3s',
+  EASE_IN: 'cubic-bezier(0.16, 0.84, 0.44, 1)',
+  EASE_OUT: 'cubic-bezier(0.23, 0.98, 0.32, 1)',
+  EASE_INOUT: 'cubic-bezier(0.75, 0, 0.15, 1)',
 };
 
 export const theme = {

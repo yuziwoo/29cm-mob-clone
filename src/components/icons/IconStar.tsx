@@ -16,12 +16,12 @@ const IconStar = ({ fill = theme.color.BLACK, stroke = theme.color.BLACK }: Icon
       style={{ width: '100%' }}
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M4.455 4.29167L1 4.81917L3.5 7.38167L2.91 11L6 9.29167L9.09 11L8.5 7.38167L11 4.81917L7.545 4.29167L6 1L4.455 4.29167Z"
         fill={fill}
         stroke={stroke}
-        stroke-width="0.5"
+        strokeWidth="0.5"
       />
     </svg>
   );

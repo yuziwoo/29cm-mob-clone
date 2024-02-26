@@ -34,6 +34,7 @@ const ProductDetailPage = () => {
       initial={motionStyle.pageOpen.initial}
       animate={motionStyle.pageOpen.animate}
       transition={motionStyle.pageOpen.transition}
+      style={{ paddingBottom: '120px' }}
     >
       <ProductDetailMainSwiper thumbs={product.thumb} />
       <ProductInfo product={product} productId={id} />

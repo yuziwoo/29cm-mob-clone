@@ -93,7 +93,7 @@ const MainFooter = ({ location = '' }: MainFooterProps) => {
   return (
     <S.MainFooterBlock>
       {buttons.map(({ name, path, icon }, idx) => (
-        <S.button
+        <S.Button
           onClick={() => handleClickButton(name, path)}
           $active={activeButton === name}
           key={idx}
@@ -106,7 +106,7 @@ const MainFooter = ({ location = '' }: MainFooterProps) => {
             {icon}
             <p>{name}</p>
           </motion.div>
-        </S.button>
+        </S.Button>
       ))}
     </S.MainFooterBlock>
   );
