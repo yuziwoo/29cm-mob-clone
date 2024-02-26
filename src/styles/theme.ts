@@ -24,7 +24,9 @@ const color = {
   FOOTER_INACTIVE: '#5D5D5D',
 };
 
-const gradient = {};
+const gradient = {
+  TRANSPARENT_WHITE: 'linear-gradient(180deg, transparent, white)',
+};
 
 const zIndex = {
   HEADER: 2000,

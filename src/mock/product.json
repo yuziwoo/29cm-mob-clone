@@ -13,7 +13,7 @@
       "0": "../img/products/p1001-1.jpg",
       "1": "../img/products/p1001-2.jpg"
     },
-    "imgURL": "../img/products/p1001-1.jpg",
+    "imgURL": "../img/products/p1001-detail.jpg",
     "brandId": 100,
     "brandName": "쿠어",
     "price": 210000,
@@ -34,9 +34,9 @@
     "salesVolume": 3,
     "thumb": {
       "0": "../img/products/p1002-1.jpg",
-      "1": "../img/products/p1002-2.jpg",
+      "1": "../img/products/p1002-2.jpg"
     },
-    "imgURL": "../img/products/p1002-1.jpg",
+    "imgURL": "../img/products/p1002-detail.jpg",
     "brandId": 100,
     "brandName": "쿠어",
     "price": 210000,
@@ -58,7 +58,7 @@
     "thumb": {
       "0": "../img/products/p1003-1.jpg"
     },
-    "imgURL": "../img/products/p1003-1.jpg",
+    "imgURL": "../img/products/p1003-detail.jpg",
     "brandId": 100,
     "brandName": "쿠어",
     "price": 195000,
@@ -77,7 +77,7 @@
       "0": "../img/products/p1004-1.jpg",
       "1": "../img/products/p1004-2.jpg"
     },
-    "imgURL": "../img/products/p1004-1.jpg",
+    "imgURL": "../img/products/p1004-detail.jpg",
     "brandId": 101,
     "brandName": "어랜",
     "price": 56000,
@@ -96,7 +96,7 @@
       "0": "../img/products/p1005-1.jpg",
       "1": "../img/products/p1005-2.jpg"
     },
-    "imgURL": "../img/products/p1005-1.jpg",
+    "imgURL": "../img/products/p1005-detail.jpg",
     "brandId": 101,
     "brandName": "어랜",
     "price": 93000,
@@ -118,7 +118,7 @@
       "0": "../img/products/p1006-1.jpg",
       "1": "../img/products/p1006-2.jpg"
     },
-    "imgURL": "../img/products/p1006-1.jpg",
+    "imgURL": "../img/products/p1006-detail.jpg",
     "brandId": 101,
     "brandName": "어랜",
     "price": 76000,
@@ -142,7 +142,7 @@
       "1": "../img/products/p1007-2.jpg",
       "2": "../img/products/p1007-3.jpg"
     },
-    "imgURL": "../img/products/p1007-1.jpg",
+    "imgURL": "../img/products/p1007-detail.jpg",
     "brandId": 102,
     "brandName": "소니",
     "price": 499000,
@@ -164,7 +164,7 @@
       "0": "../img/products/p1008-1.jpg",
       "1": "../img/products/p1008-2.jpg"
     },
-    "imgURL": "../img/products/p1008-1.jpg",
+    "imgURL": "../img/products/p1008-detail.jpg",
     "brandId": 102,
     "brandName": "소니",
     "price": 359000,

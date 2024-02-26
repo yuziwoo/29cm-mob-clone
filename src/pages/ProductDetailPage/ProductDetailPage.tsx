@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
 import ProductInfo from '../../components/product/ProductInfo/ProductInfo';
 import SkeletonImg from '../../components/skeleton/SkeletonImg/SkeletonImg';
+import ProductDetailsImg from '../../components/product/ProductDetailsImg/ProductDetailsImg';
 
 const ProductDetailPage = () => {
   useSetHeaderState(headerStateBlackBack);
@@ -42,6 +43,7 @@ const ProductDetailPage = () => {
     >
       <ProductDetailMainSwiper thumbs={product.thumb} />
       <ProductInfo product={product} productId={id} />
+      <ProductDetailsImg imgURL={product.imgURL} />
     </motion.div>
   );
 };
