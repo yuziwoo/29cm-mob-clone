@@ -10,3 +10,7 @@ export const mockPaymentDiscount = [
   },
   { name: '[현대카드] 생애 첫 결제 5% 할인', discount: 5 },
 ];
+
+export const mockProduct = {
+  imgURL: '../img/products/p1001-detail.jpg',
+} as const;
