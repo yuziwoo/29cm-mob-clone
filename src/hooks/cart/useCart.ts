@@ -29,10 +29,27 @@ export const useCart = () => {
   });
 
   const addOrUpdate = useMutation({
-    mutationFn: (productId: string) => {
-      return addOrUpdateCartItems({ userId: uid, productId });
+    mutationFn: (productId: string, count: number = 1) => {
+      return addOrUpdateCartItems({ userId: uid, productId, count });
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey });
+    },
+  });
+
+  const addCart = useMutation({
+    mutationFn: async (productId: string) => {
+      if (cartQuery.data === undefined) return;
+
+      const noConflict = !Object.keys(cartQuery.data).includes(productId);
+
+      if (noConflict) {
+        return addOrUpdateCartItems({ userId: uid, productId });
+      }
+
+      window.alert('이미 추가된 상품입니다.');
+    },
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey });
     },
   });
@@ -46,7 +63,7 @@ export const useCart = () => {
     },
   });
 
-  return { cartQuery, addOrUpdate, removeItem };
+  return { cartQuery, addOrUpdate, removeItem, addCart };
 };
 
 export default useCart;
