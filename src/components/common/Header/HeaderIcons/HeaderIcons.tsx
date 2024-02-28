@@ -13,6 +13,10 @@ interface HeaderIconsProps {
 }
 
 const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
+  /**
+   * Search, Alert, Cart 아이콘 묶음입니다.
+   */
+  
   const { navigate } = useRouter();
 
   const handleClickAlert = () => {

@@ -10,6 +10,10 @@ interface HeaderCategoryProps {
 }
 
 const HeaderCategory = ({ location = '' }: HeaderCategoryProps) => {
+  /**
+   * 맨, 홈, 라이프, 우먼, 베스트 등의 선택지가 있는 메인 페이지에서 사용되는 카테고리 리스트 입니다.
+   */
+
   const category = [
     { path: ROUTE_PATH.man, locationKey: 'man', text: '맨' },
     { path: ROUTE_PATH.root, locationKey: '', text: '홈' },
