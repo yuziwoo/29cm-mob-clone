@@ -1,15 +1,18 @@
 import { useParams } from 'react-router-dom';
-import ProductDetailMainSwiper from '../../components/product/ProductDetailMainSwiper/ProductDetailMainSwiper';
 import { useEffect, useState } from 'react';
 import { useProduct } from '../../hooks/product/useProduct';
 import { ProductProps } from '../../types/product';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
+import ProductDetailMainSwiper from '../../components/product/ProductDetailMainSwiper/ProductDetailMainSwiper';
 import ProductInfo from '../../components/product/ProductInfo/ProductInfo';
 import ProductDetailsImg from '../../components/product/ProductDetailsImg/ProductDetailsImg';
 import RecommendedProducts from '../../components/product/RecommendedProducts/RecommendedProducts';
-import { getRecommendedProducts } from '../../utils/product/getRecommendedProducts';
 import ProductDetailPageSkeleton from './ProductDetailPageSkeleton';
+import { getRecommendedProducts } from '../../utils/product/getRecommendedProducts';
+import * as S from './ProductDetailPage.styled';
+import ProductReview from '../../components/product/ProductReview/ProductReview';
+import { mockReview } from '../../mock/product';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -35,14 +38,25 @@ const ProductDetailPage = () => {
       initial={motionStyle.pageOpen.initial}
       animate={motionStyle.pageOpen.animate}
       transition={motionStyle.pageOpen.transition}
-      style={{ paddingBottom: '180px' }}
     >
-      <ProductDetailMainSwiper thumbs={product?.thumb} />
-      <ProductInfo product={product} productId={id} />
-      <ProductDetailsImg imgURL={product?.imgURL} />
-      <RecommendedProducts
-        products={getRecommendedProducts({ id, products: productQuery.data || {} })}
-      />
+      <S.Page>
+        <ProductDetailMainSwiper thumbs={product?.thumb} />
+        <ProductInfo product={product} productId={id} />
+        <ProductDetailsImg imgURL={product?.imgURL} />
+        <RecommendedProducts
+          products={getRecommendedProducts({ id, products: productQuery.data || {} })}
+        />
+        <RecommendedProducts
+          products={getRecommendedProducts({ id, products: productQuery.data || {} })}
+          title="함께 구매한 상품"
+        />
+
+        <S.HR />
+
+        <ProductReview reviews={mockReview} />
+
+        <S.HR />
+      </S.Page>
     </motion.div>
   );
 };

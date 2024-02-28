@@ -23,3 +23,13 @@ export type DiscountDetail = {
 };
 
 export type ProductWithId = ProductProps & { productId: string };
+
+export type ReviewInfo = {
+  rate: number;
+  review: string;
+  height: number;
+  weight: number;
+  fit: string;
+  imgs: string[];
+  writerId: string;
+};

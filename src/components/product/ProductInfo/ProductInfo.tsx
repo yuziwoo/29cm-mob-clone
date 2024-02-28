@@ -58,6 +58,10 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const couponDiscounts = sortDiscountList(mockCouponDiscount);
   const paymentDiscounts = sortDiscountList(mockPaymentDiscount);
 
+  const handleClickCoupon = useCallback(() => {
+    window.alert('쿠폰이 다운로드 되었습니다.');
+  }, []);
+
   if (product === undefined || productId === undefined)
     return (
       <S.SectionInfo>
@@ -118,7 +122,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
           whileTap={motionStyle.scaleButton.whileTap}
           transition={motionStyle.scaleButton.transition}
         >
-          <S.Coupon>
+          <S.Coupon onClick={handleClickCoupon}>
             <p>쿠폰받기</p>
             <IconDownload color={theme.color.WHITE} />
           </S.Coupon>
