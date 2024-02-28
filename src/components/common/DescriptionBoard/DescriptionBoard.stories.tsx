@@ -1,8 +1,6 @@
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
-import GlobalStyle from '../../../styles/GlobalStyle';
 import { Meta, StoryObj } from '@storybook/react';
 import DescriptionBoard from './DescriptionBoard';
+import StorybookDecorator from '../../storybook/StorybookDecorator';
 
 const meta = {
   title: 'common/DescriptionBoard',
@@ -10,17 +8,12 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', padding: '0 16px', maxWidth: '550px', margin: 'auto' }}>
-        <BrowserRouter>
-          <RecoilRoot>
-            <GlobalStyle />
-            <div style={{ position: 'relative' }}>
-              <h1>내용</h1>
-              <Story />
-            </div>
-          </RecoilRoot>
-        </BrowserRouter>
-      </div>
+      <StorybookDecorator>
+        <div style={{ position: 'relative' }}>
+          <h1>내용</h1>
+          <Story />
+        </div>
+      </StorybookDecorator>
     ),
   ],
 } satisfies Meta<typeof DescriptionBoard>;

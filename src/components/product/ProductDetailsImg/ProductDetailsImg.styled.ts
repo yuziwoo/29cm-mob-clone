@@ -6,6 +6,7 @@ export const SectionDetailImg = styled.div<{ $showAll: boolean }>`
   position: relative;
   max-height: ${({ $showAll }) => ($showAll ? 'auto' : '1500px')};
   overflow: hidden;
+  padding-bottom: 120px;
 
   & img {
     width: 100%;

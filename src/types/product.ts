@@ -21,3 +21,5 @@ export type DiscountDetail = {
   name: string;
   discount: number;
 };
+
+export type ProductWithId = ProductProps & { productId: string };

@@ -15,11 +15,22 @@ import ProductMyAvaliablePurchasePrice from './ProductMyAvaliablePurchasePrice/P
 import { mockCouponDiscount, mockPaymentDiscount } from '../../../mock/product';
 import { sortDiscountList } from '../../../utils/product/sortDiscountList';
 import { elementId } from '../../../constants/elementId';
+import SkeletonText from '../../skeleton/SkeletonText/SkeletonText';
 
 interface ProductInfoProps {
-  product: ProductProps;
-  productId: string;
+  product: ProductProps | undefined;
+  productId: string | undefined;
 }
+
+const undefinedProduct = {
+  name: '',
+  brandId: '',
+  brandName: '',
+  price: 0,
+  discount: 0,
+  review: 0,
+  reviewRating: 0,
+};
 
 const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const {
@@ -30,7 +41,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
     discount: priceAfterDiscount,
     review,
     reviewRating,
-  } = product;
+  } = product ? product : undefinedProduct;
 
   const { navigate } = useRouter();
 
@@ -46,6 +57,15 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
 
   const couponDiscounts = sortDiscountList(mockCouponDiscount);
   const paymentDiscounts = sortDiscountList(mockPaymentDiscount);
+
+  if (product === undefined || productId === undefined)
+    return (
+      <S.SectionInfo>
+        <SkeletonText width="40px" height="14px" />
+        <SkeletonText width="300px" height="18px" />
+        <SkeletonText width="120px" height="12px" />
+      </S.SectionInfo>
+    );
 
   return (
     <S.SectionInfo>

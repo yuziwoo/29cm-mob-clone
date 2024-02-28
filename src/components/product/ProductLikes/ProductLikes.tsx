@@ -10,14 +10,14 @@ const ProductLikes = ({ productId }: ProductLikesProps) => {
 
   if (!isReady) {
     return (
-      <div style={{ width: '100%', maxWidth: '32px', cursor: 'pointer' }}>
+      <div style={{ width: '100%', cursor: 'pointer' }}>
         <IconLike isLiked={liked} />
       </div>
     );
   }
 
   return (
-    <div onClick={toggleLike} style={{ width: '100%', maxWidth: '32px', cursor: 'pointer' }}>
+    <div onClick={toggleLike} style={{ width: '100%', cursor: 'pointer' }}>
       <IconLike isLiked={liked} />
     </div>
   );

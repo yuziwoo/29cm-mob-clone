@@ -1,4 +1,5 @@
 import { NavigateOptions, To, useNavigate } from 'react-router-dom';
+import { scrollTop } from '../utils/scrollTop';
 
 export const useRouter = () => {
   const realNavigate = useNavigate();
@@ -12,6 +13,7 @@ export const useRouter = () => {
         return;
       }
       realNavigate(to, { preventScrollReset: true });
+      window.scrollTo({ left: 0, top: 0 });
     }
   };
 

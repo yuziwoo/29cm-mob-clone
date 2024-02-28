@@ -49,3 +49,9 @@ export const FiveImg: Story = {
     ],
   },
 };
+
+export const Skeleton: Story = {
+  args: {
+    thumbs: undefined,
+  },
+};

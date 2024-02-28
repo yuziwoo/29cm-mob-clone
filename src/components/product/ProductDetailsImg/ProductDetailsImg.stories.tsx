@@ -29,6 +29,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    imgURL: mockProduct.imgURL,
+    imgURL: mockProduct.product.imgURL,
   },
 };

@@ -62,6 +62,7 @@ const size = {
 };
 
 const padding = {
+  DEFAULT: '16px',
   BODY: '0 16px',
   BODY_WITH_BOTTOM_MARGIN: '0 16px 120px',
 };

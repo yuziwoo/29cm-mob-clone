@@ -1,7 +1,5 @@
-import SkeletonImg from '../../components/skeleton/SkeletonImg/SkeletonImg';
-
 const ProductDetailPageSkeleton = () => {
-  return <SkeletonImg ratio={1}></SkeletonImg>;
+  return <div></div>;
 };
 
 export default ProductDetailPageSkeleton;

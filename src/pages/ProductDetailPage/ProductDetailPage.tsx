@@ -8,8 +8,9 @@ import { ProductProps } from '../../types/product';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
 import ProductInfo from '../../components/product/ProductInfo/ProductInfo';
-import SkeletonImg from '../../components/skeleton/SkeletonImg/SkeletonImg';
 import ProductDetailsImg from '../../components/product/ProductDetailsImg/ProductDetailsImg';
+import RecommendedProducts from '../../components/product/RecommendedProducts/RecommendedProducts';
+import { getRecommendedProducts } from '../../utils/product/getRecommendedProducts';
 
 const ProductDetailPage = () => {
   useSetHeaderState(headerStateBlackBack);
@@ -29,10 +30,8 @@ const ProductDetailPage = () => {
     }
   }, [getProduct, id, productQuery]);
 
-  if (id === undefined || product === null)
-    return <h1 style={{ textAlign: 'center', padding: '120px 16px' }}>상품을 찾을 수 없습니다.</h1>;
-
-  if (product === undefined) return <SkeletonImg ratio={1}></SkeletonImg>;
+  if (!productQuery.isSuccess) return <div>loading</div>;
+  if (id === undefined || product === null) return <div>상품을 찾을 수 없습니다.</div>;
 
   return (
     <motion.div
@@ -41,9 +40,12 @@ const ProductDetailPage = () => {
       transition={motionStyle.pageOpen.transition}
       style={{ paddingBottom: '180px' }}
     >
-      <ProductDetailMainSwiper thumbs={product.thumb} />
+      <ProductDetailMainSwiper thumbs={product?.thumb} />
       <ProductInfo product={product} productId={id} />
-      <ProductDetailsImg imgURL={product.imgURL} />
+      <ProductDetailsImg imgURL={product?.imgURL} />
+      <RecommendedProducts
+        products={getRecommendedProducts({ id, products: productQuery.data || {} })}
+      />
     </motion.div>
   );
 };

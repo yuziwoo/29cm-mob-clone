@@ -14,6 +14,11 @@ import { firebaseAuth } from '../firebase';
 import { getIsMobile } from '../../../utils/getIsMobile';
 import { UserProfileUpdateProps, LoginFormProps } from '../../../types/auth';
 
+/**
+ * firebase를 이용하여 auth 기능을 이용하는 함수입니다.
+ * 로그인, 로그아웃, 계정 생성, 계정 삭제, 계정 업데이트 등이 있습니다.
+ */
+
 const provider = {
   google: new GoogleAuthProvider(),
 };
