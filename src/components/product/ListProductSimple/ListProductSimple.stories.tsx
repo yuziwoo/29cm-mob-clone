@@ -1,20 +1,22 @@
 import { Meta, StoryObj } from '@storybook/react';
-import ProductInfo from './ProductInfo';
 import { mockProduct } from '../../../mock/product';
 import StorybookDecorator from '../../storybook/StorybookDecorator';
+import ListProductSimple from './ListProductSimple';
 
 const meta = {
-  title: 'Product/ProductInfo',
-  component: ProductInfo,
+  title: 'Product/ListProductSimple',
+  component: ListProductSimple,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
       <StorybookDecorator>
-        <Story />
+        <div style={{ width: '200px' }}>
+          <Story />
+        </div>
       </StorybookDecorator>
     ),
   ],
-} satisfies Meta<typeof ProductInfo>;
+} satisfies Meta<typeof ListProductSimple>;
 
 export default meta;
 

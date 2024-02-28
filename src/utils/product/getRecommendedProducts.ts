@@ -6,7 +6,6 @@ interface GetRecommendedProductsProps {
 }
 
 export const getRecommendedProducts = ({ id, products }: GetRecommendedProductsProps) => {
-  // 상품 종류가 많지 않아서 임시로 구현
   const recommendedProducts: Products = {};
 
   for (const [key, value] of Object.entries(products)) {

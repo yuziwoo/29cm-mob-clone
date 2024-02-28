@@ -1,9 +1,7 @@
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
 import { Meta, StoryObj } from '@storybook/react';
-import GlobalStyle from '../../../styles/GlobalStyle';
 import ProductDetailsImg from './ProductDetailsImg';
 import { mockProduct } from '../../../mock/product';
+import StorybookDecorator from '../../storybook/StorybookDecorator';
 
 const meta = {
   title: 'Product/ProductDetailsImg',
@@ -11,14 +9,9 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', padding: '0 16px', maxWidth: '550px', margin: 'auto' }}>
-        <BrowserRouter>
-          <RecoilRoot>
-            <GlobalStyle />
-            <Story />
-          </RecoilRoot>
-        </BrowserRouter>
-      </div>
+      <StorybookDecorator>
+        <Story />
+      </StorybookDecorator>
     ),
   ],
 } satisfies Meta<typeof ProductDetailsImg>;
@@ -30,5 +23,17 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     imgURL: mockProduct.product.imgURL,
+  },
+};
+
+export const NoShowAllButton: Story = {
+  args: {
+    imgURL: mockProduct.product.thumb[0],
+  },
+};
+
+export const Skeleton: Story = {
+  args: {
+    imgURL: undefined,
   },
 };

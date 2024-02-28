@@ -9,6 +9,7 @@ import ProductInfo from '../../components/product/ProductInfo/ProductInfo';
 import ProductDetailsImg from '../../components/product/ProductDetailsImg/ProductDetailsImg';
 import RecommendedProducts from '../../components/product/RecommendedProducts/RecommendedProducts';
 import { getRecommendedProducts } from '../../utils/product/getRecommendedProducts';
+import ProductDetailPageSkeleton from './ProductDetailPageSkeleton';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -26,8 +27,8 @@ const ProductDetailPage = () => {
     }
   }, [getProduct, id, productQuery]);
 
-  if (!productQuery.isSuccess) return <div>loading</div>;
-  if (id === undefined || product === null) return <div>상품을 찾을 수 없습니다.</div>;
+  if (!productQuery.isSuccess) return <ProductDetailPageSkeleton />;
+  if (id === undefined || product === null) return <h1>상품을 찾을 수 없습니다.</h1>;
 
   return (
     <motion.div

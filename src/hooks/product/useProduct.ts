@@ -10,6 +10,10 @@ import {
 import { Products } from '../../types/product';
 
 export const useProduct = () => {
+  /**
+   * firebase DB에서 전체 상품 리스트를 가져옵니다.
+   */
+
   const [user] = useRecoilState(userState);
   const uid = user?.uid || '';
   const queryKey = [queryAPI.queryKey.product, uid];
@@ -36,11 +40,11 @@ export const useProduct = () => {
   });
 
   const getProduct = (productId: string) => {
-    if (productQuery.data && Object.keys(productQuery.data).includes(productId))  {
+    if (productQuery.data && Object.keys(productQuery.data).includes(productId)) {
       return productQuery.data[productId];
     }
     return null;
-  }
+  };
 
   return { productQuery, addLikes, subtractLikes, getProduct };
 };

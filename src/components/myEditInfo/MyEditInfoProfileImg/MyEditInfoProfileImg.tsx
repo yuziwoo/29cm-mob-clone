@@ -9,6 +9,10 @@ interface MyEditInfoProfileImgProps {
 }
 
 const MyEditInfoProfileImg = (props: MyEditInfoProfileImgProps) => {
+  /**
+   * 프로필 이미지를 바꿀 수 있는 컴포넌트입니다.
+   */
+  
   const { defaultImg, changedImg, onChangeImg } = props;
 
   return (

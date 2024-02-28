@@ -5,18 +5,24 @@ import 'swiper/swiper-bundle.css';
 import ListProductSimple from '../ListProductSimple/ListProductSimple';
 
 interface RecommendedProductsProps {
-  products: Products;
+  products: Products | undefined;
   title?: string;
 }
 
 const RecommendedProducts = ({ title = '추천 상품', products }: RecommendedProductsProps) => {
+  /**
+   * 상품 상세페이지의 추천 상품 리스트 컴포넌트입니다.
+   * 제목을 바꿀 수 있고, products 파라미터에 상품 정보를 전달받아 나열합니다.
+   */
+
   const productList = [];
-  for (const [productId, value] of Object.entries(products)) {
-    productList.push({ ...value, productId });
+  if (products !== undefined) {
+    for (const [productId, value] of Object.entries(products)) {
+      productList.push({ ...value, productId });
+    }
   }
 
-  if (Object.keys(products).length === 0) return <div></div>;
-
+  if (productList.length === 0) return <></>;
   return (
     <S.SectionRecommenedProducts>
       <S.Title>{title}</S.Title>
@@ -24,7 +30,7 @@ const RecommendedProducts = ({ title = '추천 상품', products }: RecommendedP
       <Swiper className="swiper" spaceBetween={10} slidesPerView={2.4}>
         {productList.map((product, idx) => (
           <SwiperSlide key={product.productId} virtualIndex={idx}>
-            <ListProductSimple product={product} />
+            <ListProductSimple product={product} productId={product.productId} />
           </SwiperSlide>
         ))}
       </Swiper>

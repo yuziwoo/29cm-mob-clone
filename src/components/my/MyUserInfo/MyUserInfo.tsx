@@ -8,6 +8,11 @@ import { ROUTE_PATH } from '../../../constants/path';
 import { userPlaceholder } from '../../../constants/user';
 
 const MyUserInfo = ({ user }: { user: UserInfo }) => {
+  /**
+   * 마이페이지에서 유저의 프로필 이미지와 이름 정보를 나타냅니다.
+   * 화살표를 클릭하면 유저 정보 수정 페이지로 이동됩니다.
+   */
+
   const { navigate } = useRouter();
 
   return (

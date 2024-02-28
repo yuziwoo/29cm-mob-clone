@@ -1,3 +1,7 @@
+/**
+ * 엘리먼트의 ID를 상수화합니다.
+ */
+
 const common = {
   HEADER: 'header',
 };

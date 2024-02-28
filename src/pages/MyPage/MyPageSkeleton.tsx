@@ -1,5 +1,5 @@
-import SkeletonImg from '../../components/skeleton/SkeletonImg/SkeletonImg';
-import SkeletonText from '../../components/skeleton/SkeletonText/SkeletonText';
+import SkeletonImg from '../../components/skeleton/common/SkeletonImg';
+import SkeletonText from '../../components/skeleton/common/SkeletonText';
 import { theme } from '../../styles/theme';
 
 const MyPageSkeleton = () => {

@@ -14,7 +14,7 @@ const SkeletonText = ({ width = '100%', height = '14px', count = 1 }: SkeletonTe
    * count: 몇 줄을 표기할지
    */
 
-  return <Skeleton width={width} count={count}></Skeleton>;
+  return <Skeleton width={width} count={count} height={height}></Skeleton>;
 };
 
 export default SkeletonText;

@@ -1,5 +1,5 @@
 import * as S from './ListProductSimple.style';
-import { ProductWithId } from '../../../types/product';
+import { ProductProps } from '../../../types/product';
 import { motion } from 'framer-motion';
 import { useRouter } from '../../../hooks/useRouter';
 import { useCallback } from 'react';
@@ -7,27 +7,36 @@ import { ROUTE_PATH } from '../../../constants/path';
 import { motionStyle } from '../../../styles/motion';
 import ProductLikes from '../ProductLikes/ProductLikes';
 import { getDiscount } from '../../../utils/getDiscount';
+import { mockProduct } from '../../../mock/product';
+import SkeletonProductList from '../../skeleton/product/SkeletonProductList';
 
 interface ListProductSimpleProps {
-  product: ProductWithId;
+  product: ProductProps | undefined;
+  productId: string | undefined;
 }
 
-const ListProductSimple = ({ product }: ListProductSimpleProps) => {
+const ListProductSimple = ({ product, productId }: ListProductSimpleProps) => {
+  /**
+   * Recommended Products에 표시될 상품 리스트 UI입니다.
+   * 비교적 간단한 UI를 가졌으며,
+   * 썸네일, 브랜드, 상품 이름, 할인율, 할인 후 가격, 좋아요 여부를 표시합니다.
+   */
+
   const {
     thumb,
     brandName,
-    productId,
     name,
     discount: priceAfterDiscount,
     price: originalPrice,
-  } = product;
+  } = product !== undefined ? product : mockProduct.product;
   const discount = getDiscount(originalPrice, priceAfterDiscount);
 
   const { navigate } = useRouter();
   const navigateProductPage = useCallback(() => {
-    const path = ROUTE_PATH.productDetail;
-    navigate(path.replace(':id', product.productId));
-  }, [navigate, product.productId]);
+    navigate(ROUTE_PATH.productDetail.replace(':id', productId !== undefined ? productId : ''));
+  }, [navigate, productId]);
+
+  if (product === undefined || productId === undefined) return <SkeletonProductList />;
 
   return (
     <S.Item>

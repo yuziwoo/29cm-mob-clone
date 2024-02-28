@@ -18,6 +18,11 @@ import { useRouter } from '../useRouter';
 import { ROUTE_PATH } from '../../constants/path';
 
 export const useAuth = () => {
+  /**
+   * firebase를 이용한 Auth 기능을 사용할 수 있게 도와주는 hook입니다.
+   * 어플리케이션의 가장 최상단에서 앱을 실행할때 딱 한번 initializeAuth 함수를 실행해줘야합니다.
+   */
+
   const [user, setUser] = useRecoilState(userState);
   const { navigate } = useRouter();
 

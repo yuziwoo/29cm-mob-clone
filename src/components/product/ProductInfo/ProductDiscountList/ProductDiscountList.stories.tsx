@@ -1,9 +1,7 @@
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
 import { Meta, StoryObj } from '@storybook/react';
-import GlobalStyle from '../../../../styles/GlobalStyle';
 import { mockCouponDiscount } from '../../../../mock/product';
 import ProductDiscountList from './ProductDiscountList';
+import StorybookDecorator from '../../../storybook/StorybookDecorator';
 
 const meta = {
   title: 'Product/ProductInfo/ProductDiscountList',
@@ -11,14 +9,9 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', padding: '0 16px', maxWidth: '550px', margin: 'auto' }}>
-        <BrowserRouter>
-          <RecoilRoot>
-            <GlobalStyle />
-            <Story />
-          </RecoilRoot>
-        </BrowserRouter>
-      </div>
+      <StorybookDecorator>
+        <Story />
+      </StorybookDecorator>
     ),
   ],
 } satisfies Meta<typeof ProductDiscountList>;
@@ -39,6 +32,15 @@ export const Default: Story = {
 export const Checked: Story = {
   args: {
     price: 10000,
+    info: mockCouponDiscount[0],
+    checked: true,
+    onClick: () => {},
+  },
+};
+
+export const Skeleton: Story = {
+  args: {
+    price: undefined,
     info: mockCouponDiscount[0],
     checked: true,
     onClick: () => {},

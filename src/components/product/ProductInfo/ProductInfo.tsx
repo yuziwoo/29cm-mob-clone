@@ -15,7 +15,7 @@ import ProductMyAvaliablePurchasePrice from './ProductMyAvaliablePurchasePrice/P
 import { mockCouponDiscount, mockPaymentDiscount } from '../../../mock/product';
 import { sortDiscountList } from '../../../utils/product/sortDiscountList';
 import { elementId } from '../../../constants/elementId';
-import SkeletonText from '../../skeleton/SkeletonText/SkeletonText';
+import SkeletonText from '../../skeleton/common/SkeletonText';
 
 interface ProductInfoProps {
   product: ProductProps | undefined;
@@ -62,8 +62,19 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
     return (
       <S.SectionInfo>
         <SkeletonText width="40px" height="14px" />
-        <SkeletonText width="300px" height="18px" />
+        <div style={{ padding: '2rem 0' }}>
+          <SkeletonText width="300px" height="18px" />
+        </div>
         <SkeletonText width="120px" height="12px" />
+
+        <div style={{ padding: '4rem 0' }}>
+          <SkeletonText width="70px" height="16px" />
+          <div style={{ padding: '1rem 0' }}>
+            <SkeletonText width="200px" height="22px" />
+          </div>
+          <SkeletonText width="120px" height="14px" />
+        </div>
+        <S.HR />
       </S.SectionInfo>
     );
 

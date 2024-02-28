@@ -8,6 +8,10 @@ export const Item = styled.div`
 export const Thumb = styled.div`
   overflow: hidden;
   width: 100%;
+
+  & img {
+    width: 100%;
+  }
 `;
 
 export const FlexSpaceBetween = styled.div`
@@ -16,11 +20,15 @@ export const FlexSpaceBetween = styled.div`
   align-items: flex-end;
 `;
 
-export const FlexStart = styled.div``;
+export const FlexStart = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
 
 export const Heart = styled.button`
-  width: 4rem;
-  height: 4rem;
+  width: 3.8rem;
+  height: 3.8rem;
 
   & div {
     padding: 0.8rem 0 0;
@@ -35,10 +43,26 @@ export const Brand = styled.h4`
   font-weight: 600;
 `;
 
-export const Detail = styled.div``;
+export const Detail = styled.div`
+  padding-top: 0.5rem;
+`;
 
-export const Name = styled.h2``;
+export const Name = styled.h2`
+  font-size: 13px;
+  font-weight: 500;
+  color: ${theme.color.BLACK};
+  padding-bottom: 0.5rem;
+`;
 
-export const Price = styled.h3``;
+export const Discount = styled.h3`
+  font-size: 13px;
+  font-weight: 700;
+  color: ${theme.color.SIGNATURE};
+  margin-right: 10px;
+`;
 
-export const Discount = styled.h3``;
+export const Price = styled.h3`
+  font-size: 13px;
+  font-weight: 700;
+  color: ${theme.color.BLACK};
+`;

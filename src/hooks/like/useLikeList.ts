@@ -5,6 +5,10 @@ import { queryAPI } from '../../constants/query';
 import { addLikeItem, getLikeItems, removeLikeItem } from '../../api/firebase/database/like';
 
 export const useLikeList = () => {
+  /**
+   * firebase DB에서 유저의 좋아요한 상품 리스트를 가져옵니다.
+   */
+
   const [user] = useRecoilState(userState);
   const uid = user?.uid || '';
   const queryClient = useQueryClient();

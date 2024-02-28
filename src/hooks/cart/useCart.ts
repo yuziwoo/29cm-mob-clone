@@ -9,6 +9,10 @@ import {
 } from '../../api/firebase/database/cart';
 
 export const useCart = () => {
+  /**
+   * firebase DB에서 유저의 장바구니 정보를 가져옵니다.
+   */
+
   const [user] = useRecoilState(userState);
   const uid = user?.uid || '';
   const queryClient = useQueryClient();

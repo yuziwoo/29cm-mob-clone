@@ -31,6 +31,6 @@ const product: ProductProps = {
 };
 
 export const mockProduct = {
-  productID: 'p1001',
+  productId: 'p1001',
   product,
 };

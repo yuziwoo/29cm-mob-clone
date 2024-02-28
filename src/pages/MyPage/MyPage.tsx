@@ -11,7 +11,11 @@ import { useAuth } from '../../hooks/auth/useAuth';
 import MyPageSkeleton from './MyPageSkeleton';
 
 const MyPage = () => {
-  // const [user] = useRecoilState(userState);
+  /**
+   * 마이페이지입니다.
+   * 로그인하지 않은 유저가 접근 시 로그인 페이지로 redirect합니다.
+   */
+  
   const { user, logout, deleteAccount } = useAuth();
   const { navigate } = useRouter();
 

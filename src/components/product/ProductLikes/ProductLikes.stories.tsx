@@ -1,18 +1,7 @@
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
-import GlobalStyle from '../../../styles/GlobalStyle';
 import { Meta, StoryObj } from '@storybook/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import IconLike from '../../icons/IconLike';
 import { useCallback, useState } from 'react';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+import StorybookDecorator from '../../storybook/StorybookDecorator';
 
 const ProductLikes = ({ isReady }: { isReady: boolean }) => {
   const [liked, setLiked] = useState(false);
@@ -39,18 +28,14 @@ const meta = {
   title: 'Product/ProductLikes',
   component: ProductLikes,
   tags: ['autodocs'],
+  parameters: {
+    componentSubtitle: '하트 버튼을 클릭해보세요.',
+  },
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', padding: '0 16px', maxWidth: '550px', margin: 'auto' }}>
-        <BrowserRouter>
-          <RecoilRoot>
-            <QueryClientProvider client={queryClient}>
-              <GlobalStyle />
-              <Story />
-            </QueryClientProvider>
-          </RecoilRoot>
-        </BrowserRouter>
-      </div>
+      <StorybookDecorator>
+        <Story />
+      </StorybookDecorator>
     ),
   ],
 } satisfies Meta<typeof ProductLikes>;
@@ -65,7 +50,7 @@ export const Default: Story = {
   },
 };
 
-export const ApiNotReady: Story = {
+export const ApiNotSuccess: Story = {
   args: {
     isReady: false,
   },

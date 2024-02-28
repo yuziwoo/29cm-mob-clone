@@ -18,7 +18,13 @@ const queryClient = new QueryClient({
 
 const StorybookDecorator = ({
   children,
-  style = { width: '100%', padding: '0 16px', maxWidth: '550px', margin: 'auto' },
+  style = {
+    width: '100%',
+    padding: '0 16px',
+    maxWidth: '550px',
+    margin: 'auto',
+    position: 'relative',
+  },
 }: StorybookDecoratorProps) => {
   return (
     <div style={style}>

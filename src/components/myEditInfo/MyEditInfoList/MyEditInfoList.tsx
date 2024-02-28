@@ -8,6 +8,11 @@ interface MyEditInfoListProps {
 }
 
 const MyEditInfoList = (props: MyEditInfoListProps) => {
+  /**
+   * 유저의 이름 정보를 수정할 수 있습니다.
+   * 그 외에 같은 디자인으로 이메일과 계정 연동 정보를 보여줍니다.
+   */
+
   const { placeholder, onChangeInput, email, providerId } = props;
 
   return (

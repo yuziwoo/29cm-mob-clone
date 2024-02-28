@@ -1,8 +1,6 @@
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
-import GlobalStyle from '../../../styles/GlobalStyle';
 import { Meta, StoryObj } from '@storybook/react';
 import StarRating from './StarRating';
+import StorybookDecorator from '../../storybook/StorybookDecorator';
 
 const meta = {
   title: 'Product/StarRating',
@@ -11,12 +9,9 @@ const meta = {
   decorators: [
     (Story) => (
       <div style={{ width: '100%', padding: '0 16px', maxWidth: '120px', margin: 'auto' }}>
-        <BrowserRouter>
-          <RecoilRoot>
-            <GlobalStyle />
-            <Story />
-          </RecoilRoot>
-        </BrowserRouter>
+        <StorybookDecorator>
+          <Story />
+        </StorybookDecorator>
       </div>
     ),
   ],
@@ -41,5 +36,11 @@ export const Full: Story = {
 export const Percentage30: Story = {
   args: {
     percentage: 30,
+  },
+};
+
+export const Skeleton: Story = {
+  args: {
+    percentage: undefined,
   },
 };
