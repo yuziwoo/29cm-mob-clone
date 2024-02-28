@@ -13,6 +13,10 @@ interface ProductReviewProps {
 }
 
 const ProductReview = ({ reviews }: ProductReviewProps) => {
+  /**
+   * 상품 상세페이지의 리뷰 섹션을 그리는 컴포넌트 입니다.
+   */
+  
   const [overAllReview, setOverAllReview] = useState({
     rate: 0,
     count: 0,

@@ -13,6 +13,7 @@ import { getRecommendedProducts } from '../../utils/product/getRecommendedProduc
 import * as S from './ProductDetailPage.styled';
 import ProductReview from '../../components/product/ProductReview/ProductReview';
 import { mockReview } from '../../mock/product';
+import ToggleText from '../../components/product/ToggleText/ToggleText';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -56,6 +57,21 @@ const ProductDetailPage = () => {
         <ProductReview reviews={mockReview} />
 
         <S.HR />
+
+        <S.RemainingInfo>
+          <ToggleText title="상품 번호">
+            <S.RemainingText>실제로 배송되거나 판매하는 제품이 아닙니다.</S.RemainingText>
+          </ToggleText>
+          <ToggleText title="배송정보, 교환/환불 안내">
+            <S.RemainingText>실제로 배송되거나 판매하는 제품이 아닙니다.</S.RemainingText>
+          </ToggleText>
+          <ToggleText title="상품 정보">
+            <S.RemainingText>실제로 배송되거나 판매하는 제품이 아닙니다.</S.RemainingText>
+          </ToggleText>
+          <ToggleText title="판매자 정보">
+            <S.RemainingText>실제로 배송되거나 판매하는 제품이 아닙니다.</S.RemainingText>
+          </ToggleText>
+        </S.RemainingInfo>
       </S.Page>
     </motion.div>
   );

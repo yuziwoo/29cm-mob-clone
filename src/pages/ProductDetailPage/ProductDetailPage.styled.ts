@@ -12,3 +12,13 @@ export const HR = styled.div`
   margin: auto;
   height: 1px;
 `;
+
+export const RemainingInfo = styled.div`
+  padding: ${theme.padding.BODY};
+`;
+
+export const RemainingText = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+`;

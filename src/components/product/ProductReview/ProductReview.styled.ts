@@ -80,6 +80,12 @@ export const Text = styled.h2`
   font-weight: 500;
   color: ${theme.color.BLACK};
   padding-top: 2rem;
+  width: 100%;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 `;
 
 export const ShowAllButton = styled.div`
