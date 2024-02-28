@@ -1,0 +1,24 @@
+import { FIRST_PATH } from './firstPath';
+
+/**
+ * firstpath (pathname의 첫번째 패스)에 따라 header의 ui를 다르게 보여주기 위한 상수입니다.
+ * path가 3개 이상 나열되면 뒤로가기 버튼을 보여줍니다. ('/my/edit/info/')
+ */
+
+const MAIN = ['', FIRST_PATH.man, FIRST_PATH.woman, FIRST_PATH.life, FIRST_PATH.best];
+const HIDDEN = [FIRST_PATH.category, FIRST_PATH.search, FIRST_PATH.searchDetail];
+const ONLY_BACKBUTTON = [FIRST_PATH.alert, FIRST_PATH.cart, FIRST_PATH.login, FIRST_PATH.join];
+const BACKBUTTON_AND_ICONS = [
+  FIRST_PATH.my,
+  FIRST_PATH.like,
+  FIRST_PATH.productDetail,
+  FIRST_PATH.brandDetail,
+  FIRST_PATH.showcaseDetail,
+];
+
+export const headerUI = {
+  MAIN,
+  HIDDEN,
+  ONLY_BACKBUTTON,
+  BACKBUTTON_AND_ICONS,
+} as const;

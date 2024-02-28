@@ -19,7 +19,7 @@ function App() {
 
   return (
     <S.App className="App">
-      <Header />
+      <Header firstPath={firstPath} />
       <S.Content>
         <Outlet />
       </S.Content>

@@ -49,7 +49,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const accrualPoint = getAccrualPoints(priceAfterDiscount);
 
   const handleClickReview = useCallback(() => {
-    const reviewSection = document.getElementById(elementId.productDetail.review);
+    const reviewSection = document.getElementById(elementId.productDetail.REVIEW);
     if (reviewSection) {
       window.scrollTo(0, reviewSection.offsetTop);
     }

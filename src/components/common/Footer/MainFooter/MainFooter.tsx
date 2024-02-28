@@ -10,6 +10,7 @@ import IconFooterSearch from '../../../icons/IconFooter/IconFooterSearch';
 import IconFooterLike from '../../../icons/IconFooter/IconFooterLike';
 import IconFooterMy from '../../../icons/IconFooter/IconFooterMy';
 import { useCallback } from 'react';
+import { FIRST_PATH } from '../../../../constants/firstPath';
 
 interface MainFooterProps {
   firstPath: string;
@@ -41,36 +42,36 @@ const MainFooter = ({ firstPath }: MainFooterProps) => {
       path: ROUTE_PATH.root,
       includePath: [
         '',
-        ROUTE_PATH.root,
-        ROUTE_PATH.man.replace('/', ''),
-        ROUTE_PATH.life.replace('/', ''),
-        ROUTE_PATH.woman.replace('/', ''),
-        ROUTE_PATH.best.replace('/', ''),
+        FIRST_PATH.root,
+        FIRST_PATH.man,
+        FIRST_PATH.woman,
+        FIRST_PATH.life,
+        FIRST_PATH.best,
       ],
       icon: <IconFooterHome />,
     },
     {
       name: 'CATEGORY',
       path: ROUTE_PATH.category,
-      includePath: [ROUTE_PATH.category.replace('/', '')],
+      includePath: [FIRST_PATH.category],
       icon: <IconFooterCategory />,
     },
     {
       name: 'SEARCH',
       path: ROUTE_PATH.search,
-      includePath: [ROUTE_PATH.search.replace('/', ''), ROUTE_PATH.searchDetail.split('/')[1]],
+      includePath: [FIRST_PATH.search, FIRST_PATH.searchDetail],
       icon: <IconFooterSearch />,
     },
     {
       name: 'LIKE',
       path: ROUTE_PATH.like,
-      includePath: [ROUTE_PATH.like.replace('/', '')],
+      includePath: [FIRST_PATH.like],
       icon: <IconFooterLike />,
     },
     {
       name: 'my',
       path: ROUTE_PATH.my,
-      includePath: [ROUTE_PATH.my.replace('/', '')],
+      includePath: [FIRST_PATH.my],
       icon: <IconFooterMy />,
     },
   ];

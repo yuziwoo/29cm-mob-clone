@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const Header = styled.header<{ $location: string }>`
+export const Header = styled.header<{ $backgroundTransparent?: boolean }>`
   width: 100%;
   max-width: ${theme.size.MAX_WIDTH};
   position: fixed;
@@ -11,17 +11,10 @@ export const Header = styled.header<{ $location: string }>`
   top: 0;
   overflow: hidden;
   padding: ${theme.padding.BODY};
-  background: ${theme.color.WHITE};
+  background: ${({ $backgroundTransparent }) =>
+    $backgroundTransparent ? 'transparent' : theme.color.WHITE};
   -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
-
-  ${({ $location }) => {
-    if ($location === '') {
-      return css`
-        background: transparent;
-      `;
-    }
-  }}
 
   & section {
     position: relative;
@@ -57,4 +50,8 @@ export const BackButton = styled.div`
     width: 87.5%;
     height: 87.5%;
   }
+`;
+
+export const RelatedHeight = styled.div<{ $height: undefined | number }>`
+  height: ${({ $height }) => ($height !== undefined ? `${$height}px` : '100vh')};
 `;

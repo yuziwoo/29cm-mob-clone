@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import StorybookDecorator from '../../storybook/StorybookDecorator';
 import Footer from './Footer';
-import { ROUTE_PATH } from '../../../constants/path';
+import { footerUI } from '../../../constants/footerUI';
 
 const meta = {
   title: 'common/Footer',
@@ -10,7 +10,7 @@ const meta = {
   decorators: [
     (Story) => (
       <StorybookDecorator>
-        <div style={{ position: 'relative', height: '300px' }}>
+        <div style={{ position: 'relative', height: '150px' }}>
           <Story />
         </div>
       </StorybookDecorator>
@@ -28,8 +28,14 @@ export const Default: Story = {
   },
 };
 
+export const Hidden: Story = {
+  args: {
+    firstPath: footerUI.HIDDEN[0],
+  },
+};
+
 export const ProductDetailPage: Story = {
   args: {
-    firstPath: ROUTE_PATH.productDetail.split('/')[1],
+    firstPath: footerUI.PRODUCT[0],
   },
 };

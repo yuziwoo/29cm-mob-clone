@@ -1,7 +1,12 @@
+const common = {
+  HEADER: 'header',
+};
+
 const productDetail = {
-  review: 'review',
+  REVIEW: 'review',
 };
 
 export const elementId = {
   productDetail,
+  common,
 } as const;

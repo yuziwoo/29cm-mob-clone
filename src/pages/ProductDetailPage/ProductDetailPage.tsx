@@ -1,6 +1,4 @@
 import { useParams } from 'react-router-dom';
-import useSetHeaderState from '../../hooks/useSetHeaderState';
-import { headerStateBlackBack } from '../../recoil/headerState';
 import ProductDetailMainSwiper from '../../components/product/ProductDetailMainSwiper/ProductDetailMainSwiper';
 import { useEffect, useState } from 'react';
 import { useProduct } from '../../hooks/product/useProduct';
@@ -13,8 +11,6 @@ import RecommendedProducts from '../../components/product/RecommendedProducts/Re
 import { getRecommendedProducts } from '../../utils/product/getRecommendedProducts';
 
 const ProductDetailPage = () => {
-  useSetHeaderState(headerStateBlackBack);
-
   const { id } = useParams();
 
   const { getProduct, productQuery } = useProduct();

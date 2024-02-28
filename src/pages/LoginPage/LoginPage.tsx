@@ -1,5 +1,3 @@
-import { headerStateOnlyBackButton } from '../../recoil/headerState';
-import useSetHeaderState from '../../hooks/useSetHeaderState';
 import * as S from './LoginPage.styled';
 import IconLogo from '../../components/icons/IconLogo';
 import { theme } from '../../styles/theme';
@@ -18,9 +16,6 @@ const LoginPage = () => {
   // login 유저 redirect
   const [user] = useRecoilState(userState);
   const { navigate } = useRouter();
-
-  // 헤더 상태 변경
-  useSetHeaderState(headerStateOnlyBackButton);
 
   // 이전에 방문하려던 페이지 저장
   const location = useLocation();

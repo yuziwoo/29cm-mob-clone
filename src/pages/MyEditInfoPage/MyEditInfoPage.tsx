@@ -1,5 +1,3 @@
-import useSetHeaderState from '../../hooks/useSetHeaderState';
-import { headerStateOnlyBackButton } from '../../recoil/headerState';
 import * as S from './MyEditInfoPage.styled';
 import { useRouter } from '../../hooks/useRouter';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -13,8 +11,6 @@ import MyEditInfoList from '../../components/myEditInfo/MyEditInfoList/MyEditInf
 import { useAuth } from '../../hooks/auth/useAuth';
 
 const MyEditInfoPage = () => {
-  useSetHeaderState(headerStateOnlyBackButton);
-
   const { navigate } = useRouter();
   const { user, updateProfile } = useAuth();
 

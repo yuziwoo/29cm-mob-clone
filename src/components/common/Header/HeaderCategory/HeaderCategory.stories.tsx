@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import HeaderCategory from './HeaderCategory';
-import { BrowserRouter } from 'react-router-dom';
-import GlobalStyle from '../../../../styles/GlobalStyle';
+import StorybookDecorator from '../../../storybook/StorybookDecorator';
 
 const meta = {
   title: 'common/Header/HeaderCategory',
@@ -9,12 +8,11 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <BrowserRouter>
-        <GlobalStyle />
-        <div style={{ background: 'grey' }}>
+      <StorybookDecorator>
+        <div style={{ background: 'rgb(0, 0, 0, 0.3)' }}>
           <Story />
         </div>
-      </BrowserRouter>
+      </StorybookDecorator>
     ),
   ],
 } satisfies Meta<typeof HeaderCategory>;

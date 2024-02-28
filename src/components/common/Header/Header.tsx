@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import * as S from './Header.styled';
 import { ROUTE_PATH } from '../../../constants/path';
 import IconLogo from '../../icons/IconLogo';
@@ -9,53 +8,35 @@ import HeaderCategory from './HeaderCategory/HeaderCategory';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import { scrollTop } from '../../../utils/scrollTop';
-import { useRecoilState } from 'recoil';
-import { headerStateRecoil } from '../../../recoil/headerState';
 import IconLeftArrow from '../../icons/IconLeftArrow';
 import { useRouter } from '../../../hooks/useRouter';
-import { useFirstPath } from '../../../hooks/useFirstPath';
+import { useLocation } from 'react-router-dom';
+import { headerUI } from '../../../constants/headerUI';
+import { theme } from '../../../styles/theme';
+import { elementId } from '../../../constants/elementId';
 
-const Header = () => {
-  const { firstPath } = useFirstPath();
+interface HeaderProps {
+  firstPath: string;
+}
 
-  // header height만큼 content padding 적용하기
-  const headerRef = useRef<null | HTMLElement>(null);
-  const [headerHeight, setHeaderHeight] = useState<null | number>(null);
+const Header = ({ firstPath }: HeaderProps) => {
+  /**
+   * header는 (pathname의 첫번째 패스)에 따라 UI를 다르게 보여줍니다.
+   * 패스의 개수가 3개 이상 중첩된 경우에는 뒤로가기 버튼만 보여줍니다. ('my/edit/info')
+   * 수정할 때 더 간편하게 하고, 알아보기 쉽도록 컴포넌트를 분리했습니다.
+   */
 
-  const handleSetHeaderHeight = () => {
-    if (headerRef.current !== null) {
-      setHeaderHeight(headerRef.current.offsetHeight);
-    }
-  };
+  const { pathname } = useLocation();
 
+  const [height, setHeight] = useState<undefined | number>(undefined);
   useEffect(() => {
-    let resizeTimeout: NodeJS.Timeout | null;
-    const resizeHandler = () => {
-      if (resizeTimeout) {
-        clearTimeout(resizeTimeout);
-      }
-
-      resizeTimeout = setTimeout(() => {
-        handleSetHeaderHeight();
-      }, 100);
-    };
-    window.addEventListener('resize', resizeHandler);
-
-    return () => {
-      window.removeEventListener('resize', resizeHandler);
-    };
-  }, []);
-
-  useEffect(() => {
-    handleSetHeaderHeight();
-
     setTimeout(() => {
-      handleSetHeaderHeight();
+      setHeight(document.getElementById(elementId.common.HEADER)?.offsetHeight);
     }, 100);
-  }, [firstPath]);
+  }, [pathname]);
 
-  // 로고 클릭 이벤트 핸들링
   const { navigate } = useRouter();
+
   const handleClickLogo = () => {
     if (firstPath === '') {
       scrollTop();
@@ -64,48 +45,88 @@ const Header = () => {
     navigate(ROUTE_PATH.root);
   };
 
-  // header view State
-  const [{ color, viewLogo, viewBackButton, viewShadow, viewCategory, viewIcons }] =
-    useRecoilState(headerStateRecoil);
+  if (headerUI.HIDDEN.includes(firstPath)) return <></>;
 
-  return (
-    <>
-      <div
-        className="header-related-height"
-        style={{ height: headerHeight ? `${headerHeight}px` : '100vh' }}
-      ></div>
-
-      <S.Header ref={headerRef} $location={firstPath}>
-        {viewShadow && <HeaderShadow />}
-        <S.MainHeader className="main-header">
-          {viewLogo && (
+  if (headerUI.MAIN.includes(firstPath))
+    return (
+      <>
+        <S.RelatedHeight $height={height} />
+        <S.Header id={elementId.common.HEADER} $backgroundTransparent={true}>
+          <HeaderShadow />
+          <S.MainHeader>
             <motion.button
               whileTap={motionStyle.primaryButton.whileTap}
               transition={motionStyle.primaryButton.transition}
               onClick={handleClickLogo}
             >
               <S.Logo>
-                <IconLogo color={color} />
+                <IconLogo color={theme.color.WHITE} />
               </S.Logo>
             </motion.button>
-          )}
+            <HeaderIcons color={theme.color.WHITE} />
+          </S.MainHeader>
+          <HeaderCategory location={firstPath} />
+        </S.Header>
+      </>
+    );
 
-          {viewBackButton && (
+  if (headerUI.ONLY_BACKBUTTON.includes(firstPath) || pathname.split('/').length >= 4)
+    return (
+      <>
+        <S.RelatedHeight $height={height} />
+        <S.Header id={elementId.common.HEADER}>
+          <S.MainHeader>
             <motion.button
               whileTap={motionStyle.primaryButton.whileTap}
               transition={motionStyle.primaryButton.transition}
               onClick={() => navigate(-1)}
             >
               <S.BackButton>
-                <IconLeftArrow color={color} />
+                <IconLeftArrow color={theme.color.BLACK} />
               </S.BackButton>
             </motion.button>
-          )}
+          </S.MainHeader>
+        </S.Header>
+      </>
+    );
 
-          {viewIcons && <HeaderIcons color={color} />}
+  if (headerUI.BACKBUTTON_AND_ICONS.includes(firstPath))
+    return (
+      <>
+        <S.RelatedHeight $height={height} />
+        <S.Header id={elementId.common.HEADER}>
+          <S.MainHeader>
+            <motion.button
+              whileTap={motionStyle.primaryButton.whileTap}
+              transition={motionStyle.primaryButton.transition}
+              onClick={() => navigate(-1)}
+            >
+              <S.BackButton>
+                <IconLeftArrow color={theme.color.BLACK} />
+              </S.BackButton>
+            </motion.button>
+            <HeaderIcons color={theme.color.BLACK} />
+          </S.MainHeader>
+        </S.Header>
+      </>
+    );
+
+  return (
+    <>
+      <S.RelatedHeight $height={height} />
+      <S.Header id={elementId.common.HEADER}>
+        <S.MainHeader>
+          <motion.button
+            whileTap={motionStyle.primaryButton.whileTap}
+            transition={motionStyle.primaryButton.transition}
+            onClick={handleClickLogo}
+          >
+            <S.Logo>
+              <IconLogo color={theme.color.BLACK} />
+            </S.Logo>
+          </motion.button>
+          <HeaderIcons color={theme.color.BLACK} />
         </S.MainHeader>
-
-        {viewCategory && <HeaderCategory location={firstPath} />}
       </S.Header>
     </>
   );

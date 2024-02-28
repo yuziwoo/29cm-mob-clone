@@ -1,5 +1,3 @@
-import { headerStateBlack } from '../../recoil/headerState';
-import useSetHeaderState from '../../hooks/useSetHeaderState';
 import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useRouter } from '../../hooks/useRouter';
@@ -12,8 +10,6 @@ import { motionStyle } from '../../styles/motion';
 import { useAuth } from '../../hooks/auth/useAuth';
 
 const MyPage = () => {
-  useSetHeaderState(headerStateBlack);
-
   // const [user] = useRecoilState(userState);
   const { user, logout, deleteAccount } = useAuth();
   const { navigate } = useRouter();

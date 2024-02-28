@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import HeaderIcons from './HeaderIcons';
-import GlobalStyle from '../../../../styles/GlobalStyle';
-import { RecoilRoot } from 'recoil';
-import { BrowserRouter } from 'react-router-dom';
 import { theme } from '../../../../styles/theme';
+import StorybookDecorator from '../../../storybook/StorybookDecorator';
 
 const meta = {
   title: 'common/Header/HeaderIcons',
@@ -11,14 +9,11 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <BrowserRouter>
-        <RecoilRoot>
-          <div style={{ background: 'rgb(0, 0, 0, 0.3)' }}>
-            <GlobalStyle />
-            <Story />
-          </div>
-        </RecoilRoot>
-      </BrowserRouter>
+      <StorybookDecorator>
+        <div style={{ background: 'rgb(0, 0, 0, 0.3)' }}>
+          <Story />
+        </div>
+      </StorybookDecorator>
     ),
   ],
 } satisfies Meta<typeof HeaderIcons>;

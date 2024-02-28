@@ -1,10 +1,6 @@
-import { headerStateDefault } from '../../recoil/headerState';
-import useSetHeaderState from '../../hooks/useSetHeaderState';
 import useCart from '../../hooks/cart/useCart';
 
 const MainPage = () => {
-  useSetHeaderState(headerStateDefault);
-
   const { cartQuery, addOrUpdate, removeItem } = useCart();
 
   return (

@@ -8,8 +8,6 @@ import { userState } from '../../recoil/auth';
 import { useRouter } from '../../hooks/useRouter';
 import { useEffect, useState } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
-import useSetHeaderState from '../../hooks/useSetHeaderState';
-import { headerStateOnlyBackButton } from '../../recoil/headerState';
 import { useLocation } from 'react-router-dom';
 import CreateAccountForm from '../../components/join/CreateAccountForm/CreateAccountForm';
 
@@ -24,9 +22,6 @@ const JoinPage = () => {
     }
     // eslint-disable-next-line
   }, []);
-
-  // 헤더 상태 변경
-  useSetHeaderState(headerStateOnlyBackButton);
 
   // 이전에 방문하려던 페이지 저장
   const location = useLocation();
