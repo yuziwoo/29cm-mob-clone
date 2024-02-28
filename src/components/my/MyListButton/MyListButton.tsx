@@ -9,6 +9,11 @@ interface MyListButtonProps {
 }
 
 const MyListButton = ({ text, onClick }: MyListButtonProps) => {
+  /**
+   * 마이페이지에서 사용하는 리스트 버튼 컴포넌트입니다.
+   * 텍스트와 onClick 함수를 지정할 수 있는 간단한 컴포넌트입니다.
+   */
+
   return (
     <motion.div>
       <S.ListButton onClick={onClick}>

@@ -7,6 +7,10 @@ import { useRouter } from '../../../hooks/useRouter';
 import { useAuth } from '../../../hooks/auth/useAuth';
 
 const SocialLogin = ({ redirectPath }: { redirectPath: string }) => {
+  /**
+   * 소셜 로그인 버튼을 모아둔 컴포넌트입니다.
+   */
+
   const { navigate } = useRouter();
   const { loginGoogle, loginEmail } = useAuth();
   const handleTestAccountLogin = async () => {

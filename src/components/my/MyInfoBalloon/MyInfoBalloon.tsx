@@ -2,9 +2,14 @@ import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import IconRightArrow2 from '../../icons/IconRightArrow2';
 import { theme } from '../../../styles/theme';
-import * as S from './MyInfoBalloon.styled'
+import * as S from './MyInfoBalloon.styled';
 
 const MyInfoBalloon = () => {
+  /**
+   * 마이페이지에서 고객 정보 풍선을 보여주는 컴포넌트입니다.
+   * 회원등급, 사용 가능 쿠폰, 포인트를 보여주며, 현재는 API없이 임의의 데이터를 보여줍니다.
+   */
+  
   return (
     <div>
       <motion.div

@@ -1,7 +1,5 @@
+import StorybookDecorator from '../../storybook/StorybookDecorator';
 import MyUserInfo from './MyUserInfo';
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
-import GlobalStyle from '../../../styles/GlobalStyle';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -10,14 +8,9 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', padding: '0 16px', maxWidth: '550px', margin: 'auto' }}>
-        <BrowserRouter>
-          <RecoilRoot>
-            <GlobalStyle />
-            <Story />
-          </RecoilRoot>
-        </BrowserRouter>
-      </div>
+      <StorybookDecorator>
+        <Story />
+      </StorybookDecorator>
     ),
   ],
 } satisfies Meta<typeof MyUserInfo>;
@@ -30,7 +23,7 @@ export const Default: Story = {
   args: {
     user: {
       uid: '',
-      displayName: null,
+      displayName: '아이유',
       email: '',
       photoURL: null,
       providerId: '',
@@ -38,11 +31,11 @@ export const Default: Story = {
   },
 };
 
-export const WithUserName: Story = {
+export const NoUserName: Story = {
   args: {
     user: {
       uid: '',
-      displayName: '사용자 이름',
+      displayName: null,
       email: '',
       photoURL: null,
       providerId: '',

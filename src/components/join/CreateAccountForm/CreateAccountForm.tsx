@@ -10,6 +10,11 @@ import { FormData } from '../../../types/login';
 import { useAuth } from '../../../hooks/auth/useAuth';
 
 const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
+  /**
+   * 회원가입 Form 입니다.
+   * id, password 입력 후 유효성 검사를 하여 회원가입이 가능합니다.
+   */
+
   const { navigate } = useRouter();
   const { createAccount } = useAuth();
   const uniqueId = useId();

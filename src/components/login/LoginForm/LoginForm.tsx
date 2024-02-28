@@ -9,6 +9,11 @@ import TextInput from '../../common/TextInput/TextInput';
 import { useAuth } from '../../../hooks/auth/useAuth';
 
 const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
+  /**
+   * 로그인 폼입니다.
+   * id, password의 유효성 검사를 실행한 후 로그인 할 수 있습니다.
+   */
+
   const { navigate } = useRouter();
   const { loginEmail } = useAuth();
   const uniqueId = useId();

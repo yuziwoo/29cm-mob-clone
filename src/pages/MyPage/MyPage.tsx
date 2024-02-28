@@ -8,6 +8,7 @@ import MyListButton from '../../components/my/MyListButton/MyListButton';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
 import { useAuth } from '../../hooks/auth/useAuth';
+import MyPageSkeleton from './MyPageSkeleton';
 
 const MyPage = () => {
   // const [user] = useRecoilState(userState);
@@ -52,7 +53,7 @@ const MyPage = () => {
     },
   ];
 
-  if (user === null) return <div></div>;
+  if (user === null) return <MyPageSkeleton></MyPageSkeleton>;
   return (
     <S.SectionMyPage>
       <motion.div
