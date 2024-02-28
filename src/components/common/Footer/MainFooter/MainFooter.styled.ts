@@ -7,7 +7,7 @@ export const MainFooterBlock = styled.div`
   justify-content: space-between;
 `;
 
-export const Button = styled.button<{ $active?: boolean }>`
+export const Button = styled.button`
   width: 20%;
 
   & .wrap {
@@ -25,7 +25,7 @@ export const Button = styled.button<{ $active?: boolean }>`
     font-size: 10px;
     text-transform: uppercase;
     padding-top: 0.8rem;
-    color: ${({ $active = false }) => ($active ? theme.color.ACTIVE : theme.color.FOOTER_INACTIVE)};
+    color: ${theme.color.BLACK};
     transition: color 0.2s;
   }
 `;

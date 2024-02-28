@@ -1,7 +1,4 @@
-import { useLocation } from 'react-router-dom';
 import * as S from './Footer.styled';
-import { useEffect, useState } from 'react';
-import { formatLocation } from '../../../utils/formatLocation';
 import MainFooter from './MainFooter/MainFooter';
 import { ROUTE_PATH } from '../../../constants/path';
 
@@ -13,16 +10,17 @@ const page = {
   productFooter,
 };
 
-const Footer = () => {
-  const { pathname } = useLocation();
-  const [location, setLocation] = useState('');
+interface FooterProps {
+  firstPath: string;
+}
 
-  useEffect(() => {
-    setLocation(formatLocation(pathname));
-  }, [pathname]);
+const Footer = ({ firstPath }: FooterProps) => {
+  /**
+   * Footer는 firstPath에 따라 다른 UI를 유저에게 보여줍니다.
+   */
 
-  if (page.hideFooter.includes(location)) return <></>;
-  if (page.productFooter.includes(location))
+  if (page.hideFooter.includes(firstPath)) return <></>;
+  if (page.productFooter.includes(firstPath))
     return (
       <S.SectionFooter style={{ transform: `translate(-50%, 0%)` }}>
         상품 구매 footer
@@ -31,7 +29,7 @@ const Footer = () => {
 
   return (
     <S.SectionFooter style={{ transform: `translate(-50%, 0%)` }}>
-      <MainFooter location={location} />
+      <MainFooter firstPath={firstPath} />
     </S.SectionFooter>
   );
 };

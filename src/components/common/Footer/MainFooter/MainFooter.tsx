@@ -1,8 +1,6 @@
 import * as S from './MainFooter.styled';
 import IconFooterHome from '../../../icons/IconFooter/IconFooterHome';
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { theme } from '../../../../styles/theme';
 import { motionStyle } from '../../../../styles/motion';
 import { useRouter } from '../../../../hooks/useRouter';
 import { scrollTop } from '../../../../utils/scrollTop';
@@ -11,103 +9,89 @@ import IconFooterCategory from '../../../icons/IconFooter/IconFooterCategory';
 import IconFooterSearch from '../../../icons/IconFooter/IconFooterSearch';
 import IconFooterLike from '../../../icons/IconFooter/IconFooterLike';
 import IconFooterMy from '../../../icons/IconFooter/IconFooterMy';
+import { useCallback } from 'react';
 
 interface MainFooterProps {
-  location: string;
+  firstPath: string;
 }
 
-const getActiveButton = (location: string) => {
-  if (location.length === 0) return 'home';
-
-  switch (location) {
-    case 'man' || 'life' || 'woman' || 'best': {
-      return 'home';
-    }
-    case 'category': {
-      return 'category';
-    }
-    case 'search': {
-      return 'search';
-    }
-    case 'like': {
-      return 'like';
-    }
-    case 'my': {
-      return 'my';
-    }
-    default:
-      return 'undefined';
-  }
-};
-
-const MainFooter = ({ location = '' }: MainFooterProps) => {
-  const [activeButton, setActiveButton] = useState('');
-
-  useEffect(() => {
-    setActiveButton(getActiveButton(location));
-  }, [location]);
+const MainFooter = ({ firstPath }: MainFooterProps) => {
+  /**
+   * MainFooter 기능
+   * - firstPath에 따라 알맞는 버튼을 활성화 시킵니다.
+   * - 활성화된 상태의 버튼을 클릭시 navigate가 아닌 scrollTop 기능이 실행됩니다.
+   */
 
   const { navigate } = useRouter();
 
-  const handleClickButton = (name: string, path: string) => {
-    if (activeButton === name) {
-      scrollTop();
-      return;
-    }
-    navigate(path);
-  };
-
-  const getColor = (name: string) => {
-    if (activeButton === name) return theme.color.ACTIVE;
-    return theme.color.FOOTER_INACTIVE;
-  };
+  const handleClickButton = useCallback(
+    (isActive: boolean, path: string) => {
+      if (isActive) {
+        scrollTop();
+        return;
+      }
+      navigate(path);
+    },
+    [navigate]
+  );
 
   const buttons = [
     {
-      name: 'home',
+      name: 'HOME',
       path: ROUTE_PATH.root,
-      icon: <IconFooterHome color={getColor('home')} />,
+      includePath: [
+        '',
+        ROUTE_PATH.root,
+        ROUTE_PATH.man.replace('/', ''),
+        ROUTE_PATH.life.replace('/', ''),
+        ROUTE_PATH.woman.replace('/', ''),
+        ROUTE_PATH.best.replace('/', ''),
+      ],
+      icon: <IconFooterHome />,
     },
     {
-      name: 'category',
+      name: 'CATEGORY',
       path: ROUTE_PATH.category,
-      icon: <IconFooterCategory color={getColor('category')} />,
+      includePath: [ROUTE_PATH.category.replace('/', '')],
+      icon: <IconFooterCategory />,
     },
     {
-      name: 'search',
+      name: 'SEARCH',
       path: ROUTE_PATH.search,
-      icon: <IconFooterSearch color={getColor('search')} />,
+      includePath: [ROUTE_PATH.search.replace('/', ''), ROUTE_PATH.searchDetail.split('/')[1]],
+      icon: <IconFooterSearch />,
     },
     {
-      name: 'like',
+      name: 'LIKE',
       path: ROUTE_PATH.like,
-      icon: <IconFooterLike color={getColor('like')} />,
+      includePath: [ROUTE_PATH.like.replace('/', '')],
+      icon: <IconFooterLike />,
     },
     {
       name: 'my',
       path: ROUTE_PATH.my,
-      icon: <IconFooterMy color={getColor('my')} />,
+      includePath: [ROUTE_PATH.my.replace('/', '')],
+      icon: <IconFooterMy />,
     },
   ];
 
   return (
     <S.MainFooterBlock>
-      {buttons.map(({ name, path, icon }, idx) => (
-        <S.Button
-          onClick={() => handleClickButton(name, path)}
-          $active={activeButton === name}
-          key={idx}
-        >
-          <motion.div
-            whileTap={motionStyle.primaryButton.whileTap}
-            transition={motionStyle.primaryButton.transition}
-            className="wrap"
-          >
-            {icon}
-            <p>{name}</p>
-          </motion.div>
-        </S.Button>
-      ))}
+      {buttons.map(({ name, includePath, path, icon }, idx) => {
+        const isActive = includePath.includes(firstPath);
+        return (
+          <S.Button onClick={() => handleClickButton(isActive, path)} key={idx}>
+            <motion.div
+              whileTap={motionStyle.primaryButton.whileTap}
+              transition={motionStyle.primaryButton.transition}
+              className="wrap"
+            >
+              <div style={{ opacity: isActive ? 1 : 0.3 }}>{icon}</div>
+              <p>{name}</p>
+            </motion.div>
+          </S.Button>
+        );
+      })}
     </S.MainFooterBlock>
   );
 };

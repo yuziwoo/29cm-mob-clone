@@ -21,7 +21,6 @@ const color = {
   INPUT_GRAY: '#C5C5C5',
 
   FOOTER_BG: 'rgba(246, 246, 246, 0.85)',
-  FOOTER_INACTIVE: '#5D5D5D',
 };
 
 const gradient = {

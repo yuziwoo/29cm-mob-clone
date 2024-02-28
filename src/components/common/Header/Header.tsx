@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as S from './Header.styled';
 import { ROUTE_PATH } from '../../../constants/path';
-import { formatLocation } from '../../../utils/formatLocation';
 import IconLogo from '../../icons/IconLogo';
 import HeaderShadow from './HeaderShadow/HeaderShadow';
 import HeaderIcons from './HeaderIcons/HeaderIcons';
@@ -14,15 +13,10 @@ import { useRecoilState } from 'recoil';
 import { headerStateRecoil } from '../../../recoil/headerState';
 import IconLeftArrow from '../../icons/IconLeftArrow';
 import { useRouter } from '../../../hooks/useRouter';
+import { useFirstPath } from '../../../hooks/useFirstPath';
 
 const Header = () => {
-  // location에 맞춰서 header 카테고리 강조 효과
-  const { pathname } = useLocation();
-  const [location, setLocation] = useState('');
-
-  useEffect(() => {
-    setLocation(formatLocation(pathname));
-  }, [pathname]);
+  const { firstPath } = useFirstPath();
 
   // header height만큼 content padding 적용하기
   const headerRef = useRef<null | HTMLElement>(null);
@@ -58,12 +52,12 @@ const Header = () => {
     setTimeout(() => {
       handleSetHeaderHeight();
     }, 100);
-  }, [pathname]);
+  }, [firstPath]);
 
   // 로고 클릭 이벤트 핸들링
   const { navigate } = useRouter();
   const handleClickLogo = () => {
-    if (location === '') {
+    if (firstPath === '') {
       scrollTop();
       return;
     }
@@ -81,7 +75,7 @@ const Header = () => {
         style={{ height: headerHeight ? `${headerHeight}px` : '100vh' }}
       ></div>
 
-      <S.Header ref={headerRef} $location={location}>
+      <S.Header ref={headerRef} $location={firstPath}>
         {viewShadow && <HeaderShadow />}
         <S.MainHeader className="main-header">
           {viewLogo && (
@@ -111,7 +105,7 @@ const Header = () => {
           {viewIcons && <HeaderIcons color={color} />}
         </S.MainHeader>
 
-        {viewCategory && <HeaderCategory location={location} />}
+        {viewCategory && <HeaderCategory location={firstPath} />}
       </S.Header>
     </>
   );

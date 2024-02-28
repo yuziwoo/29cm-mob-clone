@@ -1,5 +1,4 @@
 import { NavigateOptions, To, useNavigate } from 'react-router-dom';
-import { scrollTop } from '../utils/scrollTop';
 
 export const useRouter = () => {
   const realNavigate = useNavigate();
