@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
 import { useAuth } from '../../hooks/auth/useAuth';
 import MyPageSkeleton from './MyPageSkeleton';
-import PageCommonAnimation from '../../components/common/PageCommonAnimation/PageCommonAnimation';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const MyPage = () => {
   /**
@@ -60,7 +60,7 @@ const MyPage = () => {
 
   if (user === null) return <MyPageSkeleton></MyPageSkeleton>;
   return (
-    <PageCommonAnimation>
+    <CommonPageAnimation>
       <S.Page>
         <MyUserInfo user={user} />
         <MyInfoBalloon />
@@ -84,7 +84,7 @@ const MyPage = () => {
           ))}
         </S.ListWrap>
       </S.Page>
-    </PageCommonAnimation>
+    </CommonPageAnimation>
   );
 };
 

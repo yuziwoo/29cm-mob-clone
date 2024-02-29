@@ -4,6 +4,7 @@ import { userState } from '../../recoil/auth';
 import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useRouter } from '../../hooks/useRouter';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const AlertPage = () => {
   const [user] = useRecoilState(userState);
@@ -14,7 +15,11 @@ const AlertPage = () => {
     navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.alert }, replace: true });
     // eslint-disable-next-line
   }, []);
-  return <S.Page>AlertPage</S.Page>;
+  return (
+    <CommonPageAnimation>
+      <S.Page>AlertPage</S.Page>
+    </CommonPageAnimation>
+  );
 };
 
 export default AlertPage;

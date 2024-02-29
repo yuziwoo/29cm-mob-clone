@@ -2,8 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useProduct } from '../../hooks/product/useProduct';
 import { ProductProps } from '../../types/product';
-import { motion } from 'framer-motion';
-import { motionStyle } from '../../styles/motion';
 import ProductDetailMainSwiper from '../../components/product/ProductDetailMainSwiper/ProductDetailMainSwiper';
 import ProductInfo from '../../components/product/ProductInfo/ProductInfo';
 import ProductDetailsImg from '../../components/product/ProductDetailsImg/ProductDetailsImg';
@@ -14,6 +12,7 @@ import * as S from './ProductDetailPage.styled';
 import ProductReview from '../../components/product/ProductReview/ProductReview';
 import { mockReview } from '../../mock/product';
 import ToggleText from '../../components/product/ToggleText/ToggleText';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -35,15 +34,11 @@ const ProductDetailPage = () => {
   if (id === undefined || product === null) return <h1>상품을 찾을 수 없습니다.</h1>;
 
   return (
-    <motion.div
-      initial={motionStyle.pageOpen.initial}
-      animate={motionStyle.pageOpen.animate}
-      transition={motionStyle.pageOpen.transition}
-    >
+    <CommonPageAnimation>
       <S.Page>
         <ProductDetailMainSwiper thumbs={product?.thumb} />
         <ProductInfo product={product} productId={id} />
-        
+
         <ProductDetailsImg imgURL={product?.imgURL} />
         <RecommendedProducts
           products={getRecommendedProducts({ id, products: productQuery.data || {} })}
@@ -74,7 +69,7 @@ const ProductDetailPage = () => {
           </ToggleText>
         </S.RemainingInfo>
       </S.Page>
-    </motion.div>
+    </CommonPageAnimation>
   );
 };
 

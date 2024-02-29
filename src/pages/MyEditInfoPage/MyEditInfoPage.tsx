@@ -9,6 +9,7 @@ import { uploadeImage } from '../../api/uploader';
 import MyEditInfoProfileImg from '../../components/myEditInfo/MyEditInfoProfileImg/MyEditInfoProfileImg';
 import MyEditInfoList from '../../components/myEditInfo/MyEditInfoList/MyEditInfoList';
 import { useAuth } from '../../hooks/auth/useAuth';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const MyEditInfoPage = () => {
   const { navigate } = useRouter();
@@ -48,41 +49,43 @@ const MyEditInfoPage = () => {
   }, [userProfileImg, userDisplayName, user?.displayName, user?.photoURL]);
 
   return (
-    <S.Page>
-      <MyEditInfoProfileImg
-        defaultImg={user?.photoURL ? user.photoURL : userPlaceholder.PHOTO_URL}
-        changedImg={userProfileImg}
-        onChangeImg={handleChangeProfileImg}
-      />
+    <CommonPageAnimation>
+      <S.Page>
+        <MyEditInfoProfileImg
+          defaultImg={user?.photoURL ? user.photoURL : userPlaceholder.PHOTO_URL}
+          changedImg={userProfileImg}
+          onChangeImg={handleChangeProfileImg}
+        />
 
-      <MyEditInfoList
-        placeholder={userDisplayName}
-        onChangeInput={handleChangeUserDisplayName}
-        email={user?.email ? user.email : '없음'}
-        providerId={user?.providerId !== 'firebase' ? user?.providerId : '없음'}
-      />
+        <MyEditInfoList
+          placeholder={userDisplayName}
+          onChangeInput={handleChangeUserDisplayName}
+          email={user?.email ? user.email : '없음'}
+          providerId={user?.providerId !== 'firebase' ? user?.providerId : '없음'}
+        />
 
-      <S.Confirm>
-        <motion.button
-          className="cancel"
-          whileTap={motionStyle.scaleButton.whileTap}
-          transition={motionStyle.scaleButton.transition}
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          <p>취소</p>
-        </motion.button>
-        <motion.button
-          className="submit"
-          whileTap={motionStyle.scaleButton.whileTap}
-          transition={motionStyle.scaleButton.transition}
-          onClick={handleSubmit}
-        >
-          <p>수정</p>
-        </motion.button>
-      </S.Confirm>
-    </S.Page>
+        <S.Confirm>
+          <motion.button
+            className="cancel"
+            whileTap={motionStyle.scaleButton.whileTap}
+            transition={motionStyle.scaleButton.transition}
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            <p>취소</p>
+          </motion.button>
+          <motion.button
+            className="submit"
+            whileTap={motionStyle.scaleButton.whileTap}
+            transition={motionStyle.scaleButton.transition}
+            onClick={handleSubmit}
+          >
+            <p>수정</p>
+          </motion.button>
+        </S.Confirm>
+      </S.Page>
+    </CommonPageAnimation>
   );
 };
 

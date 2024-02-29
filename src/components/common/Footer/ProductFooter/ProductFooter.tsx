@@ -5,7 +5,7 @@ import ProductLikes from '../../../product/ProductLikes/ProductLikes';
 import { theme } from '../../../../styles/theme';
 import IconShare from '../../../icons/IconShare';
 import { motion } from 'framer-motion';
-import { motionStyle } from '../../../../styles/motion';
+import CommonButton from '../../motion/CommonButton/CommonButton';
 
 interface ProductFooterProps {
   id: string | undefined;
@@ -45,41 +45,29 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
     <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} transition={{ duration: 0.2 }}>
       <S.Component>
         <S.FlexSpaceBetween>
-          <motion.button
-            whileTap={motionStyle.primaryButton.whileTap}
-            transition={motionStyle.primaryButton.transition}
-          >
+          <CommonButton>
             <S.LikeButton>
               <ProductLikes productId={id} color={theme.color.WHITE} />
             </S.LikeButton>
-          </motion.button>
+          </CommonButton>
 
-          <motion.button
-            whileTap={motionStyle.primaryButton.whileTap}
-            transition={motionStyle.primaryButton.transition}
-          >
+          <CommonButton>
             <S.ShareButton onClick={handleClickShare}>
               <IconShare color={theme.color.WHITE} />
             </S.ShareButton>
-          </motion.button>
+          </CommonButton>
         </S.FlexSpaceBetween>
 
         <S.FlexSpaceBetween>
-          <motion.button
-            whileTap={motionStyle.primaryButton.whileTap}
-            transition={motionStyle.primaryButton.transition}
-          >
+          <CommonButton>
             <S.CartButton onClick={handleClickCartButton}>장바구니</S.CartButton>
-          </motion.button>
+          </CommonButton>
 
           <div style={{ borderRight: `1px solid ${theme.color.GRAY7}`, height: '2.4rem' }}></div>
 
-          <motion.button
-            whileTap={motionStyle.primaryButton.whileTap}
-            transition={motionStyle.primaryButton.transition}
-          >
+          <CommonButton>
             <S.BuyButton>구매하기</S.BuyButton>
-          </motion.button>
+          </CommonButton>
         </S.FlexSpaceBetween>
       </S.Component>
     </motion.div>

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import StorybookDecorator from '../../storybook/StorybookDecorator';
-import PageCommonAnimation from './PageCommonAnimation';
+import StorybookDecorator from '../../../storybook/StorybookDecorator';
+import CommonPageAnimation from './CommonPageAnimation';
 
 const meta = {
-  title: 'common/PageCommonAnimation',
-  component: PageCommonAnimation,
+  title: 'common/motion/CommonPageAnimation',
+  component: CommonPageAnimation,
   tags: ['autodocs'],
   parameters: {
     componentSubtitle: '페이지 오픈 시 발생하는 오픈 애니메이션',
@@ -16,7 +16,7 @@ const meta = {
       </StorybookDecorator>
     ),
   ],
-} satisfies Meta<typeof PageCommonAnimation>;
+} satisfies Meta<typeof CommonPageAnimation>;
 
 export default meta;
 

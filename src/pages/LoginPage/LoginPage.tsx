@@ -11,6 +11,7 @@ import { userState } from '../../recoil/auth';
 import { motion } from 'framer-motion';
 import { useRouter } from '../../hooks/useRouter';
 import { motionStyle } from '../../styles/motion';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const LoginPage = () => {
   // login 유저 redirect
@@ -35,12 +36,8 @@ const LoginPage = () => {
   }, [user]);
 
   return (
-    <S.Page>
-      <motion.div
-        initial={motionStyle.pageOpen.initial}
-        animate={motionStyle.pageOpen.animate}
-        transition={{ duration: 0.55, delay: 0.3 }}
-      >
+    <CommonPageAnimation>
+      <S.Page>
         <S.Logo
           onClick={() => {
             navigate(ROUTE_PATH.root);
@@ -72,8 +69,8 @@ const LoginPage = () => {
         </S.Title>
 
         <SocialLogin redirectPath={redirectPath} />
-      </motion.div>
-    </S.Page>
+      </S.Page>
+    </CommonPageAnimation>
   );
 };
 

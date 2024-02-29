@@ -1,7 +1,12 @@
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 import { PageStyle as S } from './ManPage.styled';
 
 const ManPage = () => {
-  return <S.Page>ManPage</S.Page>;
+  return (
+    <CommonPageAnimation>
+      <S.Page>ManPage</S.Page>
+    </CommonPageAnimation>
+  );
 };
 
 export default ManPage;

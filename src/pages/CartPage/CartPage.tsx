@@ -4,6 +4,7 @@ import { userState } from '../../recoil/auth';
 import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useRouter } from '../../hooks/useRouter';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const CartPage = () => {
   const [user] = useRecoilState(userState);
@@ -15,7 +16,11 @@ const CartPage = () => {
     // eslint-disable-next-line
   }, []);
 
-  return <S.Page>CartPage</S.Page>;
+  return (
+    <CommonPageAnimation>
+      <S.Page>CartPage</S.Page>
+    </CommonPageAnimation>
+  );
 };
 
 export default CartPage;

@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-import { motionStyle } from '../../styles/motion';
 import { PageStyle as S } from './JoinPage.styled';
 import IconLogo from '../../components/icons/IconLogo';
 import { theme } from '../../styles/theme';
@@ -10,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useLocation } from 'react-router-dom';
 import CreateAccountForm from '../../components/join/CreateAccountForm/CreateAccountForm';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const JoinPage = () => {
   // login 유저 redirect
@@ -34,11 +33,7 @@ const JoinPage = () => {
   }, [location?.state]);
 
   return (
-    <motion.div
-      initial={motionStyle.pageOpen.initial}
-      animate={motionStyle.pageOpen.animate}
-      transition={motionStyle.pageOpen.transition}
-    >
+    <CommonPageAnimation>
       <S.Page>
         <S.Logo
           onClick={() => {
@@ -62,7 +57,7 @@ const JoinPage = () => {
 
         <CreateAccountForm redirectPath={redirectPath} />
       </S.Page>
-    </motion.div>
+    </CommonPageAnimation>
   );
 };
 
