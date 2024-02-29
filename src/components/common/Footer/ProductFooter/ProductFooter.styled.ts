@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { theme } from '../../../../styles/theme';
 
-export const Component = styled.div`
+const Component = styled.div`
   width: 100%;
   padding: 3rem 16px;
   background: ${theme.color.BLACK};
@@ -10,7 +10,7 @@ export const Component = styled.div`
   align-items: center;
 `;
 
-export const FlexSpaceBetween = styled.div`
+const FlexSpaceBetween = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,11 +31,11 @@ const iconCSS = css`
   }
 `;
 
-export const Like = styled.div`
+const LikeButton = styled.div`
   ${iconCSS}
 `;
 
-export const Share = styled.div`
+const ShareButton = styled.div`
   ${iconCSS}
 `;
 
@@ -44,19 +44,29 @@ const TextCSS = css`
   font-size: 24px;
   font-weight: 700;
   padding: 0 3rem;
+  user-select: none;
 
   @media screen and (max-width: 400px) {
     font-size: 20px;
   }
 `;
 
-export const CartButton = styled.h1`
+const CartButton = styled.h1`
   ${TextCSS}
   color: ${theme.color.WHITE};
   border-right: 1px solid ${theme.color.GRAY7};
 `;
 
-export const BuyButton = styled.h1`
+const BuyButton = styled.h1`
   ${TextCSS}
   color: ${theme.color.SIGNATURE};
 `;
+
+export const ComponentStyle = {
+  Component,
+  FlexSpaceBetween,
+  LikeButton,
+  ShareButton,
+  CartButton,
+  BuyButton,
+};

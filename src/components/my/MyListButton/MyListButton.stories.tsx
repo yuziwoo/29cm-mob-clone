@@ -25,3 +25,10 @@ export const Default: Story = {
     onClick: () => {},
   },
 };
+
+export const ChangeText: Story = {
+  args: {
+    text: '원하는 텍스트 설정',
+    onClick: () => {},
+  },
+};

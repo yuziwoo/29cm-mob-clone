@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const SectionProfileImg = styled.div`
+const Component = styled.div`
   width: 100%;
   display: flex;
   justify-conent: center;
@@ -13,7 +13,7 @@ export const SectionProfileImg = styled.div`
   }
 `;
 
-export const ProfileImg = styled.div`
+const ProfileImg = styled.div`
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
@@ -23,7 +23,7 @@ export const ProfileImg = styled.div`
   margin: auto;
 `;
 
-export const ProfileEditMessage = styled.p`
+const EditProfileImg = styled.p`
   font-size: 14px;
   text-align: center;
   margin-top: 20px;
@@ -31,7 +31,7 @@ export const ProfileEditMessage = styled.p`
   color: ${theme.color.INPUT_VALID};
 `;
 
-export const ImgInput = styled.input`
+const Input = styled.input`
   position: absolute;
   opacity: 0;
   left: 0;
@@ -39,3 +39,10 @@ export const ImgInput = styled.input`
   width: 100%;
   height: 100%;
 `;
+
+export const ComponentStyle = {
+  Component,
+  ProfileImg,
+  EditProfileImg,
+  Input,
+};

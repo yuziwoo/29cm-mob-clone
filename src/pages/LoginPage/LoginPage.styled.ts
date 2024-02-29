@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
-export const SectionLogin = styled.section`
+const Page = styled.section`
   padding: ${theme.padding.BODY_WITH_BOTTOM_MARGIN};
 `;
 
-export const Logo = styled.div`
+const Logo = styled.div`
   width: 182.5px;
   height: 45px;
   margin-top: 20px;
@@ -19,7 +19,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const Title = styled.div`
+const Title = styled.div`
   position: relative;
   padding: 30px 0;
 
@@ -46,7 +46,7 @@ export const Title = styled.div`
   }
 `;
 
-export const CreateAccount = styled.div`
+const CreateAccount = styled.div`
   display: flex;
   justify-content: center;
   padding: 30px 0 10px;
@@ -60,3 +60,10 @@ export const CreateAccount = styled.div`
     color: ${theme.color.BLACK};
   }
 `;
+
+export const PageStyle = {
+  Page,
+  Logo,
+  Title,
+  CreateAccount,
+};

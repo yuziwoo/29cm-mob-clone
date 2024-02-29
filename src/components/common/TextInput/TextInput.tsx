@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { theme } from '../../../styles/theme';
 import IconEye from '../../icons/IconEye';
 import IconEyeSlash from '../../icons/IconEyeSlash';
-import * as S from './TextInput.styled';
+import { ComponentStyle as S } from './TextInput.styled';
 
 interface TextInputProps {
   type: 'email' | 'text' | 'password';
@@ -79,7 +79,7 @@ const TextInput = (props: TextInputProps) => {
   }, []);
 
   return (
-    <S.InputWrap style={{ paddingBottom: paddingBottom }}>
+    <S.Component style={{ paddingBottom: paddingBottom }}>
       <S.Label htmlFor={id} $isValid={isValid} $smallLabel={smallLabel}>
         {placeholder}
       </S.Label>
@@ -105,7 +105,7 @@ const TextInput = (props: TextInputProps) => {
           )}
         </S.PasswordSecurity>
       )}
-    </S.InputWrap>
+    </S.Component>
   );
 };
 

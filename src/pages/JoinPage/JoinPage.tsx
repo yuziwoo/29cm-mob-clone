@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
-import * as S from './JoinPage.styled';
+import { PageStyle as S } from './JoinPage.styled';
 import IconLogo from '../../components/icons/IconLogo';
 import { theme } from '../../styles/theme';
 import { useRecoilState } from 'recoil';
@@ -39,7 +39,7 @@ const JoinPage = () => {
       animate={motionStyle.pageOpen.animate}
       transition={motionStyle.pageOpen.transition}
     >
-      <S.SectionJoin>
+      <S.Page>
         <S.Logo
           onClick={() => {
             navigate(ROUTE_PATH.root);
@@ -61,7 +61,7 @@ const JoinPage = () => {
         </S.Intro>
 
         <CreateAccountForm redirectPath={redirectPath} />
-      </S.SectionJoin>
+      </S.Page>
     </motion.div>
   );
 };

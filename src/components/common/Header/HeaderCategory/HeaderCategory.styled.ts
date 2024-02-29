@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { theme } from '../../../../styles/theme';
 
-export const Category = styled.section`
+const Category = styled.section`
   padding: 1.2rem 0 2.4rem;
 `;
 
-export const CategoryWrap = styled.nav`
+const Nav = styled.nav`
   & .list {
     display: inline-block;
     margin: 0 5px;
@@ -48,3 +48,8 @@ export const CategoryWrap = styled.nav`
     opacity: 1;
   }
 `;
+
+export const ComponentStyle = {
+  Category,
+  Nav,
+};

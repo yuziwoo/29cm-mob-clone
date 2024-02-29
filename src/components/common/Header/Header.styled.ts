@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const Header = styled.header<{ $backgroundTransparent?: boolean }>`
+const Header = styled.header<{ $backgroundTransparent?: boolean }>`
   width: 100%;
   max-width: ${theme.size.MAX_WIDTH};
   position: fixed;
@@ -21,14 +21,14 @@ export const Header = styled.header<{ $backgroundTransparent?: boolean }>`
   }
 `;
 
-export const MainHeader = styled.section`
+const MainHeader = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
 `;
 
-export const Logo = styled.div`
+const Logo = styled.div`
   height: 1.9rem;
   min-height: 17px;
 
@@ -38,7 +38,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const BackButton = styled.div`
+const BackButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,6 +52,14 @@ export const BackButton = styled.div`
   }
 `;
 
-export const RelatedHeight = styled.div<{ $height: undefined | number }>`
+const RelatedHeight = styled.div<{ $height: undefined | number }>`
   height: ${({ $height }) => ($height !== undefined ? `${$height}px` : '100vh')};
 `;
+
+export const ComponentStyle = {
+  Header,
+  MainHeader,
+  Logo,
+  BackButton,
+  RelatedHeight,
+};

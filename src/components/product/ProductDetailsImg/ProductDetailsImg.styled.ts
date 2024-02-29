@@ -1,26 +1,25 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const SectionDetailImg = styled.div<{ $showAll: boolean }>`
-  padding: ${theme.padding.BODY};
+const Component = styled.div<{ $showAll: boolean }>`
+  padding: ${theme.padding.BODY_WITH_BOTTOM_MARGIN};
   position: relative;
   max-height: ${({ $showAll }) => ($showAll ? 'auto' : '1500px')};
   overflow: hidden;
-  padding-bottom: 120px;
-
-  & img {
-    width: 100%;
-    display: block;
-  }
 `;
 
-export const Title = styled.h1`
+const ProductImg = styled.img`
+  width: 100%;
+  display: block;
+`;
+
+const Title = styled.h1`
   font-size: 18px;
   font-weight: 700;
   padding: 4rem 0 2rem;
 `;
 
-export const ShowMore = styled.div`
+const ShowMore = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
@@ -28,7 +27,7 @@ export const ShowMore = styled.div`
   padding: ${theme.padding.BODY};
 `;
 
-export const ShowMoreButton = styled.button`
+const ShowMoreButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,13 +36,6 @@ export const ShowMoreButton = styled.button`
   border: 1px solid ${theme.color.BLACK};
   background: ${theme.color.WHITE};
   position: relative;
-
-  & p {
-    font-size: 16px;
-    font-weight: 700;
-    color: ${theme.color.BLACK};
-    margin-right: 10px;
-  }
 
   &::after {
     position: absolute;
@@ -56,9 +48,18 @@ export const ShowMoreButton = styled.button`
   }
 `;
 
-export const Arrow = styled.div<{ $showAll: boolean }>`
-  width: 24px;
-  height: 24px;
+const Text = styled.p`
+  font-size: 16px;
+  font-weight: 700;
+  color: ${theme.color.BLACK};
+  margin-right: 10px;
+`;
+
+const Arrow = styled.div<{ $showAll: boolean }>`
+  width: 2.8rem;
+  height: 2.8rem;
+  min-width: 20px;
+  min-height: 20px;
   transition: transform 0.2s;
   transform: rotate(${({ $showAll }) => ($showAll ? -180 : 0)}deg);
 
@@ -67,3 +68,13 @@ export const Arrow = styled.div<{ $showAll: boolean }>`
     height: 100%;
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+  ProductImg,
+  Title,
+  ShowMore,
+  ShowMoreButton,
+  Text,
+  Arrow,
+};

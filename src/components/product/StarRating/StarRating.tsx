@@ -1,4 +1,4 @@
-import * as S from './StarRating.styled';
+import { ComponentStyle as S } from './StarRating.styled';
 import { theme } from '../../../styles/theme';
 import IconStar from '../../icons/IconStar';
 
@@ -18,7 +18,7 @@ const StarRating = ({ color = theme.color.BLACK, percentage }: StarRatingProps) 
    */
 
   return (
-    <S.StarRatingStyle>
+    <S.Component>
       <S.EmptyStar>
         {fiveArray.map((number) => (
           <IconStar fill="transparent" stroke={color} key={number} />
@@ -30,7 +30,7 @@ const StarRating = ({ color = theme.color.BLACK, percentage }: StarRatingProps) 
           <IconStar fill={color} stroke={color} key={number} />
         ))}
       </S.FullStar>
-    </S.StarRatingStyle>
+    </S.Component>
   );
 };
 

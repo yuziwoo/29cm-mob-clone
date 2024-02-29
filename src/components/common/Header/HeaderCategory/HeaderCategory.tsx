@@ -1,4 +1,4 @@
-import * as S from './HeaderCategory.styled';
+import { ComponentStyle as S } from './HeaderCategory.styled';
 import { ROUTE_PATH } from '../../../../constants/path';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../../styles/motion';
@@ -33,8 +33,8 @@ const HeaderCategory = ({ location = '' }: HeaderCategoryProps) => {
   };
 
   return (
-    <S.Category className="category">
-      <S.CategoryWrap>
+    <S.Category>
+      <S.Nav>
         {category.map(({ path, locationKey, text }) => (
           <motion.div
             className={`list${location === locationKey ? ' active' : ''}`}
@@ -47,7 +47,7 @@ const HeaderCategory = ({ location = '' }: HeaderCategoryProps) => {
             </button>
           </motion.div>
         ))}
-      </S.CategoryWrap>
+      </S.Nav>
     </S.Category>
   );
 };

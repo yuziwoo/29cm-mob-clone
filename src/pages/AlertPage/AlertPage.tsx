@@ -1,3 +1,4 @@
+import { PageStyle as S } from './AlertPage.styled';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
 import { useEffect } from 'react';
@@ -13,7 +14,7 @@ const AlertPage = () => {
     navigate(ROUTE_PATH.login, { state: { path: ROUTE_PATH.alert }, replace: true });
     // eslint-disable-next-line
   }, []);
-  return <div>AlertPage</div>;
+  return <S.Page>AlertPage</S.Page>;
 };
 
 export default AlertPage;

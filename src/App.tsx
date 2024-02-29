@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import * as S from './App.styled';
+import { AppStyle as S } from './App.styled';
 import Header from './components/common/Header/Header';
 import Footer from './components/common/Footer/Footer';
 import { useAuth } from './hooks/auth/useAuth';

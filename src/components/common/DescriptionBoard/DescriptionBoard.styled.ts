@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const DescriptionBoardStyle = styled.div<{ $showDescription: boolean }>`
+const Component = styled.div<{ $showDescription: boolean }>`
   display: ${({ $showDescription }) => ($showDescription ? 'block' : 'none')};
   position: absolute;
   left: 0;
@@ -12,3 +12,7 @@ export const DescriptionBoardStyle = styled.div<{ $showDescription: boolean }>`
   margin-top: 10px;
   background: ${theme.color.WHITE};
 `;
+
+export const ComponentStyle = {
+  Component
+}

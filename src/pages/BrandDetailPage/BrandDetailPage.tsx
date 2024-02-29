@@ -1,8 +1,9 @@
+import { PageStyle as S } from './BrandDetailPage.styled';
 import { useParams } from 'react-router-dom';
 
 const BrandDetailPage = () => {
   const { id } = useParams();
-  return <div>BrandDetailPage {id}</div>;
+  return <S.Page>BrandDetailPage {id}</S.Page>;
 };
 
 export default BrandDetailPage;

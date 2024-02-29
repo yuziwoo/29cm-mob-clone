@@ -1,5 +1,5 @@
+import { ComponentStyle as S }  from './RecommendedProducts.styled';
 import { Products } from '../../../types/product';
-import * as S from './RecommendedProducts.styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import ListProductSimple from '../ListProductSimple/ListProductSimple';
@@ -24,7 +24,7 @@ const RecommendedProducts = ({ title = '추천 상품', products }: RecommendedP
 
   if (productList.length === 0) return <></>;
   return (
-    <S.SectionRecommenedProducts>
+    <S.Component>
       <S.Title>{title}</S.Title>
 
       <Swiper className="swiper" spaceBetween={10} slidesPerView={2.4}>
@@ -34,7 +34,7 @@ const RecommendedProducts = ({ title = '추천 상품', products }: RecommendedP
           </SwiperSlide>
         ))}
       </Swiper>
-    </S.SectionRecommenedProducts>
+    </S.Component>
   );
 };
 

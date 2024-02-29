@@ -1,4 +1,4 @@
-import * as S from './ListProductSimple.style';
+import { ComponentStyle as S } from './ListProductSimple.style';
 import { ProductProps } from '../../../types/product';
 import { motion } from 'framer-motion';
 import { useRouter } from '../../../hooks/useRouter';
@@ -39,7 +39,7 @@ const ListProductSimple = ({ product, productId }: ListProductSimpleProps) => {
   if (product === undefined || productId === undefined) return <SkeletonProductList />;
 
   return (
-    <S.Item>
+    <S.Component>
       <S.Thumb onClick={navigateProductPage}>
         <motion.img
           src={thumb[0]}
@@ -62,7 +62,7 @@ const ListProductSimple = ({ product, productId }: ListProductSimpleProps) => {
           <S.Price>{priceAfterDiscount}</S.Price>
         </S.FlexStart>
       </S.Detail>
-    </S.Item>
+    </S.Component>
   );
 };
 

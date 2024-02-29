@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import { theme } from './styles/theme';
 
-export const Content = styled.main`
-  width: 100%;
-  position: relative;
-`;
-
-export const App = styled.div`
+const App = styled.div`
   width: 100%;
   overflow: hidden;
   max-width: ${theme.size.MAX_WIDTH};
@@ -19,3 +14,13 @@ export const App = styled.div`
       0px 41.8px 33.4px rgba(0, 0, 0, 0.05), 0px 100px 80px rgba(0, 0, 0, 0.07);
   }
 `;
+
+const Content = styled.main`
+  width: 100%;
+  position: relative;
+`;
+
+export const AppStyle = {
+  App,
+  Content,
+};

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import ProductMyAvaliablePurchasePrice from './ProductMyAvaliablePurchasePrice';
+import ProductMyAvaliablePurchasePrice from './ProductAvaliablePrice';
 import { mockCouponDiscount, mockPaymentDiscount } from '../../../../mock/product';
 import StorybookDecorator from '../../../storybook/StorybookDecorator';
 

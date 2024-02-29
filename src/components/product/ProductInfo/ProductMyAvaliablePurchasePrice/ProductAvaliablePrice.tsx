@@ -1,15 +1,16 @@
-import { DiscountDetail } from '../../../../types/product';
-import * as S from './ProductMyAvaliablePurchasePrice.styled';
+import { useCallback, useEffect, useState } from 'react';
+import { ComponentStyle as S } from './ProductAvaliablePrice.styled';
 import IconQuestion from '../../../icons/IconQuestion';
 import { theme } from '../../../../styles/theme';
-import { useCallback, useEffect, useState } from 'react';
+import { DiscountDetail } from '../../../../types/product';
 import DescriptionBoard from '../../../common/DescriptionBoard/DescriptionBoard';
 import IconDownArrow2 from '../../../icons/IconDownArrow2';
 import ProductDiscountList from '../ProductDiscountList/ProductDiscountList';
-import { getDiscount } from '../../../../utils/getDiscount';
 import SkeletonText from '../../../skeleton/common/SkeletonText';
+import { getDiscount } from '../../../../utils/getDiscount';
+import { motion } from 'framer-motion';
 
-interface ProductMyAvaliablePurchasePriceProps {
+interface ProductAvaliablePriceProps {
   counponDiscounts: DiscountDetail[] | undefined;
   paymentDiscounts: DiscountDetail[] | undefined;
   originalPrice: number | undefined;
@@ -17,13 +18,13 @@ interface ProductMyAvaliablePurchasePriceProps {
   priceAfterBrandDiscount: number | undefined;
 }
 
-const ProductMyAvaliablePurchasePrice = ({
+const ProductAvaliablePrice = ({
   counponDiscounts,
   paymentDiscounts,
   originalPrice,
   brandDiscount,
   priceAfterBrandDiscount,
-}: ProductMyAvaliablePurchasePriceProps) => {
+}: ProductAvaliablePriceProps) => {
   /**
    * 상품 상세페이지의 나의 구매 가능 가격 컴포넌트입니다.
    *
@@ -74,7 +75,7 @@ const ProductMyAvaliablePurchasePrice = ({
     }));
   };
 
-  useEffect(() => {
+  const calcFinalAmount = useCallback(() => {
     if (
       paymentDiscounts === undefined ||
       counponDiscounts === undefined ||
@@ -106,6 +107,10 @@ const ProductMyAvaliablePurchasePrice = ({
     originalPrice,
   ]);
 
+  useEffect(() => {
+    calcFinalAmount();
+  }, [calcFinalAmount]);
+
   if (
     counponDiscounts === undefined ||
     paymentDiscounts === undefined ||
@@ -114,88 +119,93 @@ const ProductMyAvaliablePurchasePrice = ({
     priceAfterBrandDiscount === undefined
   )
     return (
-      <S.SectionMyAvaliablePurchasePrice>
+      <S.Component>
         <SkeletonText height="18px" />
-      </S.SectionMyAvaliablePurchasePrice>
+      </S.Component>
     );
 
   return (
-    <S.SectionMyAvaliablePurchasePrice>
-      <S.MainBlock>
+    <S.Component>
+      <S.TitleBlock>
         <S.Title>
-          <S.FlexWrap>
-            <S.TitleHeading>나의 구매 가능 가격</S.TitleHeading>
-            <S.QuestionButton onClick={handleToggleDescription}>
-              <IconQuestion color={theme.color.GRAY5} />
-            </S.QuestionButton>
-          </S.FlexWrap>
-          <S.FlexWrap onClick={handleToggleDetail}>
-            <S.Discount>{finalAmount.discount}%</S.Discount>
-            <S.FinalPrice>{finalAmount.price.toLocaleString()} 원</S.FinalPrice>
-            <S.DetailArrow $isVisible={showDetail}>
-              <IconDownArrow2 />
-            </S.DetailArrow>
-          </S.FlexWrap>
-
-          <DescriptionBoard
-            showDescription={showDescription}
-            onClickDescription={handleToggleDescription}
-          >
-            <S.Description>
-              <li>
-                <p>구매 가능 가격은 옵션 한 개의 금액으로 계산됩니다.</p>
-              </li>
-              <li>
-                <p>구매 가능 가격은 확인 용도로만 사용할 수 있습니다.</p>
-              </li>
-              <li>
-                <p>
-                  본 홈페이지는 실제로{' '}
-                  <span style={{ fontWeight: '700' }}>제품을 구매, 판매하지 않습니다.</span>
-                </p>
-              </li>
-            </S.Description>
-          </DescriptionBoard>
+          <S.Heading>나의 구매 가능 가격</S.Heading>
+          <S.DescriptionButton onClick={handleToggleDescription}>
+            <IconQuestion color={theme.color.GRAY5} />
+          </S.DescriptionButton>
         </S.Title>
-      </S.MainBlock>
 
-      <S.DetailBlock $isVisible={showDetail}>
-        <S.DetailHeading>브랜드 할인</S.DetailHeading>
-        <S.BrandDiscount>
-          <h5>브랜드 할인 {brandDiscount}%</h5>
-          <p>{(priceAfterBrandDiscount - originalPrice).toLocaleString()}원</p>
-        </S.BrandDiscount>
+        <S.FinalAmount onClick={handleToggleDetail}>
+          <S.Discount>{finalAmount.discount}%</S.Discount>
+          <S.FinalPrice>{finalAmount.price.toLocaleString()}원</S.FinalPrice>
+          <S.Arrow $isVisible={showDetail}>
+            <IconDownArrow2 />
+          </S.Arrow>
+        </S.FinalAmount>
 
-        <S.DetailHeading>쿠폰 할인</S.DetailHeading>
-        {counponDiscounts.length > 0 &&
-          counponDiscounts.map((info, idx) => (
-            <ProductDiscountList
-              price={priceAfterBrandDiscount}
-              info={info}
-              checked={idx === selectedDiscounts.coupon}
-              onClick={() => {
-                handleClickDiscount(idx, 'coupon');
-              }}
-              key={idx}
-            />
-          ))}
+        <DescriptionBoard
+          showDescription={showDescription}
+          onClickDescription={handleToggleDescription}
+        >
+          <S.Description>
+            <li>
+              <p>구매 가능 가격은 옵션 한 개의 금액으로 계산됩니다.</p>
+            </li>
+            <li>
+              <p>구매 가능 가격은 확인 용도로만 사용할 수 있습니다.</p>
+            </li>
+            <li>
+              <p>
+                본 홈페이지는 실제로{' '}
+                <span style={{ fontWeight: '700' }}>제품을 구매, 판매하지 않습니다.</span>
+              </p>
+            </li>
+          </S.Description>
+        </DescriptionBoard>
+      </S.TitleBlock>
 
-        <S.DetailHeading>결제수단 할인</S.DetailHeading>
-        {paymentDiscounts.length > 0 &&
-          paymentDiscounts.map((info, idx) => (
-            <ProductDiscountList
-              price={priceAfterBrandDiscount}
-              info={info}
-              checked={idx === selectedDiscounts.payment}
-              onClick={() => {
-                handleClickDiscount(idx, 'payment');
-              }}
-              key={idx}
-            />
-          ))}
-      </S.DetailBlock>
-    </S.SectionMyAvaliablePurchasePrice>
+      {showDetail && (
+        <motion.div
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <S.DetailHeading>브랜드 할인</S.DetailHeading>
+          <S.BrandDiscount>
+            <h5>브랜드 할인 {brandDiscount}%</h5>
+            <p>{(priceAfterBrandDiscount - originalPrice).toLocaleString()}원</p>
+          </S.BrandDiscount>
+
+          <S.DetailHeading>쿠폰 할인</S.DetailHeading>
+          {counponDiscounts.length > 0 &&
+            counponDiscounts.map((info, idx) => (
+              <ProductDiscountList
+                price={priceAfterBrandDiscount}
+                info={info}
+                checked={idx === selectedDiscounts.coupon}
+                onClick={() => {
+                  handleClickDiscount(idx, 'coupon');
+                }}
+                key={idx}
+              />
+            ))}
+
+          <S.DetailHeading>결제수단 할인</S.DetailHeading>
+          {paymentDiscounts.length > 0 &&
+            paymentDiscounts.map((info, idx) => (
+              <ProductDiscountList
+                price={priceAfterBrandDiscount}
+                info={info}
+                checked={idx === selectedDiscounts.payment}
+                onClick={() => {
+                  handleClickDiscount(idx, 'payment');
+                }}
+                key={idx}
+              />
+            ))}
+        </motion.div>
+      )}
+    </S.Component>
   );
 };
 
-export default ProductMyAvaliablePurchasePrice;
+export default ProductAvaliablePrice;

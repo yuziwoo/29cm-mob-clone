@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import * as S from './ProductDetailsImg.styled';
+import { ComponentStyle as S } from './ProductDetailsImg.styled';
 import IconDownArrow2 from '../../icons/IconDownArrow2';
 import { theme } from '../../../styles/theme';
 import SkeletonImg from '../../skeleton/common/SkeletonImg';
@@ -33,21 +33,21 @@ const ProductDetailsImg = ({ imgURL }: ProductDetailsImgProps) => {
   if (imgURL === undefined) return <SkeletonImg ratio={[1, 1.5]}></SkeletonImg>;
 
   return (
-    <S.SectionDetailImg $showAll={showAll}>
+    <S.Component $showAll={showAll}>
       <S.Title>상품 설명</S.Title>
-      <img src={imgURL} alt="상품 상세 이미지" ref={imgRef} />
+      <S.ProductImg src={imgURL} alt="상품 상세 이미지" ref={imgRef} />
 
       {viewShowAllButton && (
         <S.ShowMore>
           <S.ShowMoreButton onClick={toggleShowAll}>
-            <p>상품 설명 {showAll ? '접기' : '더보기'}</p>
+            <S.Text>상품 설명 {showAll ? '접기' : '더보기'}</S.Text>
             <S.Arrow $showAll={showAll}>
               <IconDownArrow2 color={theme.color.BLACK} />
             </S.Arrow>
           </S.ShowMoreButton>
         </S.ShowMore>
       )}
-    </S.SectionDetailImg>
+    </S.Component>
   );
 };
 

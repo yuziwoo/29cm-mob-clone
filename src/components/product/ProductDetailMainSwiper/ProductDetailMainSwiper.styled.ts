@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const MainImg = styled.div`
+const Component = styled.div`
   width: 100%;
 
   & .swiper,
@@ -52,3 +52,7 @@ export const MainImg = styled.div`
     background: ${theme.color.BLACK};
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+};

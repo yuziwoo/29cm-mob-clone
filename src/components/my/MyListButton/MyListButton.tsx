@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { theme } from '../../../styles/theme';
-import * as S from './MyListButton.styled';
+import { ComponentStyle as S } from './MyListButton.styled';
 import IconRightArrow2 from '../../icons/IconRightArrow2';
+import { motionStyle } from '../../../styles/motion';
 
 interface MyListButtonProps {
   text: string;
@@ -15,13 +16,16 @@ const MyListButton = ({ text, onClick }: MyListButtonProps) => {
    */
 
   return (
-    <motion.div>
-      <S.ListButton onClick={onClick}>
-        <p>{text}</p>
-        <div className="arrow">
+    <motion.div
+      whileTap={motionStyle.scaleButton.whileTap}
+      transition={motionStyle.scaleButton.transition}
+    >
+      <S.Component onClick={onClick}>
+        <S.Text>{text}</S.Text>
+        <S.Arrow>
           <IconRightArrow2 color={theme.color.BLACK} />
-        </div>
-      </S.ListButton>
+        </S.Arrow>
+      </S.Component>
     </motion.div>
   );
 };

@@ -1,5 +1,7 @@
+import { PageStyle as S } from './LifePage.styled';
+
 const LifePage = () => {
-  return <div>LifePage</div>;
+  return <S.Page>LifePage</S.Page>;
 };
 
 export default LifePage;

@@ -1,35 +1,29 @@
 import styled from 'styled-components';
 import { theme } from '../../../../styles/theme';
 
-export const SectionMyAvaliablePurchasePrice = styled.div`
+const Component = styled.div`
   padding: 3rem 0;
 `;
 
-export const MainBlock = styled.div`
+const TitleBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const Title = styled.div`
   position: relative;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
-export const FlexWrap = styled.div`
+const Title = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const TitleHeading = styled.h1`
+const Heading = styled.h1`
   font-size: 16px;
   font-weight: 600;
 `;
 
-export const QuestionButton = styled.button`
+const DescriptionButton = styled.button`
   width: 15px;
   height: 15px;
   margin-left: 5px;
@@ -40,7 +34,12 @@ export const QuestionButton = styled.button`
   }
 `;
 
-export const Description = styled.ul`
+const FinalAmount = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Description = styled.ul`
   & li {
     padding-left: 14px;
     position: relative;
@@ -67,7 +66,7 @@ export const Description = styled.ul`
   }
 `;
 
-export const Discount = styled.h2`
+const Discount = styled.h2`
   font-size: 16px;
   font-weight: 700;
   color: ${theme.color.GRAY5};
@@ -75,7 +74,7 @@ export const Discount = styled.h2`
   cursor: pointer;
 `;
 
-export const FinalPrice = styled.h2`
+const FinalPrice = styled.h2`
   font-size: 16px;
   font-weight: 700;
   color: ${theme.color.BLACK};
@@ -83,7 +82,7 @@ export const FinalPrice = styled.h2`
   cursor: pointer;
 `;
 
-export const DetailArrow = styled.div<{ $isVisible: boolean }>`
+const Arrow = styled.div<{ $isVisible: boolean }>`
   width: 20px;
   height: 20px;
   transition: transform 0.3s ${theme.transition.EASE_OUT};
@@ -96,18 +95,14 @@ export const DetailArrow = styled.div<{ $isVisible: boolean }>`
   }
 `;
 
-export const DetailBlock = styled.div<{ $isVisible: boolean }>`
-  display: ${({ $isVisible }) => ($isVisible ? 'block' : 'none')};
-`;
-
-export const DetailHeading = styled.h3`
+const DetailHeading = styled.h3`
   font-size: 14px;
   font-weight: 600;
   color: ${theme.color.GRAY5};
   padding: 30px 0 10px;
 `;
 
-export const BrandDiscount = styled.div`
+const BrandDiscount = styled.div`
   display: flex;
   justify-content: space-between;
   alidng-items: center;
@@ -125,3 +120,18 @@ export const BrandDiscount = styled.div`
     color: ${theme.color.BLACK};
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+  TitleBlock,
+  Title,
+  Heading,
+  DescriptionButton,
+  FinalAmount,
+  Description,
+  Discount,
+  FinalPrice,
+  Arrow,
+  DetailHeading,
+  BrandDiscount,
+};

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StarRatingStyle = styled.div`
+const Component = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
@@ -11,14 +11,14 @@ export const StarRatingStyle = styled.div`
   }
 `;
 
-export const EmptyStar = styled.div`
+const EmptyStar = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
 `;
 
-export const FullStar = styled.div<{ $percentage: number }>`
+const FullStar = styled.div<{ $percentage: number }>`
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -28,3 +28,9 @@ export const FullStar = styled.div<{ $percentage: number }>`
   top: 0;
   clip-path: inset(0 ${({ $percentage }) => 100 - $percentage}% 0 0);
 `;
+
+export const ComponentStyle = {
+  Component,
+  EmptyStar,
+  FullStar,
+};

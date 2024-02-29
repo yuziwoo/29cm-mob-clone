@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import * as S from './HeaderShadow.styled';
+import { ComponentStyle as S } from './HeaderShadow.styled';
 
 const HeaderShadow = () => {
   /**
@@ -36,7 +36,7 @@ const HeaderShadow = () => {
     // eslint-disable-next-line
   }, []);
 
-  return <S.Shadow className="shadow" style={{ opacity: shadowOpacity }}></S.Shadow>;
+  return <S.Component className="shadow" style={{ opacity: shadowOpacity }}></S.Component>;
 };
 
 export default HeaderShadow;

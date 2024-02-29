@@ -1,4 +1,4 @@
-import * as S from './SocialLogin.styled';
+import { ComponentStyle as S } from './SocialLogin.styled';
 import IconGoogle from '../../icons/IconGoogle';
 import { testEmail } from '../../../mock/testEmail';
 import { motion } from 'framer-motion';
@@ -28,23 +28,25 @@ const SocialLogin = ({ redirectPath }: { redirectPath: string }) => {
   };
 
   return (
-    <S.SocialLoginArticle>
+    <S.Component>
       <motion.button
         whileTap={motionStyle.primaryButton.whileTap}
         transition={motionStyle.primaryButton.transition}
         onClick={handleTestAccountLogin}
       >
-        <p>테스트 계정 로그인</p>
+        <S.Text>테스트 계정 로그인</S.Text>
       </motion.button>
       <motion.button
         whileTap={motionStyle.primaryButton.whileTap}
         transition={motionStyle.primaryButton.transition}
         onClick={handleGoogleLogin}
       >
-        <IconGoogle />
-        <p>구글 로그인</p>
+        <S.Icon>
+          <IconGoogle />
+        </S.Icon>
+        <S.Text>구글 로그인</S.Text>
       </motion.button>
-    </S.SocialLoginArticle>
+    </S.Component>
   );
 };
 

@@ -43,6 +43,7 @@ const ProductDetailPage = () => {
       <S.Page>
         <ProductDetailMainSwiper thumbs={product?.thumb} />
         <ProductInfo product={product} productId={id} />
+        
         <ProductDetailsImg imgURL={product?.imgURL} />
         <RecommendedProducts
           products={getRecommendedProducts({ id, products: productQuery.data || {} })}

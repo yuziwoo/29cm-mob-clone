@@ -1,4 +1,4 @@
-import * as S from './ToggleText.styled';
+import { ComponentStyle as S } from './ToggleText.styled';
 import IconDownArrow2 from '../../icons/IconDownArrow2';
 import { theme } from '../../../styles/theme';
 import { useState } from 'react';
@@ -20,18 +20,18 @@ const ToggleText = ({ children, title, initialShowing = false }: ToggleTextProps
 
   if (title === undefined)
     return (
-      <S.ToggleComponent>
+      <S.Component>
         <S.ToggleBlock>
           <SkeletonText height="18px" width="200px" />
           <S.Arrow>
             <IconDownArrow2 color={theme.color.BLACK} />
           </S.Arrow>
         </S.ToggleBlock>
-      </S.ToggleComponent>
+      </S.Component>
     );
 
   return (
-    <S.ToggleComponent
+    <S.Component
       onClick={() => {
         setShowToggle((prevShowToggle) => !prevShowToggle);
       }}
@@ -53,7 +53,7 @@ const ToggleText = ({ children, title, initialShowing = false }: ToggleTextProps
           </motion.div>
         </S.ToggleData>
       )}
-    </S.ToggleComponent>
+    </S.Component>
   );
 };
 

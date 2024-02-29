@@ -1,5 +1,5 @@
 import { useCallback, useId, useState } from 'react';
-import * as S from './CreateAccountForm.styled';
+import { ComponentStyle as S } from './CreateAccountForm.styled';
 import { useRouter } from '../../../hooks/useRouter';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
@@ -59,7 +59,7 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
   }, []);
 
   return (
-    <S.CreateAccount onSubmit={handleSubmit}>
+    <S.Component onSubmit={handleSubmit}>
       <TextInput
         type="email"
         id={`${uniqueId}-id`}
@@ -87,11 +87,11 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
         whileTap={motionStyle.scaleButton.whileTap}
         transition={motionStyle.scaleButton.transition}
       >
-        <S.Submit>
+        <S.SubmitButton>
           <p>회원가입</p>
-        </S.Submit>
+        </S.SubmitButton>
       </motion.div>
-    </S.CreateAccount>
+    </S.Component>
   );
 };
 

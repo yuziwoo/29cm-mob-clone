@@ -1,5 +1,5 @@
 import { UserInfo } from '../../../types/auth';
-import * as S from './MyUserInfo.styled';
+import { ComponentStyle as S } from './MyUserInfo.styled';
 import { motion } from 'framer-motion';
 import IconRightArrow2 from '../../icons/IconRightArrow2';
 import { motionStyle } from '../../../styles/motion';
@@ -16,23 +16,23 @@ const MyUserInfo = ({ user }: { user: UserInfo }) => {
   const { navigate } = useRouter();
 
   return (
-    <S.SectionUserInfo>
-      <S.Info>
-        <S.ImgWrap
+    <S.Component>
+      <S.FlexWrap>
+        <S.ProfileImg
           style={{
             backgroundImage: `url(${user?.photoURL ? user.photoURL : userPlaceholder.PHOTO_URL})`,
           }}
-        ></S.ImgWrap>
-        <h1>{user?.displayName ? user.displayName : userPlaceholder.DISPLAY_NAME}님</h1>
-        <S.TextWrap>
-          <div className="container">
-            <h1>안녕하세요!</h1>
-            <h1>좋은 하루 보내세요.</h1>
-            <h1>안녕하세요!</h1>
-          </div>
-          <h1 style={{ opacity: 0 }}>좋은 하루 보내세요.</h1>
-        </S.TextWrap>
-      </S.Info>
+        ></S.ProfileImg>
+        <S.Text>{user?.displayName ? user.displayName : userPlaceholder.DISPLAY_NAME}님</S.Text>
+        <S.Greeting>
+          <S.AnimationTextWrap>
+            <S.Text>안녕하세요!</S.Text>
+            <S.Text>반갑습니다!</S.Text>
+            <S.Text>안녕하세요!</S.Text>
+          </S.AnimationTextWrap>
+          <S.Text style={{ opacity: 0 }}>반갑습니다!</S.Text>
+        </S.Greeting>
+      </S.FlexWrap>
 
       <motion.div
         whileTap={motionStyle.primaryButton.whileTap}
@@ -46,7 +46,7 @@ const MyUserInfo = ({ user }: { user: UserInfo }) => {
           <IconRightArrow2 />
         </S.Arrow>
       </motion.div>
-    </S.SectionUserInfo>
+    </S.Component>
   );
 };
 

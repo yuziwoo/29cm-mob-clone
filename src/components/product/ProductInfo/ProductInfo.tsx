@@ -1,4 +1,4 @@
-import * as S from './ProductInfo.styled';
+import { ComponentStyle as S } from './ProductInfo.styled';
 import { ProductProps } from '../../../types/product';
 import ProductLikes from '../ProductLikes/ProductLikes';
 import IconRightArrow2 from '../../icons/IconRightArrow2';
@@ -11,7 +11,7 @@ import IconDownload from '../../icons/IconDownlad';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import { getAccrualPoints } from '../../../utils/getAccrualPoints';
-import ProductMyAvaliablePurchasePrice from './ProductMyAvaliablePurchasePrice/ProductMyAvaliablePurchasePrice';
+import ProductMyAvaliablePurchasePrice from './ProductMyAvaliablePurchasePrice/ProductAvaliablePrice';
 import { mockCouponDiscount, mockPaymentDiscount } from '../../../mock/product';
 import { sortDiscountList } from '../../../utils/product/sortDiscountList';
 import { elementId } from '../../../constants/elementId';
@@ -22,7 +22,7 @@ interface ProductInfoProps {
   productId: string | undefined;
 }
 
-const undefinedProduct = {
+const initialProduct = {
   name: '',
   brandId: '',
   brandName: '',
@@ -31,6 +31,25 @@ const undefinedProduct = {
   review: 0,
   reviewRating: 0,
 };
+
+const Skeleton = () => (
+  <S.Component>
+    <SkeletonText width="40px" height="14px" />
+    <div style={{ padding: '2rem 0' }}>
+      <SkeletonText width="300px" height="18px" />
+    </div>
+    <SkeletonText width="120px" height="12px" />
+
+    <div style={{ padding: '4rem 0' }}>
+      <SkeletonText width="70px" height="16px" />
+      <div style={{ padding: '1rem 0' }}>
+        <SkeletonText width="200px" height="22px" />
+      </div>
+      <SkeletonText width="120px" height="14px" />
+    </div>
+    <S.HR />
+  </S.Component>
+);
 
 const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const {
@@ -41,7 +60,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
     discount: priceAfterDiscount,
     review,
     reviewRating,
-  } = product ? product : undefinedProduct;
+  } = product ? product : initialProduct;
 
   const { navigate } = useRouter();
 
@@ -62,29 +81,11 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
     window.alert('쿠폰이 다운로드 되었습니다.');
   }, []);
 
-  if (product === undefined || productId === undefined)
-    return (
-      <S.SectionInfo>
-        <SkeletonText width="40px" height="14px" />
-        <div style={{ padding: '2rem 0' }}>
-          <SkeletonText width="300px" height="18px" />
-        </div>
-        <SkeletonText width="120px" height="12px" />
-
-        <div style={{ padding: '4rem 0' }}>
-          <SkeletonText width="70px" height="16px" />
-          <div style={{ padding: '1rem 0' }}>
-            <SkeletonText width="200px" height="22px" />
-          </div>
-          <SkeletonText width="120px" height="14px" />
-        </div>
-        <S.HR />
-      </S.SectionInfo>
-    );
+  if (product === undefined || productId === undefined) return <Skeleton />;
 
   return (
-    <S.SectionInfo>
-      <S.BrandAndLikesWrap>
+    <S.Component>
+      <S.BrandAndLikes>
         <S.Brand
           onClick={() => {
             navigate(`/brand/${brandId}`);
@@ -96,7 +97,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
         <S.Like>
           <ProductLikes productId={productId ? productId : ''} />
         </S.Like>
-      </S.BrandAndLikesWrap>
+      </S.BrandAndLikes>
 
       <S.ProductName>{name}</S.ProductName>
 
@@ -174,7 +175,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
       </S.DetailContent>
 
       <S.HR />
-    </S.SectionInfo>
+    </S.Component>
   );
 };
 

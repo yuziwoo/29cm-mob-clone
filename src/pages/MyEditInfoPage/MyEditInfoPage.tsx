@@ -1,4 +1,4 @@
-import * as S from './MyEditInfoPage.styled';
+import { PageStyle as S } from './MyEditInfoPage.styled';
 import { useRouter } from '../../hooks/useRouter';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
@@ -48,7 +48,7 @@ const MyEditInfoPage = () => {
   }, [userProfileImg, userDisplayName, user?.displayName, user?.photoURL]);
 
   return (
-    <S.SectionMyEditInfo>
+    <S.Page>
       <MyEditInfoProfileImg
         defaultImg={user?.photoURL ? user.photoURL : userPlaceholder.PHOTO_URL}
         changedImg={userProfileImg}
@@ -82,7 +82,7 @@ const MyEditInfoPage = () => {
           <p>수정</p>
         </motion.button>
       </S.Confirm>
-    </S.SectionMyEditInfo>
+    </S.Page>
   );
 };
 

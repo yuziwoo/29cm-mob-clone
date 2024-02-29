@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import * as S from './ProductDiscountList.style';
+import { ComponentStyle as S } from './ProductDiscountList.style';
 import { DiscountDetail } from '../../../../types/product';
 import IconCheckbox from '../../../icons/IconCheckbox';
 import SkeletonText from '../../../skeleton/common/SkeletonText';
@@ -26,7 +26,7 @@ const ProductDiscountList = ({ price, info, checked, onClick }: ProductDiscountL
     );
 
   return (
-    <S.List>
+    <S.Component>
       <S.HiddenCheckbox
         type="checkbox"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,11 +38,11 @@ const ProductDiscountList = ({ price, info, checked, onClick }: ProductDiscountL
       <S.Label htmlFor={id} onClick={onClick}>
         <S.Checkbox>
           <IconCheckbox isChecked={checked} />
-          <h1>{info.name}</h1>
+          <S.Title>{info.name}</S.Title>
         </S.Checkbox>
-        <p>-{Math.floor((price / 100) * info.discount).toLocaleString()}</p>
+        <S.Text>-{Math.floor((price / 100) * info.discount).toLocaleString()}</S.Text>
       </S.Label>
-    </S.List>
+    </S.Component>
   );
 };
 

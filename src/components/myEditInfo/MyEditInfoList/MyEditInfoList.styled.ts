@@ -1,23 +1,26 @@
 import styled, { css } from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const InfoList = styled.ul`
+const Component = styled.div`
   width: 100%;
+`;
+
+const Ul = styled.ul`
   padding: 3rem 0;
+`;
 
-  & li {
-    padding: 2rem 0;
-    border-bottom: 1px solid ${theme.color.GRAY3};
-    display: flex;
-    align-items: center;
-  }
+const Li = styled.li`
+  padding: 2rem 0;
+  border-bottom: 1px solid ${theme.color.GRAY3};
+  display: flex;
+  align-items: center;
 
-  & li:last-child {
+  &:last-child {
     border-bottom: none;
   }
 `;
 
-const infoFont = css`
+const commonFont = css`
   font-size: 18px;
   font-weight: 500;
   color: ${theme.color.BLACK};
@@ -27,15 +30,24 @@ const infoFont = css`
   }
 `;
 
-export const Th = styled.p`
-  ${infoFont}
+const Th = styled.p`
+  ${commonFont}
   width: 115px;
 `;
 
-export const Input = styled.input`
-  ${infoFont}
+const Input = styled.input`
+  ${commonFont}
 `;
 
-export const Td = styled.p`
-  ${infoFont}
+const Td = styled.p`
+  ${commonFont}
 `;
+
+export const ComponentStyle = {
+  Component,
+  Ul,
+  Li,
+  Th,
+  Input,
+  Td,
+};

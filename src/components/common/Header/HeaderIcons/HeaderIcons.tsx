@@ -1,4 +1,4 @@
-import * as S from './HeaderIcons.styled';
+import { ComponentStyle as S } from './HeaderIcons.styled';
 import IconAlert from '../../../icons/IconAlert';
 import IconCart from '../../../icons/IconCart';
 import IconSearch from '../../../icons/IconSearch';
@@ -16,7 +16,7 @@ const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
   /**
    * Search, Alert, Cart 아이콘 묶음입니다.
    */
-  
+
   const { navigate } = useRouter();
 
   const handleClickAlert = () => {
@@ -27,13 +27,14 @@ const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
   };
 
   return (
-    <S.Icons className="icons">
+    <S.Component>
       <motion.button
         whileTap={motionStyle.primaryButton.whileTap}
         transition={motionStyle.primaryButton.transition}
       >
         <IconSearch color={color} />
       </motion.button>
+
       <motion.button
         onClick={handleClickAlert}
         whileTap={motionStyle.primaryButton.whileTap}
@@ -41,6 +42,7 @@ const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
       >
         <IconAlert color={color} />
       </motion.button>
+
       <motion.button
         onClick={handleClickCart}
         whileTap={motionStyle.primaryButton.whileTap}
@@ -48,7 +50,7 @@ const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
       >
         <IconCart color={color} />
       </motion.button>
-    </S.Icons>
+    </S.Component>
   );
 };
 

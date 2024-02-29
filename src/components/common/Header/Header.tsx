@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import * as S from './Header.styled';
+import { ComponentStyle as S } from './Header.styled';
 import { ROUTE_PATH } from '../../../constants/path';
 import IconLogo from '../../icons/IconLogo';
 import HeaderShadow from './HeaderShadow/HeaderShadow';

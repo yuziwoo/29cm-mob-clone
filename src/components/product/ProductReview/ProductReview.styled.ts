@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const ReviewComponent = styled.div`
+const Component = styled.div`
   padding: ${theme.padding.BODY};
 `;
 
-export const TitleWrap = styled.div`
+const TitleWrap = styled.div`
   padding-top: 4rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
 `;
 
-export const Title = styled.h1`
+const Title = styled.h1`
   font-size: 18px;
   font-weight: 700;
   color: ${theme.color.BLACK};
@@ -20,15 +20,15 @@ export const Title = styled.h1`
   line-height: 1;
 `;
 
-export const Rate = styled.div`
+const Rate = styled.div`
   width: 80px;
 `;
 
-export const ReviewImgsWrap = styled.div`
+const ReviewImgsWrap = styled.div`
   padding: 2rem 0 0;
 `;
 
-export const ReviewDetail = styled.div`
+const ReviewDetail = styled.div`
   padding: 30px 0;
   border-bottom: 1px solid ${theme.color.GRAY1};
 
@@ -37,37 +37,37 @@ export const ReviewDetail = styled.div`
   }
 `;
 
-export const FlexSpaceBetween = styled.div`
+const FlexSpaceBetween = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 `;
 
-export const FlexWrap = styled.div`
+const FlexWrap = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
 `;
 
-export const ReviewDetailRate = styled.div`
+const ReviewDetailRate = styled.div`
   width: 60px;
   margin-right: 10px;
 `;
 
-export const Writer = styled.p`
+const Writer = styled.p`
   font-size: 12px;
   line-height: 1;
   color: ${theme.color.GRAY5};
 `;
 
-export const Size = styled.p`
+const Size = styled.p`
   font-size: 12px;
   line-height: 1.4;
   color: ${theme.color.GRAY7};
   padding-top: 1rem;
 `;
 
-export const DetailImgThumb = styled.div`
+const DetailImgThumb = styled.div`
   width: 50px;
 
   & img {
@@ -75,7 +75,7 @@ export const DetailImgThumb = styled.div`
   }
 `;
 
-export const Text = styled.h2`
+const Text = styled.h2`
   font-size: 16px;
   font-weight: 500;
   color: ${theme.color.BLACK};
@@ -88,7 +88,7 @@ export const Text = styled.h2`
   overflow: hidden;
 `;
 
-export const ShowAllButton = styled.div`
+const ShowAllButton = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,14 +101,32 @@ export const ShowAllButton = styled.div`
     font-weight: 700;
     color: ${theme.color.BLACK};
   }
+`;
 
-  & div {
-    width: 24px;
-    height: 24px;
-  }
+const Icon = styled.div`
+  width: 24px;
+  height: 24px;
 
-  & div svg {
+  & svg {
     width: 100%;
     height: 100%;
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+  TitleWrap,
+  Title,
+  ReviewImgsWrap,
+  Rate,
+  ReviewDetail,
+  FlexSpaceBetween,
+  FlexWrap,
+  ReviewDetailRate,
+  Writer,
+  Size,
+  DetailImgThumb,
+  Text,
+  ShowAllButton,
+  Icon,
+};

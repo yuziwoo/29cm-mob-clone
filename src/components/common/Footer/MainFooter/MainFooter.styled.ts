@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { theme } from '../../../../styles/theme';
 
-export const MainFooterBlock = styled.div`
+const Component = styled.div`
   padding: 0 0 1rem;
   display: flex;
   justify-content: space-between;
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
   width: 20%;
 
   & .wrap {
@@ -29,3 +29,8 @@ export const Button = styled.button`
     transition: color 0.2s;
   }
 `;
+
+export const ComponentStyle = {
+  Button,
+  Component,
+};

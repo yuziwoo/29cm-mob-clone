@@ -1,4 +1,4 @@
-import * as S from './LoginPage.styled';
+import { PageStyle as S } from './LoginPage.styled';
 import IconLogo from '../../components/icons/IconLogo';
 import { theme } from '../../styles/theme';
 import LoginForm from '../../components/login/LoginForm/LoginForm';
@@ -35,7 +35,7 @@ const LoginPage = () => {
   }, [user]);
 
   return (
-    <S.SectionLogin>
+    <S.Page>
       <motion.div
         initial={motionStyle.pageOpen.initial}
         animate={motionStyle.pageOpen.animate}
@@ -73,7 +73,7 @@ const LoginPage = () => {
 
         <SocialLogin redirectPath={redirectPath} />
       </motion.div>
-    </S.SectionLogin>
+    </S.Page>
   );
 };
 

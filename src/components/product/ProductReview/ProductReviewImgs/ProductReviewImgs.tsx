@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import * as S from './ProductReviewImgs.styled';
+import { ComponentStyle as S } from './ProductReviewImgs.styled';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../../styles/motion';
 import SkeletonImg from '../../../skeleton/common/SkeletonImg';
@@ -29,16 +29,16 @@ const ProductReviewImgs = ({ imgs }: ProductReviewImgsProps) => {
 
   if (imgs === undefined)
     return (
-      <S.ReviewImgsComponent>
+      <S.Component>
         {[0, 1, 2, 3, 4, 5].map((value) => (
           <S.ReviewImg key={value} style={{ paddingBottom: 0 }}>
             <SkeletonImg />
           </S.ReviewImg>
         ))}
-      </S.ReviewImgsComponent>
+      </S.Component>
     );
   return (
-    <S.ReviewImgsComponent>
+    <S.Component>
       {displayImg.map((url, idx) => (
         <motion.div
           className="review-img"
@@ -49,17 +49,17 @@ const ProductReviewImgs = ({ imgs }: ProductReviewImgsProps) => {
         >
           {idx === 5 && (
             <S.ShowMore onClick={handleClickShowMore}>
-              <div className="wrap">
-                <p>
+              <S.Shadow className="wrap">
+                <S.ShadowText>
                   더보기
                   <br />+{imgs.length - 5}
-                </p>
-              </div>
+                </S.ShadowText>
+              </S.Shadow>
             </S.ShowMore>
           )}
         </motion.div>
       ))}
-    </S.ReviewImgsComponent>
+    </S.Component>
   );
 };
 

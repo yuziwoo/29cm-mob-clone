@@ -1,7 +1,7 @@
+import { PageStyle as S } from './SearchPage.styled';
+
 const SearchPage = () => {
-  return (
-    <div>SearchPage</div>
-  )
+  return <S.Page>SearchPage</S.Page>;
 };
 
-export default SearchPage
+export default SearchPage;

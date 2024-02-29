@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const SectionInfo = styled.div`
+const Component = styled.div`
   padding: ${theme.padding.BODY};
 `;
 
-export const BrandAndLikesWrap = styled.div`
+const BrandAndLikes = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   padding-top: 20px;
 `;
 
-export const Brand = styled.div`
+const Brand = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -30,19 +30,19 @@ export const Brand = styled.div`
   }
 `;
 
-export const Like = styled.div`
+const Like = styled.div`
   width: 3.2rem;
   height: 3.2rem;
 `;
 
-export const ProductName = styled.h2`
+const ProductName = styled.h2`
   font-size: 18px;
   font-weight: 600;
   color: ${theme.color.BLACK};
   padding: 14px 0 18px;
 `;
 
-export const Review = styled.div`
+const Review = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -57,57 +57,58 @@ export const Review = styled.div`
   }
 `;
 
-export const Star = styled.div`
+const Star = styled.div`
   width: 60px;
   margin-right: 8px;
 `;
 
-export const Price = styled.div`
+const Price = styled.div`
   padding: 30px 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 `;
 
-export const OriginalPrice = styled.h3`
+const OriginalPrice = styled.h3`
   color: ${theme.color.GRAY4};
   font-weight: 500;
   font-size: 16px;
 `;
 
-export const FinalPrice = styled.div`
+const FinalPrice = styled.div`
   padding: 4px 0 8px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
 `;
 
-export const Discount = styled.h1`
+const Discount = styled.h1`
   color: ${theme.color.SIGNATURE};
   font-weight: 700;
-  margin-right: 2rem;
   font-size: 22px;
 `;
 
-export const PriceAfterDiscount = styled.h1`
+const PriceAfterDiscount = styled.h1`
+  margin-left: 1rem;
   color: ${theme.color.BLACK};
   font-weight: 700;
   font-size: 22px;
 `;
 
-export const PriceUnit = styled.h3`
+const PriceUnit = styled.h3`
   color: ${theme.color.BLACK};
   font-weight: 700;
   font-size: 16px;
+  text-indent: 0.3rem;
 `;
 
-export const AccrualPoint = styled.h4`
+const AccrualPoint = styled.h4`
   color: ${theme.color.GRAY7};
   font-weight: 500;
   font-size: 14px;
 `;
 
-export const Coupon = styled.div`
+const Coupon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,17 +128,17 @@ export const Coupon = styled.div`
   }
 `;
 
-export const HR = styled.div`
+const HR = styled.div`
   border-bottom: 1px solid ${theme.color.GRAY1};
   width: 100%;
   height: 1px;
 `;
 
-export const DetailContent = styled.div`
-padding: 3rem 0;
+const DetailContent = styled.div`
+  padding: 3rem 0;
 `;
 
-export const DetailContentRow = styled.div`
+const DetailContentRow = styled.div`
   padding-bottom: 10px;
   display: flex;
   align-items: flex-start;
@@ -147,7 +148,7 @@ export const DetailContentRow = styled.div`
   }
 `;
 
-export const DetailContentTitle = styled.h4`
+const DetailContentTitle = styled.h4`
   width: 88px;
   font-size: 14px;
   font-weight: 500;
@@ -155,9 +156,32 @@ export const DetailContentTitle = styled.h4`
   color: ${theme.color.GRAY5};
 `;
 
-export const DetailContentDescription = styled.p`
+const DetailContentDescription = styled.p`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
   color: ${theme.color.BLACK};
 `;
+
+export const ComponentStyle = {
+  Component,
+  BrandAndLikes,
+  Brand,
+  Like,
+  ProductName,
+  Review,
+  Star,
+  Price,
+  OriginalPrice,
+  FinalPrice,
+  Discount,
+  PriceAfterDiscount,
+  PriceUnit,
+  AccrualPoint,
+  Coupon,
+  HR,
+  DetailContent,
+  DetailContentRow,
+  DetailContentTitle,
+  DetailContentDescription,
+};

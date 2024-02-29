@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useRouter } from '../../hooks/useRouter';
-import * as S from './MyPage.styled';
+import { PageStyle as S } from './MyPage.styled';
 import MyUserInfo from '../../components/my/MyUserInfo/MyUserInfo';
 import MyInfoBalloon from '../../components/my/MyInfoBalloon/MyInfoBalloon';
 import MyListButton from '../../components/my/MyListButton/MyListButton';
@@ -9,13 +9,14 @@ import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
 import { useAuth } from '../../hooks/auth/useAuth';
 import MyPageSkeleton from './MyPageSkeleton';
+import PageCommonAnimation from '../../components/common/PageCommonAnimation/PageCommonAnimation';
 
 const MyPage = () => {
   /**
    * 마이페이지입니다.
    * 로그인하지 않은 유저가 접근 시 로그인 페이지로 redirect합니다.
    */
-  
+
   const { user, logout, deleteAccount } = useAuth();
   const { navigate } = useRouter();
 
@@ -59,12 +60,8 @@ const MyPage = () => {
 
   if (user === null) return <MyPageSkeleton></MyPageSkeleton>;
   return (
-    <S.SectionMyPage>
-      <motion.div
-        initial={motionStyle.pageOpen.initial}
-        animate={motionStyle.pageOpen.animate}
-        transition={motionStyle.pageOpen.transition}
-      >
+    <PageCommonAnimation>
+      <S.Page>
         <MyUserInfo user={user} />
         <MyInfoBalloon />
 
@@ -83,17 +80,11 @@ const MyPage = () => {
         <S.ListWrap>
           <S.ListTitle>나의 계정</S.ListTitle>
           {accountList.map(({ text, onClick }, idx) => (
-            <motion.li
-              key={idx}
-              whileTap={motionStyle.scaleButton.whileTap}
-              transition={motionStyle.scaleButton.transition}
-            >
-              <MyListButton text={text} onClick={onClick} />
-            </motion.li>
+            <MyListButton text={text} onClick={onClick} key={idx} />
           ))}
         </S.ListWrap>
-      </motion.div>
-    </S.SectionMyPage>
+      </S.Page>
+    </PageCommonAnimation>
   );
 };
 

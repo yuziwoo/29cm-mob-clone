@@ -1,4 +1,4 @@
-import * as S from './Footer.styled';
+import { ComponentStyle as S } from './Footer.styled';
 import MainFooter from './MainFooter/MainFooter';
 import { footerUI } from '../../../constants/footerUI';
 import ProductFooter from './ProductFooter/ProductFooter';
@@ -18,15 +18,15 @@ const Footer = ({ firstPath }: FooterProps) => {
   if (footerUI.HIDDEN.includes(firstPath)) return <></>;
   if (footerUI.PRODUCT.includes(firstPath))
     return (
-      <S.SectionFooter style={{ transform: `translate(-50%, 0%)` }}>
+      <S.Footer>
         <ProductFooter id={id} />
-      </S.SectionFooter>
+      </S.Footer>
     );
 
   return (
-    <S.SectionFooter style={{ transform: `translate(-50%, 0%)` }}>
+    <S.Footer>
       <MainFooter firstPath={firstPath} />
-    </S.SectionFooter>
+    </S.Footer>
   );
 };
 

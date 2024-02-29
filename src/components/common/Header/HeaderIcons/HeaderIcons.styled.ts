@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Icons = styled.div`
+export const Component = styled.div`
   display: flex;
 
   & button {
@@ -23,3 +23,7 @@ export const Icons = styled.div`
     height: 80%;
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+};

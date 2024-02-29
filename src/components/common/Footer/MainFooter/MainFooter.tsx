@@ -1,4 +1,4 @@
-import * as S from './MainFooter.styled';
+import { ComponentStyle as S } from './MainFooter.styled';
 import IconFooterHome from '../../../icons/IconFooter/IconFooterHome';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../../styles/motion';
@@ -77,7 +77,7 @@ const MainFooter = ({ firstPath }: MainFooterProps) => {
   ];
 
   return (
-    <S.MainFooterBlock>
+    <S.Component>
       {buttons.map(({ name, includePath, path, icon }, idx) => {
         const isActive = includePath.includes(firstPath);
         return (
@@ -93,7 +93,7 @@ const MainFooter = ({ firstPath }: MainFooterProps) => {
           </S.Button>
         );
       })}
-    </S.MainFooterBlock>
+    </S.Component>
   );
 };
 

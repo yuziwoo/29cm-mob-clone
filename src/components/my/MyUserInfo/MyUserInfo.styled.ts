@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
+import { theme } from '../../../styles/theme';
 
-export const SectionUserInfo = styled.div`
+const Component = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -8,13 +9,13 @@ export const SectionUserInfo = styled.div`
   padding-top: 4rem;
 `;
 
-export const Info = styled.div`
+const FlexWrap = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
 
-export const ImgWrap = styled.div`
+const ProfileImg = styled.div`
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
@@ -24,40 +25,58 @@ export const ImgWrap = styled.div`
   background-position: center center;
 `;
 
-const textslide = keyframes`
+const textAnimation = keyframes`
 0%, 45% {
   transform: translateY(0);
 }
 50%, 95% {
-  transform: translateY(-33%);
+  transform: translateY(-33.3%);
 }
 100% {
-  transform: translateY(-66%);
+  transform: translateY(-66.6%);
 }
 `;
 
-export const TextWrap = styled.div`
-  overflow: hidden;
-  position: relative;
-
-  & h1 {
-    text-indent: 1rem;
-  }
-
-  & .container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    animation: ${textslide} 7s infinite linear;
-  }
+const Text = styled.h1`
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  color: ${theme.color.BLACK};
+  line-height: 1.2;
 `;
 
-export const Arrow = styled.button`
-  width: 2.8rem;
-  height: 2.8rem;
+const Greeting = styled.div`
+  overflow: hidden;
+  position: relative;
+  margin-left: 1rem;
+`;
+
+const AnimationTextWrap = styled.div`
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  animation: ${textAnimation} 6s infinite linear;
+`;
+
+const Arrow = styled.button`
+  width: 2.4rem;
+  height: 2.4rem;
+  min-width: 20px;
+  min-height: 20px;
 
   & svg {
     width: 100%;
     height: 100%;
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+  FlexWrap,
+  ProfileImg,
+  Text,
+  Greeting,
+  AnimationTextWrap,
+  Arrow,
+};

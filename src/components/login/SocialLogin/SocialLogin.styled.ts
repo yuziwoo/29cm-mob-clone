@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const SocialLoginArticle = styled.article`
+const Component = styled.article`
   & button {
     width: 100%;
     height: 66px;
@@ -18,10 +18,27 @@ export const SocialLoginArticle = styled.article`
     height: 28px;
     margin-right: 7px;
   }
+`;
 
-  & button p {
-    font-size: 16px;
-    font-weight: 500;
-    color: ${theme.color.BLACK};
+const Text = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${theme.color.BLACK};
+`;
+
+const Icon = styled.div`
+  width: 28px;
+  height: 28px;
+  margin-right: 7px;
+
+  & svg {
+    width: 100%;
+    height: 100%;
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+  Text,
+  Icon,
+};

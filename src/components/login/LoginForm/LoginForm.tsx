@@ -1,5 +1,5 @@
 import { useCallback, useId, useState } from 'react';
-import * as S from './LoginForm.styled';
+import { ComponentStyle as S } from './LoginForm.styled';
 import { validateEmail } from '../../../utils/validateEmail';
 import { FormData } from '../../../types/login';
 import { useRouter } from '../../../hooks/useRouter';
@@ -85,9 +85,9 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
         whileTap={motionStyle.scaleButton.whileTap}
         transition={motionStyle.scaleButton.transition}
       >
-        <S.Submit>
+        <S.SubmitButton>
           <p>로그인</p>
-        </S.Submit>
+        </S.SubmitButton>
       </motion.div>
     </form>
   );

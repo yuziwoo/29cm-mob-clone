@@ -1,10 +1,11 @@
+import { PageStyle as S } from './MainPage.styled';
 import useCart from '../../hooks/cart/useCart';
 
 const MainPage = () => {
   const { cartQuery, addOrUpdate, removeItem } = useCart();
 
   return (
-    <div>
+    <S.Page>
       <p
         style={{ fontSize: '60px' }}
         onClick={async () => {
@@ -34,7 +35,7 @@ const MainPage = () => {
       </p>
 
       <h1 style={{ fontSize: '300px' }}>Main Page</h1>
-    </div>
+    </S.Page>
   );
 };
 

@@ -1,5 +1,7 @@
+import { PageStyle as S } from './WomanPage.styled';
+
 const WomanPage = () => {
-  return <div>WomanPage</div>;
+  return <S.Page>WomanPage</S.Page>;
 };
 
 export default WomanPage;

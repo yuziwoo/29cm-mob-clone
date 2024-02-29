@@ -1,4 +1,4 @@
-import * as S from './ProductFooter.styled';
+import { ComponentStyle as S } from './ProductFooter.styled';
 import useCart from '../../../../hooks/cart/useCart';
 import { useProduct } from '../../../../hooks/product/useProduct';
 import ProductLikes from '../../../product/ProductLikes/ProductLikes';
@@ -49,18 +49,18 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
             whileTap={motionStyle.primaryButton.whileTap}
             transition={motionStyle.primaryButton.transition}
           >
-            <S.Like>
+            <S.LikeButton>
               <ProductLikes productId={id} color={theme.color.WHITE} />
-            </S.Like>
+            </S.LikeButton>
           </motion.button>
 
           <motion.button
             whileTap={motionStyle.primaryButton.whileTap}
             transition={motionStyle.primaryButton.transition}
           >
-            <S.Share onClick={handleClickShare}>
+            <S.ShareButton onClick={handleClickShare}>
               <IconShare color={theme.color.WHITE} />
-            </S.Share>
+            </S.ShareButton>
           </motion.button>
         </S.FlexSpaceBetween>
 

@@ -1,4 +1,4 @@
-import * as S from './MyEditInfoProfileImg.styled';
+import { ComponentStyle as S } from './MyEditInfoProfileImg.styled';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 
@@ -12,11 +12,11 @@ const MyEditInfoProfileImg = (props: MyEditInfoProfileImgProps) => {
   /**
    * 프로필 이미지를 바꿀 수 있는 컴포넌트입니다.
    */
-  
+
   const { defaultImg, changedImg, onChangeImg } = props;
 
   return (
-    <S.SectionProfileImg>
+    <S.Component>
       <motion.label
         htmlFor="my-edit-profileImg"
         whileTap={motionStyle.scaleButton.whileTap}
@@ -27,8 +27,8 @@ const MyEditInfoProfileImg = (props: MyEditInfoProfileImgProps) => {
             backgroundImage: `url(${changedImg ? URL.createObjectURL(changedImg) : defaultImg})`,
           }}
         />
-        <S.ProfileEditMessage>프로필 사진 바꾸기</S.ProfileEditMessage>
-        <S.ImgInput
+        <S.EditProfileImg>프로필 사진 바꾸기</S.EditProfileImg>
+        <S.Input
           type="file"
           accept="image/*"
           name="my-edit-profileImg"
@@ -36,7 +36,7 @@ const MyEditInfoProfileImg = (props: MyEditInfoProfileImgProps) => {
           onChange={onChangeImg}
         />
       </motion.label>
-    </S.SectionProfileImg>
+    </S.Component>
   );
 };
 

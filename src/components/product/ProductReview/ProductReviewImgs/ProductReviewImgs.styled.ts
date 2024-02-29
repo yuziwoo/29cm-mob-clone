@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../../styles/theme';
 
-export const ReviewImgsComponent = styled.div`
+export const Component = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -26,7 +26,7 @@ export const ReviewImgsComponent = styled.div`
   }
 `;
 
-export const ReviewImg = styled.div`
+const ReviewImg = styled.div`
   display: inline-block;
   position: relative;
   width: 33%;
@@ -45,29 +45,37 @@ export const ReviewImg = styled.div`
   }
 `;
 
-export const ShowMore = styled.div`
+const ShowMore = styled.div`
   position: absolute;
   background: rgba(0, 0, 0, 0.7);
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-
-  & .wrap {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  & .wrap p {
-    font-size: 16px;
-    font-weight: 700;
-    color: ${theme.color.WHITE};
-    line-height: 1.4;
-    text-align: center;
-    user-select: none;
-  }
 `;
+
+const Shadow = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const ShadowText = styled.p`
+  font-size: 16px;
+  font-weight: 700;
+  color: ${theme.color.WHITE};
+  line-height: 1.4;
+  text-align: center;
+  user-select: none;
+`;
+
+export const ComponentStyle = {
+  Component,
+  ReviewImg,
+  ShowMore,
+  Shadow,
+  ShadowText,
+};

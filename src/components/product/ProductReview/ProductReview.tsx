@@ -1,4 +1,4 @@
-import * as S from './ProductReview.styled';
+import { ComponentStyle as S } from './ProductReview.styled';
 import { ReviewInfo } from '../../../types/product';
 import { useEffect, useState } from 'react';
 import StarRating from '../StarRating/StarRating';
@@ -7,6 +7,7 @@ import ProductReviewImgs from './ProductReviewImgs/ProductReviewImgs';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import IconRightArrow2 from '../../icons/IconRightArrow2';
+import { elementId } from '../../../constants/elementId';
 
 interface ProductReviewProps {
   reviews: ReviewInfo[] | undefined;
@@ -16,7 +17,7 @@ const ProductReview = ({ reviews }: ProductReviewProps) => {
   /**
    * 상품 상세페이지의 리뷰 섹션을 그리는 컴포넌트 입니다.
    */
-  
+
   const [overAllReview, setOverAllReview] = useState({
     rate: 0,
     count: 0,
@@ -38,7 +39,7 @@ const ProductReview = ({ reviews }: ProductReviewProps) => {
 
   if (reviews === undefined)
     return (
-      <S.ReviewComponent>
+      <S.Component>
         <S.TitleWrap>
           <S.Title>리뷰</S.Title>
         </S.TitleWrap>
@@ -46,10 +47,10 @@ const ProductReview = ({ reviews }: ProductReviewProps) => {
         <S.ReviewImgsWrap>
           <ProductReviewImgs imgs={undefined} />
         </S.ReviewImgsWrap>
-      </S.ReviewComponent>
+      </S.Component>
     );
   return (
-    <S.ReviewComponent>
+    <S.Component id={elementId.productDetail.REVIEW}>
       <S.TitleWrap>
         <S.Title>리뷰 ({overAllReview.count})</S.Title>
         <S.Rate>
@@ -102,12 +103,12 @@ const ProductReview = ({ reviews }: ProductReviewProps) => {
       >
         <S.ShowAllButton>
           <p>리뷰 전체 보기 ({reviews.length})</p>
-          <div>
+          <S.Icon>
             <IconRightArrow2 color={theme.color.BLACK} />
-          </div>
+          </S.Icon>
         </S.ShowAllButton>
       </motion.button>
-    </S.ReviewComponent>
+    </S.Component>
   );
 };
 

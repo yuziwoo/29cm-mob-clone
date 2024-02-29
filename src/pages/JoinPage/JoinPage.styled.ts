@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
-export const SectionJoin = styled.section`
+const Page = styled.section`
   padding: ${theme.padding.BODY_WITH_BOTTOM_MARGIN};
 `;
 
-export const Logo = styled.div`
+const Logo = styled.div`
   width: 182.5px;
   height: 45px;
   margin-top: 20px;
@@ -19,7 +19,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const Intro = styled.div`
+const Intro = styled.div`
   padding: 30px 0 40px;
 
   & h1 {
@@ -28,3 +28,9 @@ export const Intro = styled.div`
     color: ${theme.color.BLACK};
   }
 `;
+
+export const PageStyle = {
+  Page,
+  Logo,
+  Intro
+};

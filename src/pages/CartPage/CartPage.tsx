@@ -1,3 +1,4 @@
+import { PageStyle as S } from './CartPage.styled';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
 import { useEffect } from 'react';
@@ -14,7 +15,7 @@ const CartPage = () => {
     // eslint-disable-next-line
   }, []);
 
-  return <div>CartPage</div>;
+  return <S.Page>CartPage</S.Page>;
 };
 
 export default CartPage;

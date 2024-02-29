@@ -1,6 +1,7 @@
-const BestPage = () => {
+import { PageStyle as S } from './BestPage.styled';
 
-  return <div>BestPage</div>;
+const BestPage = () => {
+  return <S.Page>BestPage</S.Page>;
 };
 
 export default BestPage;
