@@ -2,11 +2,16 @@ import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { queryAPI } from '../../constants/query';
+import { Cart } from '../../api/firebase/database/cart';
+import { useEffect } from 'react';
+import { UpdateItemOptionsProps } from '../../types/cart';
 import {
-  addOrUpdateCartItems,
-  getCartItems,
-  removeCartItems,
-} from '../../api/firebase/database/cart';
+  AddItemProps,
+  CartItemKey,
+  CartItemProps,
+  IsItemInCartProps,
+  UpdateItemQuantityProps,
+} from '../../types/cart';
 
 export const useCart = () => {
   /**
@@ -14,56 +19,73 @@ export const useCart = () => {
    */
 
   const [user] = useRecoilState(userState);
-  const uid = user?.uid || '';
-  const queryClient = useQueryClient();
-  const queryKey = [queryAPI.queryKey.cart, uid];
+  const cart = new Cart(user?.uid || '');
 
-  const cartQuery = useQuery({
+  useEffect(() => {
+    if (user) cart.setUid(user.uid);
+    // eslint-disable-next-line
+  }, [user]);
+
+  const queryClient = useQueryClient();
+  const queryKey = [queryAPI.queryKey.cart, user?.uid || ''];
+
+  const cartQuery = useQuery<Record<CartItemKey, CartItemProps>>({
     queryKey,
     queryFn: async () => {
-      const result = await getCartItems(uid);
+      const result = await cart.getCartItems();
       return result;
     },
-    enabled: !!uid,
+    enabled: !!user?.uid,
     staleTime: queryAPI.staleTime.CART,
   });
 
-  const addOrUpdate = useMutation({
-    mutationFn: (productId: string, count: number = 1) => {
-      return addOrUpdateCartItems({ userId: uid, productId, count });
+  const isItemInCart = async ({ productId, selectOption }: IsItemInCartProps) => {
+    await queryClient.invalidateQueries({ queryKey });
+    const cartData = cartQuery.data ? cartQuery.data : {};
+    const sameProductItem = Object.values(cartData).find((item) => item.productId === productId);
+
+    if (sameProductItem === undefined) return false;
+    if (JSON.stringify(selectOption) === JSON.stringify(sameProductItem.options)) return true;
+    return false;
+  };
+
+  const addItem = useMutation({
+    mutationFn: async ({ productId, selectOption, count = 1 }: AddItemProps) => {
+      const hasItemInCart = await isItemInCart({ productId, selectOption });
+      if (hasItemInCart) throw new Error('이미 장바구니에 추가된 아이템입니다.');
+      return cart.addItem({ productId, selectOption, count });
     },
     onSuccess: () => {
+      window.alert('장바구니에 추가되었습니다.');
       queryClient.invalidateQueries({ queryKey });
+    },
+    onError: (e) => {
+      window.alert(e);
     },
   });
 
-  const addCart = useMutation({
-    mutationFn: async (productId: string) => {
-      if (cartQuery.data === undefined) return;
-
-      const noConflict = !Object.keys(cartQuery.data).includes(productId);
-
-      if (noConflict) {
-        return addOrUpdateCartItems({ userId: uid, productId });
-      }
-
-      window.alert('이미 추가된 상품입니다.');
+  const updateItemQuantity = useMutation({
+    mutationFn: async ({ itemKey, count }: UpdateItemQuantityProps) => {
+      return cart.updateItemQuantity({ itemKey, count });
     },
-    onSuccess: async () => {
-      queryClient.invalidateQueries({ queryKey });
+  });
+
+  const updateItemOptions = useMutation({
+    mutationFn: async ({ itemKey, selectOption }: UpdateItemOptionsProps) => {
+      return cart.updateItemOptions({ itemKey, selectOption });
     },
   });
 
   const removeItem = useMutation({
-    mutationFn: (productId: string) => {
-      return removeCartItems({ userId: uid, productId });
+    mutationFn: ({ itemKey }: { itemKey: CartItemKey }) => {
+      return cart.removeItem({ itemKey });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey });
     },
   });
 
-  return { cartQuery, addOrUpdate, removeItem, addCart };
+  return { cartQuery, addItem, updateItemQuantity, updateItemOptions, removeItem };
 };
 
 export default useCart;

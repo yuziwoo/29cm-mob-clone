@@ -8,9 +8,7 @@ import { ROUTE_PATH } from '../../constants/path';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
-import { motion } from 'framer-motion';
 import { useRouter } from '../../hooks/useRouter';
-import { motionStyle } from '../../styles/motion';
 import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const LoginPage = () => {

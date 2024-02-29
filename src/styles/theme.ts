@@ -30,6 +30,7 @@ const gradient = {
 const zIndex = {
   HEADER: 2000,
   FOOTER: 3000,
+  MODAL: 5000,
 };
 
 const animation = {
@@ -41,6 +42,36 @@ const animation = {
     background-color: rgba(100, 100, 100, 0.25);
   }
   `,
+
+  FADE_IN: keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }`,
+  FADE_OUT: keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }`,
+
+  COME_UP: keyframes`
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }`,
+  GO_DOWN: keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }`,
 };
 
 const lineHeight = {

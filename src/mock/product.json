@@ -4,9 +4,11 @@
     "categoryLarge": "man",
     "categoryMedium": "아우터",
     "option": {
-      "0": "S",
-      "1": "M",
-      "2": "L"
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
     },
     "salesVolume": 0,
     "thumb": {
@@ -27,9 +29,11 @@
     "categoryLarge": "man",
     "categoryMedium": "아우터",
     "option": {
-      "0": "S",
-      "1": "M",
-      "2": "L"
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
     },
     "salesVolume": 3,
     "thumb": {
@@ -50,9 +54,11 @@
     "categoryLarge": "man",
     "categoryMedium": "하의",
     "option": {
-      "0": "S",
-      "1": "M",
-      "2": "L"
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
     },
     "salesVolume": 10,
     "thumb": {
@@ -71,7 +77,13 @@
     "name": "트위스트 터틀넥 니트 (드라이 핑크)",
     "categoryLarge": "woman",
     "categoryMedium": "상의",
-    "option": {},
+    "option": {
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
+    },
     "salesVolume": 32,
     "thumb": {
       "0": "../img/products/p1004-1.jpg",
@@ -90,7 +102,13 @@
     "name": "부클 가디건 (크림)",
     "categoryLarge": "woman",
     "categoryMedium": "상의",
-    "option": {},
+    "option": {
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
+    },
     "salesVolume": 2,
     "thumb": {
       "0": "../img/products/p1005-1.jpg",
@@ -110,8 +128,11 @@
     "categoryLarge": "woman",
     "categoryMedium": "하의",
     "option": {
-      "0": "1",
-      "1": "2"
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
     },
     "salesVolume": 62,
     "thumb": {
@@ -132,9 +153,11 @@
     "categoryLarge": "life",
     "categoryMedium": "컴퓨터/디지털",
     "option": {
-      "0": "실버",
-      "1": "블랙",
-      "2": "미드나잇 블루"
+      "색상": {
+        "0": "실버",
+        "1": "블랙",
+        "2": "미드나잇 블루"
+      }
     },
     "salesVolume": 13,
     "thumb": {
@@ -156,8 +179,10 @@
     "categoryLarge": "life",
     "categoryMedium": "컴퓨터/디지털",
     "option": {
-      "0": "블랙",
-      "1": "플래티넘 실버"
+      "색상": {
+        "0": "블랙",
+        "1": "플래티넘 실버"
+      }
     },
     "salesVolume": 60,
     "thumb": {

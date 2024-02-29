@@ -6,6 +6,8 @@ import { theme } from '../../../../styles/theme';
 import IconShare from '../../../icons/IconShare';
 import { motion } from 'framer-motion';
 import CommonButton from '../../motion/CommonButton/CommonButton';
+import { useCallback, useState } from 'react';
+import ModalBottom from '../../modal/ModalBottom/ModalBottom';
 
 interface ProductFooterProps {
   id: string | undefined;
@@ -15,8 +17,9 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
   /**
    * ProductDetail 페이지에서 사용할 Footer입니다.
    */
-  const { cartQuery, addCart } = useCart();
+  const { cartQuery } = useCart();
   const { productQuery, getProduct } = useProduct();
+  const [showModal, setShowModal] = useState(false);
 
   const handleClickShare = () => {
     const url = window.location.href;
@@ -28,10 +31,14 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
     }
   };
 
-  const handleClickCartButton = async () => {
+  const handleClickBuyButton = async () => {
     if (id === undefined || !cartQuery.isSuccess) return;
-    addCart.mutate(id);
+    setShowModal(true);
   };
+
+  const handleCloseModal = useCallback(() => {
+    setShowModal(false);
+  }, [setShowModal]);
 
   if (
     id === undefined ||
@@ -42,35 +49,40 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
     return <></>;
 
   return (
-    <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} transition={{ duration: 0.2 }}>
-      <S.Component>
-        <S.FlexSpaceBetween>
-          <CommonButton>
-            <S.LikeButton>
-              <ProductLikes productId={id} color={theme.color.WHITE} />
-            </S.LikeButton>
-          </CommonButton>
+    <>
+      <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} transition={{ duration: 0.2 }}>
+        <S.Component>
+          <S.FlexSpaceBetween>
+            <CommonButton>
+              <S.LikeButton>
+                <ProductLikes productId={id} color={theme.color.WHITE} />
+              </S.LikeButton>
+            </CommonButton>
 
-          <CommonButton>
-            <S.ShareButton onClick={handleClickShare}>
-              <IconShare color={theme.color.WHITE} />
-            </S.ShareButton>
-          </CommonButton>
-        </S.FlexSpaceBetween>
+            <CommonButton>
+              <S.ShareButton onClick={handleClickShare}>
+                <IconShare color={theme.color.WHITE} />
+              </S.ShareButton>
+            </CommonButton>
+          </S.FlexSpaceBetween>
 
-        <S.FlexSpaceBetween>
-          <CommonButton>
-            <S.CartButton onClick={handleClickCartButton}>장바구니</S.CartButton>
-          </CommonButton>
+          <S.FlexSpaceBetween>
+            <CommonButton>
+              <S.CartButton>선물하기</S.CartButton>
+            </CommonButton>
 
-          <div style={{ borderRight: `1px solid ${theme.color.GRAY7}`, height: '2.4rem' }}></div>
+            <div style={{ borderRight: `1px solid ${theme.color.GRAY7}`, height: '2.4rem' }}></div>
 
-          <CommonButton>
-            <S.BuyButton>구매하기</S.BuyButton>
-          </CommonButton>
-        </S.FlexSpaceBetween>
-      </S.Component>
-    </motion.div>
+            <CommonButton>
+              <S.BuyButton onClick={handleClickBuyButton}>구매하기</S.BuyButton>
+            </CommonButton>
+          </S.FlexSpaceBetween>
+        </S.Component>
+      </motion.div>
+      <ModalBottom isOpen={showModal} onRequestClose={handleCloseModal}>
+        modal gogosing
+      </ModalBottom>
+    </>
   );
 };
 
