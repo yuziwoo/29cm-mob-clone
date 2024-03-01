@@ -16,7 +16,7 @@ const Component = styled.div`
 
 const Button = styled.div`
   width: 100%;
-  background: ${theme.color.SIGNATURE};
+  background: ${theme.color.BLACK};
   padding: 2.2rem 0;
   border-radius: 0.5rem;
 
@@ -31,7 +31,7 @@ const Button = styled.div`
 const FinalPrice = styled.h1`
   font-size: 18px;
   font-weight: 700;
-  color: ${theme.color.WHITE};
+  color: ${theme.color.SIGNATURE};
 `;
 
 export const ComponentStyle = {
