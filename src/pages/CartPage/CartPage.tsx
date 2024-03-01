@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useRouter } from '../../hooks/useRouter';
 import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
+import CartListWrap from '../../components/cart/CartListWrap/CartListWrap';
 
 const CartPage = () => {
   const [user] = useRecoilState(userState);
@@ -18,7 +19,9 @@ const CartPage = () => {
 
   return (
     <CommonPageAnimation>
-      <S.Page>CartPage</S.Page>
+      <S.Page>
+        <CartListWrap />
+      </S.Page>
     </CommonPageAnimation>
   );
 };

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ComponentStyle as S } from './SelectInput.styled';
 import IconDownArrow2 from '../../icons/IconDownArrow2';
 import { theme } from '../../../styles/theme';

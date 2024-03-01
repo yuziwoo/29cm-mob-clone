@@ -21,7 +21,7 @@ const LoginPage = () => {
   const [redirectPath, setRedirectPath] = useState(ROUTE_PATH.root);
 
   useEffect(() => {
-    if (location?.state?.path !== null) {
+    if (location?.state?.path !== undefined) {
       setRedirectPath(location?.state?.path);
     }
   }, [location?.state]);

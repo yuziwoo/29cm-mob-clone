@@ -59,7 +59,7 @@ const ProductFooterModal = ({ productId, onRequestClose }: ProductFooterModalPro
   const handleClickBuy = useCallback(() => {
     window.alert('구매하기 기능은 곧 구현 예정입니다. 🚀');
     onRequestClose();
-  }, []);
+  }, [onRequestClose]);
 
   if (product === null) return <></>;
   return (
