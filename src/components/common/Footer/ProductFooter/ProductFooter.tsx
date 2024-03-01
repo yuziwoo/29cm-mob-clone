@@ -71,7 +71,7 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
         </S.Component>
       </motion.div>
       <ModalBottom isOpen={showModal} onRequestClose={handleCloseModal}>
-        <ProductFooterModal productId={id} />
+        <ProductFooterModal productId={id} onRequestClose={handleCloseModal} />
       </ModalBottom>
     </>
   );

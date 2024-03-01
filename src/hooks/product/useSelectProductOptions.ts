@@ -96,6 +96,7 @@ export const useSelectProductOptions = ({ productId }: { productId: string }) =>
     [updateCurrentOption, isAllOptionsSelected, isOptionRepeated, addSelectedOptions]
   );
 
+  // 옵션 제거
   const removeSelectedOption = useCallback(
     (index: number) => {
       const newOptions = [...selectedOptions];
@@ -105,6 +106,7 @@ export const useSelectProductOptions = ({ productId }: { productId: string }) =>
     [selectedOptions]
   );
 
+  // 옵션 숫자 변경
   const updateSelectedOptionCount = useCallback(
     (count: number, index: number) => {
       const newOptions = [...selectedOptions];

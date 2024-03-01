@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { theme } from '../../../../styles/theme';
 
-export const Component = styled.div`
+const Component = styled.div`
   display: flex;
 
   & button {
@@ -11,11 +12,6 @@ export const Component = styled.div`
     height: 2.8rem;
     min-width: 23px;
     min-height: 23px;
-    margin-right: 2rem;
-  }
-
-  & button:last-child {
-    margin-right: 0;
   }
 
   & button svg {
@@ -24,6 +20,40 @@ export const Component = styled.div`
   }
 `;
 
+const ButtonWrap = styled.div`
+  position: relative;
+  cursor: pointer;
+  margin-right: 2rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
+`;
+
+const Count = styled.div`
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: ${theme.color.SIGNATURE};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 100%;
+  bottom: 100%;
+  transform: translate(-50%, 50%);
+
+  & p {
+    font-size: 12px;
+    font-weight: 700;
+    color: ${theme.color.WHITE};
+    text-align: center;
+  }
+`;
+
 export const ComponentStyle = {
   Component,
+  ButtonWrap,
+  Count,
 };

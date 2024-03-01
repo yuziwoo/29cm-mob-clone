@@ -9,9 +9,10 @@ import useCart from '../../../../../hooks/cart/useCart';
 
 interface ProductFooterModalProps {
   productId: string;
+  onRequestClose: () => void;
 }
 
-const ProductFooterModal = ({ productId }: ProductFooterModalProps) => {
+const ProductFooterModal = ({ productId, onRequestClose }: ProductFooterModalProps) => {
   /**
    * Prodcut Detail 페이지에서 Footer의 구매하기 버튼을 클릭하면 열리는 모달입니다.
    */
@@ -47,13 +48,17 @@ const ProductFooterModal = ({ productId }: ProductFooterModalProps) => {
 
     if (selectedOptions.length === 1) {
       addSingleOption();
+      onRequestClose();
+      return;
     }
 
     addSeveralOptionsItem.mutate({ productId, selectOptions: selectedOptions });
-  }, [selectedOptions, addSingleOption, addSeveralOptionsItem, productId]);
+    onRequestClose();
+  }, [selectedOptions, addSingleOption, addSeveralOptionsItem, productId, onRequestClose]);
 
   const handleClickBuy = useCallback(() => {
     window.alert('구매하기 기능은 곧 구현 예정입니다. 🚀');
+    onRequestClose();
   }, []);
 
   if (product === null) return <></>;
@@ -132,6 +137,7 @@ const ProductFooterModal = ({ productId }: ProductFooterModalProps) => {
         </S.Price>
       )}
 
+      {/* 장바구니 | 구매하기 버튼 */}
       <S.Buttons>
         <CommonButton>
           <S.CartButton onClick={handleClickAddCart}>
