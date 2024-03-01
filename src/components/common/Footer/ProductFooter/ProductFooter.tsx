@@ -1,6 +1,4 @@
 import { ComponentStyle as S } from './ProductFooter.styled';
-import useCart from '../../../../hooks/cart/useCart';
-import { useProduct } from '../../../../hooks/product/useProduct';
 import ProductLikes from '../../../product/ProductLikes/ProductLikes';
 import { theme } from '../../../../styles/theme';
 import IconShare from '../../../icons/IconShare';
@@ -8,6 +6,7 @@ import { motion } from 'framer-motion';
 import CommonButton from '../../motion/CommonButton/CommonButton';
 import { useCallback, useState } from 'react';
 import ModalBottom from '../../modal/ModalBottom/ModalBottom';
+import ProductFooterModal from './ProductFooterModal/ProductFooterModal';
 
 interface ProductFooterProps {
   id: string | undefined;
@@ -17,8 +16,7 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
   /**
    * ProductDetail 페이지에서 사용할 Footer입니다.
    */
-  const { cartQuery } = useCart();
-  const { productQuery, getProduct } = useProduct();
+
   const [showModal, setShowModal] = useState(false);
 
   const handleClickShare = () => {
@@ -32,7 +30,7 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
   };
 
   const handleClickBuyButton = async () => {
-    if (id === undefined || !cartQuery.isSuccess) return;
+    if (id === undefined) return;
     setShowModal(true);
   };
 
@@ -40,14 +38,7 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
     setShowModal(false);
   }, [setShowModal]);
 
-  if (
-    id === undefined ||
-    !cartQuery.isSuccess ||
-    !productQuery.isSuccess ||
-    getProduct(id) === null
-  )
-    return <></>;
-
+  if (id === undefined) return <></>;
   return (
     <>
       <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} transition={{ duration: 0.2 }}>
@@ -80,7 +71,7 @@ const ProductFooter = ({ id }: ProductFooterProps) => {
         </S.Component>
       </motion.div>
       <ModalBottom isOpen={showModal} onRequestClose={handleCloseModal}>
-        modal gogosing
+        <ProductFooterModal productId={id} />
       </ModalBottom>
     </>
   );

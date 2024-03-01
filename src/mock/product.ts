@@ -17,7 +17,7 @@ const product: ProductProps = {
   name: '크롭 패디드 숄더 해링턴 자켓 (브라운)',
   categoryLarge: 'man',
   categoryMedium: '아우터',
-  option: ['S', 'M', 'L'],
+  option: { size: ['S', 'M', 'L'] },
   salesVolume: 0,
   thumb: ['../img/products/p1001-1.jpg', '../img/products/p1001-2.jpg'],
   imgURL: '../img/products/p1001-detail.jpg',

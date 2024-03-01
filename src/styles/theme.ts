@@ -11,6 +11,7 @@ const color = {
   GRAY7: '#7D7D7D',
   ACTIVE: '#000',
   SIGNATURE: '#FF4800',
+  LIGHT_SIGNATURE: '#FDF0EC',
   BLUE: '#375FFF',
 
   SELECTION_BG: '#FF4800',

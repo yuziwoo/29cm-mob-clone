@@ -41,23 +41,26 @@ const ContentWrap = styled.div<{ $isOpen: boolean }>`
 
   & > .modal-motion-content {
     width: 100%;
-    padding: 0 ${theme.padding.DEFAULT} 8rem;
+    padding: 0 ${theme.padding.DEFAULT} 4rem;
     background: white;
     position: relative;
     border-top-left-radius: 2.5rem;
     border-top-right-radius: 2.5rem;
     border-bottom-left-radius: 0;
     min-height: 300px;
+    max-height: 90vh;
+    height: fit-content;
+    box-shadow: 0px 7.8px 0px rgba(255, 255, 255, 0.877), 0px 17.2px 0px rgba(255, 255, 255, 1.154),
+      0px 28.8px 0px rgba(255, 255, 255, 1.325), 0px 43.4px 0px rgba(255, 255, 255, 1.436),
+      0px 62.6px 0px rgba(255, 255, 255, 1.505), 0px 88.6px 0px rgba(255, 255, 255, 1.538),
+      0px 125.7px 0px rgba(255, 255, 255, 1.535), 0px 182.5px 0px rgba(255, 255, 255, 1.492),
+      0px 281.3px 0px rgba(255, 255, 255, 1.389), 0px 500px 0px rgba(255, 255, 255, 1);
   }
 
-  & > .modal-motion-content::after {
-    background: ${theme.color.WHITE};
-    width: 100%;
-    left: 0;
-    top: 100%;
-    height: 100vh;
-    content: '';
-    position: absolute;
+  @media screen and (max-width: 400px) {
+    & > .modal-motion-content {
+      min-height: 150px;
+    }
   }
 `;
 

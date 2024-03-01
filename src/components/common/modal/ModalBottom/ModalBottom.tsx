@@ -68,7 +68,8 @@ const ModalBottom = ({ isOpen, onRequestClose, children }: ModalBottomProps) => 
         <S.ContentWrap $isOpen={isOpen}>
           <motion.div
             drag="y"
-            dragConstraints={{ bottom: 0, top: 0 }}
+            dragConstraints={{ top: 0 }}
+            dragSnapToOrigin={true}
             dragElastic={true}
             dragMomentum={true}
             className="modal-motion-content"

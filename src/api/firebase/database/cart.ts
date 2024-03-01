@@ -5,6 +5,7 @@ import {
   UpdateItemQuantityProps,
   AddItemProps,
   UpdateItemOptionsProps,
+  AddSeveralOptionsItemProps,
 } from '../../../types/cart';
 import { firebaseDB } from '../firebase';
 import { queryAPI } from '../../../constants/query';
@@ -18,6 +19,10 @@ interface CartInterface {
   getCartItems: () => Promise<CartList> | null;
   updateItemQuantity: ({ itemKey, count }: UpdateItemQuantityProps) => Promise<void>;
   addItem: ({ productId, selectOption, count }: AddItemProps) => Promise<DatabaseReference>;
+  addSeveralOptionsItem: ({
+    productId,
+    selectOptions,
+  }: AddSeveralOptionsItemProps) => Promise<DatabaseReference[]>;
   updateItemOptions: ({ itemKey, selectOption }: UpdateItemOptionsProps) => Promise<void>;
   removeItem: ({ itemKey }: { itemKey: CartItemKey }) => Promise<void>;
 }
@@ -57,9 +62,24 @@ export class Cart implements CartInterface {
     if (!this.isValidateUid) throw new Error('로그인 후 이용 가능합니다.');
     return push(ref(firebaseDB, `${queryAPI.queryKey.cart}/${this.userId}/`), {
       productId,
-      selectOption,
+      options: selectOption,
       count,
     });
+  }
+
+  async addSeveralOptionsItem({ productId, selectOptions }: AddSeveralOptionsItemProps) {
+    if (!this.isValidateUid) throw new Error('로그인 후 이용 가능합니다.');
+    const promiseArray = selectOptions.map(({ option, count }) => {
+      return new Promise<DatabaseReference>((resolve) => {
+        const newRef = push(ref(firebaseDB, `${queryAPI.queryKey.cart}/${this.userId}/`), {
+          productId,
+          options: option,
+          count,
+        });
+        resolve(newRef);
+      });
+    });
+    return Promise.all(promiseArray);
   }
 
   async updateItemOptions({ itemKey, selectOption }: UpdateItemOptionsProps) {

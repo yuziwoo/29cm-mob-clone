@@ -1,8 +1,10 @@
+import { SelectedOption } from './product';
+
 export type CartItemKey = string;
 
 export type CartItemProps = {
   productId: string;
-  options: Record<string, string[]>;
+  options: Record<string, string>;
   count: number;
 };
 
@@ -13,15 +15,25 @@ export type UpdateItemQuantityProps = {
   count: Pick<CartItemProps, 'count'>;
 };
 
+export type SelectedProductOption = Record<string, string>;
+
 export type AddItemProps = Pick<CartItemProps, 'productId' | 'count'> & {
-  selectOption: Record<string, string>;
+  selectOption: SelectedProductOption;
+};
+
+export type AddSeveralOptionsItemProps = Pick<CartItemProps, 'productId'> & {
+  selectOptions: SelectedOption[];
 };
 
 export type UpdateItemOptionsProps = {
   itemKey: CartItemKey;
-  selectOption: Record<string, string>;
+  selectOption: SelectedProductOption;
 };
 
 export type IsItemInCartProps = Pick<CartItemProps, 'productId'> & {
-  selectOption: Record<string, string>;
+  selectOption: SelectedProductOption;
+};
+
+export type RemoveDuplicateItemsProps = Pick<CartItemProps, 'productId'> & {
+  selectOptions: SelectedOption[];
 };
