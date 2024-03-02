@@ -6,6 +6,7 @@ import CartPayingButton from '../CartPayingButton/CartPayingButton';
 import CommonButton from '../../common/motion/CommonButton/CommonButton';
 import IconCheckbox2 from '../../icons/IconCheckbox2';
 import { theme } from '../../../styles/theme';
+import CartFinalAmount from '../CartFinalAmount/CartFinalAmount';
 
 const CartListWrap = () => {
   /**
@@ -13,8 +14,10 @@ const CartListWrap = () => {
    * 상품을 나열, 선택/취소, 수량 수정, 삭제 등의 기능을 담당합니다.
    */
 
-  const [selectedItemKeys, setSelectedItemKeys] = useState<string[]>([]);
   const { cartQuery, updateItemQuantity, removeItem } = useCart();
+  const [selectedItemKeys, setSelectedItemKeys] = useState<string[]>(
+    cartQuery.data !== undefined ? Object.keys(cartQuery.data) : []
+  );
 
   const handleCheckItem = useCallback(
     (itemKey: string) => {
@@ -80,6 +83,7 @@ const CartListWrap = () => {
           </CommonButton>
         )}
       </S.Header>
+
       <S.List>
         {Object.keys(cartQuery.data).map((itemKey) => (
           <CartListItem
@@ -100,6 +104,8 @@ const CartListWrap = () => {
           />
         ))}
       </S.List>
+
+      <CartFinalAmount cartData={selectedItemKeys.map((itemKey) => cartQuery.data[itemKey])} />
       <CartPayingButton cartData={selectedItemKeys.map((itemKey) => cartQuery.data[itemKey])} />
     </S.Component>
   );

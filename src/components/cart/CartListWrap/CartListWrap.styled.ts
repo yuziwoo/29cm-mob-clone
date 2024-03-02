@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
 const Component = styled.div`
-  padding: ${theme.padding.BODY_WITH_BOTTOM_MARGIN};
+  padding: ${theme.padding.BODY};
 `;
 
 const Header = styled.div`
