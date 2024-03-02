@@ -48,7 +48,9 @@ const SelectRemove = styled.p`
   font-weight: 500;
 `;
 
-const List = styled.div``
+const List = styled.div`
+  border-top: 2px solid ${theme.color.BLACK};
+`;
 
 export const ComponentStyle = {
   Component,
@@ -57,5 +59,5 @@ export const ComponentStyle = {
   Checkbox,
   SelectAmount,
   SelectRemove,
-  List
+  List,
 };
