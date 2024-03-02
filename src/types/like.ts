@@ -1,1 +1,1 @@
-export type LikeList = string[];
+export type LikeList = Record<string, number>;

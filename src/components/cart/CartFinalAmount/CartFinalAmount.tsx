@@ -17,7 +17,6 @@ const CartFinalAmount = ({ cartData }: CartFinalAmountProps) => {
 
   const [finalPrice, setFinalPrice] = useState(0);
   const [originalPrice, setOriginalPrice] = useState(0);
-  const [count, setCount] = useState();
   const { productQuery, getProduct } = useProduct();
 
   useEffect(() => {

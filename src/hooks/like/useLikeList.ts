@@ -3,10 +3,11 @@ import { userState } from '../../recoil/auth';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { queryAPI } from '../../constants/query';
 import { addLikeItem, getLikeItems, removeLikeItem } from '../../api/firebase/database/like';
+import { LikeList } from '../../types/like';
 
 export const useLikeList = () => {
   /**
-   * firebase DB에서 유저의 좋아요한 상품 리스트를 가져옵니다.
+   * firebase DB에서 유저가 좋아요한 상품 리스트를 가져옵니다.
    */
 
   const [user] = useRecoilState(userState);
@@ -14,7 +15,7 @@ export const useLikeList = () => {
   const queryClient = useQueryClient();
   const queryKey = [queryAPI.queryKey.like, uid];
 
-  const likeQuery = useQuery({
+  const likeQuery = useQuery<LikeList>({
     queryKey,
     queryFn: async () => {
       const result = await getLikeItems(uid);

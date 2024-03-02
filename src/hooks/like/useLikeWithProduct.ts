@@ -5,9 +5,10 @@ import { useLikeList } from './useLikeList';
 export const useLikeWithProduct = ({ productId }: { productId: string }) => {
   /**
    * 상품의 좋아요를 누르면
-   * 나의 좋아요 리스트 (useLikeList)와 상품 자체의 좋아요 숫자(useProduct)가 모두 바뀌어야합니다.
+   * 나의 좋아요 리스트 (useLikeList)와 상품의 좋아요 숫자(useProduct)가 모두 바뀌어야합니다.
    * 이 두가지를 모두 수행하기 위해서 상품 좋아요 기능은 useLikeWithProduct 훅을 사용해주세요.
    */
+
   const { likeQuery, addItem, removeItem } = useLikeList();
   const { productQuery, addLikes, subtractLikes } = useProduct();
 
@@ -28,10 +29,10 @@ export const useLikeWithProduct = ({ productId }: { productId: string }) => {
   }, [productQuery.isSuccess, likeQuery.isSuccess, productQuery.data, productId]);
 
   useEffect(() => {
-    if (isReady) {
+    if (likeQuery.data !== undefined) {
       setLiked(likeQuery.data.hasOwnProperty(productId));
     }
-  }, [likeQuery.data, productId, isReady]);
+  }, [likeQuery.data, productId]);
 
   const removeLike = useCallback(
     (productId: string) => {
@@ -53,7 +54,7 @@ export const useLikeWithProduct = ({ productId }: { productId: string }) => {
 
   const toggleLike = useCallback(async () => {
     const likeList = await likeQuery.refetch().then((res) => res.data);
-    if (likeList.hasOwnProperty(productId)) {
+    if (likeList && likeList.hasOwnProperty(productId)) {
       removeLike(productId);
       return;
     }

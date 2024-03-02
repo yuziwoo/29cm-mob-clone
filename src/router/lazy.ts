@@ -18,6 +18,8 @@ export const LazyShowcaseDetailPage = lazy(
 export const LazyLoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 export const LazyJoinPage = lazy(() => import('../pages/JoinPage/JoinPage'));
 
+export const LazyLikePage = lazy(() => import('../pages/LikePage/LikePage'));
+
 // search page
 export const LazySearchPage = lazy(() => import('../pages/SearchPage/SearchPage'));
 export const LazySearchDetailPage = lazy(
@@ -26,4 +28,4 @@ export const LazySearchDetailPage = lazy(
 
 // my page
 export const LazyMyPage = lazy(() => import('../pages/MyPage/MyPage'));
-export const LazyMyEditInfoPage = lazy(() => import('../pages/MyEditInfoPage/MyEditInfoPage'))
+export const LazyMyEditInfoPage = lazy(() => import('../pages/MyEditInfoPage/MyEditInfoPage'));

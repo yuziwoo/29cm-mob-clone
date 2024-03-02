@@ -21,6 +21,7 @@ import LoginPageSkeleton from '../pages/LoginPage/LoginPageSkeleton';
 import JoinPageSkeleton from '../pages/JoinPage/JoinPageSkeleton';
 import MyPageSkeleton from '../pages/MyPage/MyPageSkeleton';
 import MyEditInfoPageSkeleton from '../pages/MyEditInfoPage/MyEditInfoPageSkeleton';
+import LikePageSkeleton from '../pages/LikePage/LikePageSkeleton';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LifePageSkeleton />}>
             <Lazy.LazyLifePage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.like,
+        element: (
+          <Suspense fallback={<LikePageSkeleton />}>
+            <Lazy.LazyLikePage />
           </Suspense>
         ),
       },

@@ -1,19 +1,25 @@
 import { ComponentStyle as S } from './ListProductSimple.style';
 import { ProductProps } from '../../../types/product';
-import { motion } from 'framer-motion';
 import { useRouter } from '../../../hooks/useRouter';
 import { useCallback } from 'react';
 import { ROUTE_PATH } from '../../../constants/path';
-import { motionStyle } from '../../../styles/motion';
 import ProductLikes from '../ProductLikes/ProductLikes';
 import { getDiscount } from '../../../utils/getDiscount';
-import { mockProduct } from '../../../mock/product';
 import SkeletonProductList from '../../skeleton/product/SkeletonProductList';
+import CommonButton from '../../common/motion/CommonButton/CommonButton';
 
 interface ListProductSimpleProps {
   product: ProductProps | undefined;
   productId: string | undefined;
 }
+
+const emptyProduct = {
+  thumb: '',
+  brandName: '',
+  name: '',
+  discount: 0,
+  price: 0,
+};
 
 const ListProductSimple = ({ product, productId }: ListProductSimpleProps) => {
   /**
@@ -28,25 +34,23 @@ const ListProductSimple = ({ product, productId }: ListProductSimpleProps) => {
     name,
     discount: priceAfterDiscount,
     price: originalPrice,
-  } = product !== undefined ? product : mockProduct.product;
+  } = product !== undefined ? product : emptyProduct;
   const discount = getDiscount(originalPrice, priceAfterDiscount);
 
   const { navigate } = useRouter();
   const navigateProductPage = useCallback(() => {
-    navigate(ROUTE_PATH.productDetail.replace(':id', productId !== undefined ? productId : ''));
+    navigate(ROUTE_PATH.productDetail.replace(':id', productId ? productId : ''));
   }, [navigate, productId]);
 
   if (product === undefined || productId === undefined) return <SkeletonProductList />;
 
   return (
     <S.Component>
-      <S.Thumb onClick={navigateProductPage}>
-        <motion.img
-          src={thumb[0]}
-          whileTap={motionStyle.scaleImg.whileTap}
-          transition={motionStyle.scaleImg.transition}
-        />
-      </S.Thumb>
+      <CommonButton style={{ width: '100%' }}>
+        <S.Thumb onClick={navigateProductPage} style={{ backgroundImage: `url(${thumb[0]})` }}>
+          <S.ThumbSizer />
+        </S.Thumb>
+      </CommonButton>
 
       <S.FlexSpaceBetween>
         <S.Brand onClick={navigateProductPage}>{brandName}</S.Brand>

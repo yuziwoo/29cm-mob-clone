@@ -2,7 +2,7 @@
 
 - <strong style="color:yellow">29CM 모바일 클론 코딩</strong>
 - [어플리케이션 보러가기](https://yuziwoo.netlify.com)
-- [프로젝트 블로그](https://www.notion.so/yuziwoo2/29cm-Clone-6d878d55288d4e65940cb9223f30a358?pvs=4)
+- [프로젝트 블로그](https://yuziwoo2.notion.site/2024-03-02-29cm-Clone-6d878d55288d4e65940cb9223f30a358?pvs=4)
 - 29CM의 어플리케이션을 클론 코딩 + 업그레이드한 웹 어플리케이션 28CM를 이용해보세요!
 
 ## Develop

@@ -8,10 +8,14 @@ const Component = styled.div`
 const Thumb = styled.div`
   overflow: hidden;
   width: 100%;
+  background-color: ${theme.color.GRAY1};
+  background-size: cover;
+  background-position: center center;
+`;
 
-  & img {
-    width: 100%;
-  }
+const ThumbSizer = styled.div`
+  width: 100%;
+  padding-bottom: 100%;
 `;
 
 const FlexSpaceBetween = styled.div`
@@ -70,6 +74,7 @@ const Price = styled.h3`
 export const ComponentStyle = {
   Component,
   Thumb,
+  ThumbSizer,
   FlexSpaceBetween,
   FlexStart,
   Heart,
