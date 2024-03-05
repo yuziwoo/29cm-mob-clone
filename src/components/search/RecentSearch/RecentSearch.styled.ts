@@ -38,7 +38,7 @@ const Keyword = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 8px 16px;
   margin-right: 10px;
   border: 1px solid ${theme.color.GRAY2};
   border-radius: 30px;
