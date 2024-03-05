@@ -10,7 +10,12 @@ const productDetail = {
   REVIEW: 'review',
 };
 
+const search = {
+  INPUT: 'search-input',
+};
+
 export const elementId = {
   productDetail,
   common,
+  search,
 } as const;

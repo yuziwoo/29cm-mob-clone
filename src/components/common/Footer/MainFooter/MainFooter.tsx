@@ -19,15 +19,16 @@ interface MainFooterProps {
 const MainFooter = ({ firstPath }: MainFooterProps) => {
   /**
    * MainFooter 기능
-   * - firstPath에 따라 알맞는 버튼을 활성화 시킵니다.
-   * - 활성화된 상태의 버튼을 클릭시 navigate가 아닌 scrollTop 기능이 실행됩니다.
+   * 1. firstPath에 따라 알맞는 버튼을 활성화 시킵니다.
+   * 2. 활성화된 상태의 버튼을 클릭시 navigate가 아닌 scrollTop 기능이 실행됩니다.
+   *   - Search 페이지에서는 SearchDetail 페이지에서 다시 SearchPage로 돌아오고 싶을 수 있기 때문에 2번 기능을 사용하지 않습니다.
    */
 
   const { navigate } = useRouter();
 
   const handleClickButton = useCallback(
     (isActive: boolean, path: string) => {
-      if (isActive) {
+      if (isActive && path !== ROUTE_PATH.search) {
         scrollTop();
         return;
       }
