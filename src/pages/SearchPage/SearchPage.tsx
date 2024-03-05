@@ -5,10 +5,15 @@ import RecentSearch from '../../components/search/RecentSearch/RecentSearch';
 import SearchWordRanking from '../../components/search/SearchWordRanking/SearchWordRanking';
 
 const SearchPage = () => {
-  const { searchWordRankingQuery, getRecentSearch, updateRecentSearch } = useSearch();
+  const { searchWordRankingQuery, getRecentSearch, updateRecentSearch, addRecentSearch } =
+    useSearch();
 
   const handleChangeRecentSearch = (newRecentSearch: string) => {
     updateRecentSearch(newRecentSearch);
+  };
+
+  const handleClickKeywordRank = (keyword: string) => {
+    addRecentSearch(keyword);
   };
 
   return (
@@ -18,7 +23,10 @@ const SearchPage = () => {
           recentSearch={getRecentSearch()}
           onChangeRecentSearch={handleChangeRecentSearch}
         />
-        <SearchWordRanking words={searchWordRankingQuery.data} />
+        <SearchWordRanking
+          words={searchWordRankingQuery.data}
+          onClickKeywordRank={handleClickKeywordRank}
+        />
       </S.Page>
     </CommonPageAnimation>
   );

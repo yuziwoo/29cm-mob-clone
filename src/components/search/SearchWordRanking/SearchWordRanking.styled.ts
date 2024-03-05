@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../../styles/theme';
 
 const Component = styled.div`
@@ -25,9 +25,42 @@ const UpdateTime = styled.p`
   color: ${theme.color.GRAY5};
 `;
 
+const Ul = styled.ul`
+  padding: 10px ${theme.padding.DEFAULT} 0;
+`;
+
+const List = styled.li`
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px 0;
+  // border-bottom: 1px solid ${theme.color.GRAY1};
+`;
+
+const keywordText = css`
+  font-size: 15px;
+  font-weight: 500;
+  color: ${theme.color.BLACK};
+`;
+
+const Rank = styled.p`
+  ${keywordText};
+  text-align: left;
+  width: 32px;
+`;
+
+const Keyword = styled.p`
+  ${keywordText};
+`;
+
 export const ComponentStyle = {
   Component,
   TitleWrap,
   Title,
   UpdateTime,
+  Ul,
+  List,
+  Rank,
+  Keyword,
 };

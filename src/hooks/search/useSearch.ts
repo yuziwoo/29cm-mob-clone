@@ -58,8 +58,15 @@ export const useSearch = () => {
       return;
     }
 
-    const newData = `${localStorageData},${keyword}`;
-    localStorage.setItem(localStorageAPI.recentSearch.name, newData);
+    const newData = [
+      keyword,
+      ...localStorageData.split(localStorageAPI.recentSearch.separateSymbol),
+    ];
+    const filteredNewData = newData
+      .filter((keyword, index) => newData.indexOf(keyword) === index)
+      .join(localStorageAPI.recentSearch.separateSymbol);
+
+    localStorage.setItem(localStorageAPI.recentSearch.name, filteredNewData);
   };
 
   const updateRecentSearch = (newRecentSearch: string) => {
