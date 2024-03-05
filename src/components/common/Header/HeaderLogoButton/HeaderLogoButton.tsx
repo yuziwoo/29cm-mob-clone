@@ -8,9 +8,10 @@ import IconLogo from '../../../icons/IconLogo';
 
 interface HeaderLogoButtonProps {
   firstPath: string;
+  color?: string;
 }
 
-const HeaderLogoButton = ({ firstPath }: HeaderLogoButtonProps) => {
+const HeaderLogoButton = ({ firstPath, color = theme.color.BLACK }: HeaderLogoButtonProps) => {
   /**
    * Header의 로고 버튼 컴포넌트입니다.
    */
@@ -28,7 +29,7 @@ const HeaderLogoButton = ({ firstPath }: HeaderLogoButtonProps) => {
   return (
     <CommonButton onClick={handleClickLogo}>
       <S.Component>
-        <IconLogo color={theme.color.BLACK} />
+        <IconLogo color={color} />
       </S.Component>
     </CommonButton>
   );

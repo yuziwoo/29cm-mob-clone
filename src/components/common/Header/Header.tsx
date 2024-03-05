@@ -40,7 +40,7 @@ const Header = ({ firstPath }: HeaderProps) => {
         <S.Header id={elementId.common.HEADER} $backgroundTransparent={true}>
           <HeaderShadow />
           <S.MainHeader>
-            <HeaderLogoButton firstPath={firstPath} />
+            <HeaderLogoButton firstPath={firstPath} color={theme.color.WHITE} />
             <HeaderIcons color={theme.color.WHITE} />
           </S.MainHeader>
           <HeaderCategory location={firstPath} />

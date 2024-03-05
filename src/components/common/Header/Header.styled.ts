@@ -28,16 +28,6 @@ const MainHeader = styled.section`
   padding: 20px 0;
 `;
 
-const Logo = styled.div`
-  height: 1.9rem;
-  min-height: 17px;
-
-  & svg {
-    display: block;
-    height: 100%;
-  }
-`;
-
 const RelatedHeight = styled.div<{ $height: undefined | number }>`
   height: ${({ $height }) => ($height !== undefined ? `${$height}px` : '100vh')};
 `;
@@ -45,6 +35,5 @@ const RelatedHeight = styled.div<{ $height: undefined | number }>`
 export const ComponentStyle = {
   Header,
   MainHeader,
-  Logo,
   RelatedHeight,
 };
