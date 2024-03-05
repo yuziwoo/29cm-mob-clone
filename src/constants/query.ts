@@ -13,6 +13,7 @@ const queryKey = {
   product: 'products',
   brands: 'brands',
   showcase: 'showcase',
+  searchWordRanking: 'searchWordRanking',
 };
 
 export const queryAPI = {

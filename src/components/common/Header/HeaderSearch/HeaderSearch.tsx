@@ -16,16 +16,16 @@ const HeaderSearch = () => {
   const [inputText, setInputText] = useState('');
 
   useEffect(() => {
-    if (keyword === undefined) return;
+    if (keyword === undefined) {
+      setInputText('');
+      const input = document.getElementById(elementId.search.INPUT);
+      if (input) {
+        input.focus();
+      }
+      return;
+    }
     setInputText(keyword);
   }, [keyword]);
-
-  useEffect(() => {
-    const input = document.getElementById(elementId.search.INPUT);
-    if (input) {
-      input.focus();
-    }
-  }, []);
 
   const handleSearch = useCallback(() => {
     if (inputText.length > 0) {

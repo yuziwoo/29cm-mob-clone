@@ -1,8 +1,11 @@
+import { useQuery } from '@tanstack/react-query';
 import { localStorageAPI } from '../../constants/localStorage';
 import { mockSearchWordRanking } from '../../mock/search';
 import { FormatedProductProps } from '../../types/product';
 import { useBrand } from '../brand/useBrand';
 import { useProduct } from '../product/useProduct';
+import { queryAPI } from '../../constants/query';
+import { SearchWordRankingProps } from '../../types/search';
 
 export const useSearch = () => {
   /**
@@ -34,7 +37,13 @@ export const useSearch = () => {
     return searchResult;
   };
 
-  const getSearchWordRanking = () => mockSearchWordRanking;
+  const searchWordRankingQuery = useQuery<SearchWordRankingProps>({
+    queryKey: [queryAPI.queryKey.searchWordRanking],
+    queryFn: async () => {
+      const result = mockSearchWordRanking;
+      return result;
+    },
+  });
 
   const getRecentSearch = (): null | string => {
     const result = localStorage.getItem(localStorageAPI.recentSearch.name);
@@ -60,7 +69,7 @@ export const useSearch = () => {
   return {
     searchBrand,
     searchProduct,
-    getSearchWordRanking,
+    searchWordRankingQuery,
     getRecentSearch,
     addRecentSearch,
     updateRecentSearch,

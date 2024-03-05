@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { ComponentStyle as S } from './RecentSearch.styled';
 import { localStorageAPI } from '../../../constants/localStorage';
 import CommonButton from '../../common/motion/CommonButton/CommonButton';
+import { useRouter } from '../../../hooks/useRouter';
+import { ROUTE_PATH } from '../../../constants/path';
 
 interface RecentSearchProps {
   recentSearch: string | null;
@@ -14,6 +16,7 @@ const RecentSearch = ({ recentSearch, onChangeRecentSearch }: RecentSearchProps)
    */
 
   const [keywords, setKeywords] = useState<string[] | null>(null);
+  const { navigate } = useRouter();
 
   useEffect(() => {
     setKeywords(
@@ -42,6 +45,13 @@ const RecentSearch = ({ recentSearch, onChangeRecentSearch }: RecentSearchProps)
     onChangeRecentSearch('');
   }, [onChangeRecentSearch]);
 
+  const handleClickKeyword = useCallback(
+    (keyword: string) => {
+      navigate(ROUTE_PATH.searchDetail.replace(':keyword', keyword));
+    },
+    [navigate]
+  );
+
   if (keywords === null || keywords.length === 0) return <></>;
 
   return (
@@ -56,15 +66,20 @@ const RecentSearch = ({ recentSearch, onChangeRecentSearch }: RecentSearchProps)
       <S.Keywords>
         <S.KeywordsWrap>
           {keywords.map((keyword, index) => (
-            <CommonButton
-              key={index}
-              onClick={() => {
-                handleRemoveKeyword(index);
-              }}
-            >
+            <CommonButton key={index}>
               <S.Keyword>
-                <S.KeywordText>{keyword}</S.KeywordText>
-                <S.DeleteIcon />
+                <S.KeywordText
+                  onClick={() => {
+                    handleClickKeyword(keyword);
+                  }}
+                >
+                  {keyword}
+                </S.KeywordText>
+                <S.DeleteIcon
+                  onClick={() => {
+                    handleRemoveKeyword(index);
+                  }}
+                />
               </S.Keyword>
             </CommonButton>
           ))}
