@@ -1,0 +1,26 @@
+{
+  "0": {
+    "nameKo": "쿠어",
+    "nameEn": "COOR",
+    "id": 100,
+    "thumb": "img/brand/100/thumb.jpg",
+    "mainImg": "img/brand/100/main.jpg",
+    "showcase": { "0": 10000 }
+  },
+  "1": {
+    "nameKo": "어랜",
+    "nameEn": "AARAN",
+    "id": 101,
+    "thumb": "img/brand/101/thumb.jpg",
+    "mainImg": "img/brand/101/main.jpg",
+    "showcase": {}
+  },
+  "2": {
+    "nameKo": "소니",
+    "nameEn": "SONY",
+    "id": 102,
+    "thumb": "img/brand/102/thumb.jpg",
+    "mainImg": "img/brand/102/main.jpg",
+    "showcase": {}
+  }
+}
