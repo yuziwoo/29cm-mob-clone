@@ -19,6 +19,7 @@ export const LazyLoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 export const LazyJoinPage = lazy(() => import('../pages/JoinPage/JoinPage'));
 
 export const LazyLikePage = lazy(() => import('../pages/LikePage/LikePage'));
+export const LazyCategoryPage = lazy(() => import('../pages/CategoryPage/CategoryPage'));
 
 // search page
 export const LazySearchPage = lazy(() => import('../pages/SearchPage/SearchPage'));

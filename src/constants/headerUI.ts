@@ -6,7 +6,7 @@ import { FIRST_PATH } from './firstPath';
  */
 
 const MAIN = ['', FIRST_PATH.man, FIRST_PATH.woman, FIRST_PATH.life, FIRST_PATH.best];
-const HIDDEN = [FIRST_PATH.category, FIRST_PATH.search, FIRST_PATH.searchDetail];
+const HIDDEN: string[] = [];
 const ONLY_BACKBUTTON = [FIRST_PATH.alert, FIRST_PATH.cart, FIRST_PATH.login, FIRST_PATH.join];
 const BACKBUTTON_AND_ICONS = [
   FIRST_PATH.my,
@@ -15,10 +15,12 @@ const BACKBUTTON_AND_ICONS = [
   FIRST_PATH.brandDetail,
   FIRST_PATH.showcaseDetail,
 ];
+const SEARCH = [FIRST_PATH.search, FIRST_PATH.searchDetail];
 
 export const headerUI = {
   MAIN,
   HIDDEN,
   ONLY_BACKBUTTON,
   BACKBUTTON_AND_ICONS,
+  SEARCH,
 } as const;

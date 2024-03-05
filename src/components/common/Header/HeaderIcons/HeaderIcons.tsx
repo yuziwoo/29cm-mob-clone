@@ -4,11 +4,10 @@ import IconCart from '../../../icons/IconCart';
 import IconSearch from '../../../icons/IconSearch';
 import { theme } from '../../../../styles/theme';
 import { ROUTE_PATH } from '../../../../constants/path';
-import { motion } from 'framer-motion';
-import { motionStyle } from '../../../../styles/motion';
 import { useRouter } from '../../../../hooks/useRouter';
 import useCart from '../../../../hooks/cart/useCart';
 import { useEffect, useState } from 'react';
+import CommonButton from '../../motion/CommonButton/CommonButton';
 
 interface HeaderIconsProps {
   color: string;
@@ -43,30 +42,21 @@ const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
   return (
     <S.Component>
       <S.ButtonWrap onClick={handleClickSearch}>
-        <motion.button
-          whileTap={motionStyle.primaryButton.whileTap}
-          transition={motionStyle.primaryButton.transition}
-        >
+        <CommonButton>
           <IconSearch color={color} />
-        </motion.button>
+        </CommonButton>
       </S.ButtonWrap>
 
       <S.ButtonWrap onClick={handleClickAlert}>
-        <motion.button
-          whileTap={motionStyle.primaryButton.whileTap}
-          transition={motionStyle.primaryButton.transition}
-        >
+        <CommonButton>
           <IconAlert color={color} />
-        </motion.button>
+        </CommonButton>
       </S.ButtonWrap>
 
       <S.ButtonWrap onClick={handleClickCart}>
-        <motion.button
-          whileTap={motionStyle.primaryButton.whileTap}
-          transition={motionStyle.primaryButton.transition}
-        >
+        <CommonButton>
           <IconCart color={color} />
-        </motion.button>
+        </CommonButton>
         {cartQuantity > 0 && (
           <S.Count>
             <p>{cartQuantity}</p>
