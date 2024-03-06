@@ -17,7 +17,7 @@ export type ProductProps = {
   reviewRating: number;
 };
 
-export type FormatedProductProps = { id: string } & ProductProps;
+export type FormatedProductProps = { productId: string } & ProductProps;
 
 export type Products = Record<string, ProductProps>;
 

@@ -4,6 +4,7 @@ import { ComponentStyle as S } from './SearchWordRanking.styled';
 import { getTwoDigitString } from '../../../utils/getTwoDigitString';
 import { useRouter } from '../../../hooks/useRouter';
 import { ROUTE_PATH } from '../../../constants/path';
+import { theme } from '../../../styles/theme';
 
 interface SearchWordRankingComponentProps {
   words: SearchWordRankingProps | undefined;
@@ -48,7 +49,9 @@ const SearchWordRanking = ({ words, onClickKeywordRank }: SearchWordRankingCompo
               handleClickKeyword(keyword);
             }}
           >
-            <S.Rank>{index + 1}</S.Rank>
+            <S.Rank $color={index < 3 ? theme.color.SIGNATURE : theme.color.BLACK}>
+              {index + 1}
+            </S.Rank>
             <S.Keyword>{keyword}</S.Keyword>
           </S.List>
         ))}

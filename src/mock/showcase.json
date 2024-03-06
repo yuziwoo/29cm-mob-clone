@@ -2,16 +2,16 @@
   "0": {
     "id": 10000,
     "title": "PASTENSIZE 24SS CAMPAIGN",
-    "thumb": "img/showcase/10000/thumb"
+    "thumb": "../img/showcase/10000/thumb.jpg"
   },
   "1": {
     "id": 10001,
     "title": "AARAN 2024 SS",
-    "thumb": "img/showcase/10001/thumb"
+    "thumb": "../img/showcase/10001/thumb.jpg"
   },
   "2": {
     "id": 10002,
     "title": "나만의 세상. 완전히 몰입하다.",
-    "thumb": "img/showcase/10002/thumb"
+    "thumb": "../img/showcase/10002/thumb.jpg"
   }
 }

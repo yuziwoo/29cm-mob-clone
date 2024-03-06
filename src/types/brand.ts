@@ -4,5 +4,5 @@ export type BrandProps = {
   nameEn: string;
   thumb: string;
   mainImg: string;
-  showcase: number[];
+  showcase: Record<string, number>;
 };

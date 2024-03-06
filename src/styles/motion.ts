@@ -8,6 +8,11 @@ const scaleButton = {
   transition: { duration: 0.15 },
 };
 
+const opacityButton = {
+  whileTap: { opacity: 0.5 },
+  transition: { duration: 0.15 },
+};
+
 const scaleImg = {
   whileTap: { scale: 1.05 },
   transition: { duration: 0.15 },
@@ -23,6 +28,7 @@ const pageOpen = {
 export const motionStyle = {
   primaryButton,
   scaleButton,
+  opacityButton,
   scaleImg,
   pageOpen,
 } as const;

@@ -14,8 +14,7 @@ function App() {
 
   useEffect(() => {
     initializeAuth();
-    // eslint-disable-next-line
-  }, []);
+  }, [initializeAuth]);
 
   return (
     <S.App className="App">

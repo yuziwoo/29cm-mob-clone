@@ -14,6 +14,8 @@ const queryKey = {
   brands: 'brands',
   showcase: 'showcase',
   searchWordRanking: 'searchWordRanking',
+  searchBrand: 'searchBrand',
+  searchProduct: 'searchProduct',
 };
 
 export const queryAPI = {

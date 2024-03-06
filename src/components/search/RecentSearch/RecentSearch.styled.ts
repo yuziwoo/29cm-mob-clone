@@ -39,7 +39,7 @@ const Keyword = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  margin-right: 10px;
+  margin: 0 10px 10px 0;
   border: 1px solid ${theme.color.GRAY2};
   border-radius: 30px;
 `;

@@ -10,11 +10,12 @@ export const useShowcase = () => {
 
   const queryKey = [queryAPI.queryKey.brands];
 
-  const showcaseQuery = useQuery<ShowcaseProps[]>({
+  const showcaseQuery = useQuery<ShowcaseProps[] | null>({
     queryKey,
     queryFn: async () => {
       const result = await getShowcaseData();
-      return result;
+      if (Array.isArray(result)) return result;
+      return null;
     },
     staleTime: queryAPI.staleTime.SHOWCASE,
   });

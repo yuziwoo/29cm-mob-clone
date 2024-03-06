@@ -41,17 +41,18 @@ const List = styled.li`
 const keywordText = css`
   font-size: 15px;
   font-weight: 500;
-  color: ${theme.color.BLACK};
 `;
 
-const Rank = styled.p`
+const Rank = styled.p<{ $color?: string }>`
   ${keywordText};
   text-align: left;
   width: 32px;
+  color: ${({ $color }) => ($color ? $color : theme.color.BLACK)};
 `;
 
 const Keyword = styled.p`
   ${keywordText};
+  color: ${theme.color.BLACK};
 `;
 
 export const ComponentStyle = {

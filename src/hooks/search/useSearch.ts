@@ -1,41 +1,51 @@
 import { useQuery } from '@tanstack/react-query';
 import { localStorageAPI } from '../../constants/localStorage';
 import { mockSearchWordRanking } from '../../mock/search';
-import { FormatedProductProps } from '../../types/product';
-import { useBrand } from '../brand/useBrand';
-import { useProduct } from '../product/useProduct';
+import { Products } from '../../types/product';
 import { queryAPI } from '../../constants/query';
 import { SearchWordRankingProps } from '../../types/search';
+import { Http } from '../../api/http';
+import { BrandProps } from '../../types/brand';
 
-export const useSearch = () => {
+export const useSearch = (keyword: string = '') => {
   /**
    * 검색 기능을 사용할때 사용합니다.
    */
 
-  const { brandQuery } = useBrand();
-  const { productQuery } = useProduct();
+  const searchBrand = useQuery({
+    queryKey: [queryAPI.queryKey.searchBrand, keyword],
+    queryFn: async () => {
+      const searchResult = await Http.getWithoutClient<BrandProps[]>('../mock/brands.json').then(
+        (res) => {
+          return Object.values(res.data).filter(
+            ({ nameKo, nameEn }) => nameKo.includes(keyword) || nameEn.includes(keyword)
+          );
+        }
+      );
 
-  const searchBrand = (keyword: string) => {
-    if (!brandQuery.isSuccess) return [];
+      return searchResult;
+    },
+  });
 
-    const searchResult = brandQuery.data.filter(
-      ({ nameKo, nameEn }) => nameKo.includes(keyword) || nameEn.includes(keyword)
-    );
+  const searchProduct = useQuery({
+    queryKey: [queryAPI.queryKey.searchProduct, keyword],
+    queryFn: async () => {
+      const searchResult = await Http.getWithoutClient<Products>('../mock/product.json').then(
+        (res) => {
+          const formatedProducts = Object.keys(res.data).map((key) => ({
+            productId: key,
+            ...res.data[key],
+          }));
 
-    return searchResult;
-  };
+          return formatedProducts.filter(
+            ({ name, brandName }) => name.includes(keyword) || brandName.includes(keyword)
+          );
+        }
+      );
 
-  const searchProduct = (keyword: string): FormatedProductProps[] => {
-    if (!productQuery.isSuccess) return [];
-
-    const formattedProducts: FormatedProductProps[] = Object.keys(productQuery.data).map((key) => ({
-      id: key,
-      ...productQuery.data[key],
-    }));
-    const searchResult = formattedProducts.filter(({ name }) => name.includes(keyword));
-
-    return searchResult;
-  };
+      return searchResult;
+    },
+  });
 
   const searchWordRankingQuery = useQuery<SearchWordRankingProps>({
     queryKey: [queryAPI.queryKey.searchWordRanking],
@@ -64,13 +74,19 @@ export const useSearch = () => {
     ];
     const filteredNewData = newData
       .filter((keyword, index) => newData.indexOf(keyword) === index)
+      .slice(0, localStorageAPI.recentSearch.maxLength)
       .join(localStorageAPI.recentSearch.separateSymbol);
 
     localStorage.setItem(localStorageAPI.recentSearch.name, filteredNewData);
   };
 
   const updateRecentSearch = (newRecentSearch: string) => {
-    localStorage.setItem(localStorageAPI.recentSearch.name, newRecentSearch);
+    const filteredNewData = newRecentSearch
+      .split(localStorageAPI.recentSearch.separateSymbol)
+      .slice(0, localStorageAPI.recentSearch.maxLength)
+      .join(localStorageAPI.recentSearch.separateSymbol);
+
+    localStorage.setItem(localStorageAPI.recentSearch.name, filteredNewData);
   };
 
   return {

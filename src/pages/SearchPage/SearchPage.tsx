@@ -3,6 +3,7 @@ import { useSearch } from '../../hooks/search/useSearch';
 import { PageStyle as S } from './SearchPage.styled';
 import RecentSearch from '../../components/search/RecentSearch/RecentSearch';
 import SearchWordRanking from '../../components/search/SearchWordRanking/SearchWordRanking';
+import SkeletonLoading from '../../components/skeleton/common/SkeletonLoading';
 
 const SearchPage = () => {
   const { searchWordRankingQuery, getRecentSearch, updateRecentSearch, addRecentSearch } =
@@ -15,6 +16,15 @@ const SearchPage = () => {
   const handleClickKeywordRank = (keyword: string) => {
     addRecentSearch(keyword);
   };
+
+  if (!searchWordRankingQuery.isSuccess)
+    return (
+      <S.Page>
+        <S.Loading>
+          <SkeletonLoading />
+        </S.Loading>
+      </S.Page>
+    );
 
   return (
     <CommonPageAnimation>
