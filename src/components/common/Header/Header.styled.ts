@@ -25,6 +25,7 @@ const MainHeader = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   padding: 20px 0;
 `;
 
@@ -32,8 +33,18 @@ const RelatedHeight = styled.div<{ $height: undefined | number }>`
   height: ${({ $height }) => ($height !== undefined ? `${$height}px` : '100vh')};
 `;
 
+const Title = styled.h1`
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+  position: absolute;
+  width: 100%;
+`;
+
 export const ComponentStyle = {
   Header,
   MainHeader,
   RelatedHeight,
+  Title,
 };

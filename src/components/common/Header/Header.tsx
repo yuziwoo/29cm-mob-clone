@@ -7,6 +7,7 @@ import HeaderUIMain from './HeaderUI/HeaderUIMain';
 import HeaderUIOnlyBackbutton from './HeaderUI/HeaderUIOnlyBackbutton';
 import HeaderUIBackbuttonAndIcons from './HeaderUI/HeaderUIBackbuttonAndIcons';
 import HeaderUISearch from './HeaderUI/HeaderUISearch';
+import HeaderUIAlert from './HeaderUI/HeaderUIAlert';
 
 interface HeaderProps {
   firstPath: string;
@@ -45,6 +46,9 @@ const Header = ({ firstPath }: HeaderProps) => {
 
   // 뒤로가기와 검색 Input을 가진 헤더
   if (headerUI.SEARCH.includes(firstPath)) return <HeaderUISearch height={height} />;
+
+  // 뒤로가기와 "알림" 타이틀 문구를 가진 헤더
+  if (headerUI.ALERT.includes(firstPath)) return <HeaderUIAlert height={height} />;
 
   // 기본 메인 헤더 (로고, 아이콘)
   return <HeaderUIDefault firstPath={firstPath} height={height} />;
