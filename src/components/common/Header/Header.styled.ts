@@ -40,6 +40,7 @@ const Title = styled.h1`
   line-height: 1;
   position: absolute;
   width: 100%;
+  z-index: -1;
 `;
 
 export const ComponentStyle = {

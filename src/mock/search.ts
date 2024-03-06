@@ -31,4 +31,5 @@ export const mockBrandResult = {
   thumb: 'img/brand/100/thumb.jpg',
   mainImg: 'img/brand/100/main.jpg',
   showcase: { '0': 10000 },
+  introduce: "쿠어는 간결하고 조화로운 아름다움을 추구합니다. 동시대 누구나 공유할 수 있는 자연스러움을 담아내는 브랜드입니다.",
 };

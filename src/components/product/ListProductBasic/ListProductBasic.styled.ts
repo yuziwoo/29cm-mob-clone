@@ -33,7 +33,7 @@ const Brand = styled.p`
   font-weight: 600;
   color: ${theme.color.BLACK};
   user-select: none;
-  cursor: default;
+  cursor: pointer;
 `;
 
 const Heart = styled.div`

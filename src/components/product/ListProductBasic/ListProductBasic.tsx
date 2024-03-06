@@ -32,9 +32,14 @@ const ListProductBasic = ({ productId }: ListProductBasicProps) => {
   }, [productQuery, productId, getProduct]);
 
   const { navigate } = useRouter();
+
   const handleNavigateProductPage = useCallback(() => {
     navigate(ROUTE_PATH.productDetail.replace(':id', productId ? productId : ''));
   }, [navigate, productId]);
+
+  const handleClickBrand = useCallback(() => {
+    navigate(ROUTE_PATH.brandDetail.replace(':id', `${product?.brandId ? product.brandId : ''}`));
+  }, [navigate, product?.brandId]);
 
   if (productId === undefined || !productQuery.isSuccess || product === null)
     return <SkeletonProductList />;
@@ -52,7 +57,7 @@ const ListProductBasic = ({ productId }: ListProductBasicProps) => {
 
       <S.Info>
         <S.InfoHeader>
-          <S.Brand>{product.brandName}</S.Brand>
+          <S.Brand onClick={handleClickBrand}>{product.brandName}</S.Brand>
           <S.Heart>
             <ProductLikes productId={productId} />
           </S.Heart>

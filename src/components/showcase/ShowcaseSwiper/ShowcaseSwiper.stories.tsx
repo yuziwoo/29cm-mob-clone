@@ -4,7 +4,7 @@ import StorybookDecorator from '../../storybook/StorybookDecorator';
 import { mockShowcaseIds } from '../../../mock/showcase';
 
 const meta = {
-  title: 'brand/ShowcaseSwiper',
+  title: 'showcase/ShowcaseSwiper',
   component: ShowcaseSwiper,
   tags: ['autodocs'],
   decorators: [

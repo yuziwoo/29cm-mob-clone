@@ -10,7 +10,9 @@ const meta = {
   decorators: [
     (Story) => (
       <StorybookDecorator>
-        <div style={{ position: 'relative', width: '550px', height: '150px', background: '#F5F5F5' }}>
+        <div
+          style={{ position: 'relative', width: '550px', height: '150px', background: '#F5F5F5' }}
+        >
           <Story />
         </div>
       </StorybookDecorator>
@@ -49,5 +51,17 @@ export const OnlyBackButton: Story = {
 export const BackButtonAndIcons: Story = {
   args: {
     firstPath: headerUI.BACKBUTTON_AND_ICONS[0],
+  },
+};
+
+export const Search: Story = {
+  args: {
+    firstPath: headerUI.SEARCH[0],
+  },
+};
+
+export const Alert: Story = {
+  args: {
+    firstPath: headerUI.ALERT[0],
   },
 };

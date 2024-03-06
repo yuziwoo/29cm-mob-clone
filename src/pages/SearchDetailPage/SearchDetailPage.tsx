@@ -4,7 +4,6 @@ import SkeletonLoading from '../../components/skeleton/common/SkeletonLoading';
 import { useSearch } from '../../hooks/search/useSearch';
 import { PageStyle as S } from './SearchDetailPage.styled';
 import { useParams } from 'react-router-dom';
-import { useRouter } from '../../hooks/useRouter';
 import { FormatedProductProps } from '../../types/product';
 import { BrandProps } from '../../types/brand';
 import ListProductBasic from '../../components/product/ListProductBasic/ListProductBasic';
@@ -13,7 +12,6 @@ import SearchResultBrand from '../../components/search/SearchResultBrand/SearchR
 
 const SearchDetailPage = () => {
   const { keyword } = useParams();
-  const { navigate } = useRouter();
   const { searchBrand, searchProduct } = useSearch(keyword);
 
   const [brands, setBrands] = useState<BrandProps[] | null>(null);
@@ -21,12 +19,14 @@ const SearchDetailPage = () => {
 
   useEffect(() => {
     if (keyword === undefined || keyword === '' || searchBrand.data === undefined) return;
-    setBrands(searchBrand.data);
+    const result = searchBrand.data.length > 0 ? searchBrand.data : null;
+    setBrands(result);
   }, [searchBrand.data, keyword]);
 
   useEffect(() => {
     if (keyword === undefined || keyword === '' || searchProduct.data === undefined) return;
-    setProducts(searchProduct.data);
+    const result = searchProduct.data.length > 0 ? searchProduct.data : null;
+    setProducts(result);
   }, [searchProduct.data, keyword]);
 
   // 새롭게 검색 중
@@ -52,18 +52,28 @@ const SearchDetailPage = () => {
   return (
     <CommonPageAnimation>
       <S.Page>
-        <S.Title>브랜드</S.Title>
-        {brands !== null &&
-          brands.map((brand) => <SearchResultBrand brand={brand} key={brand.id} />)}
-        <S.Title>상품</S.Title>
-        <S.ProductList>
-          {products !== null &&
-            products.map(({ productId }) => (
-              <S.Product key={productId}>
-                <ListProductBasic productId={productId} />
-              </S.Product>
+        {brands !== null && (
+          <>
+            <S.Title>브랜드</S.Title>
+            {brands.map((brand) => (
+              <SearchResultBrand brand={brand} key={brand.id} />
             ))}
-        </S.ProductList>
+          </>
+        )}
+
+        {products !== null && (
+          <>
+            <S.Title>상품</S.Title>
+            <S.ProductList>
+              {products !== null &&
+                products.map(({ productId }) => (
+                  <S.Product key={productId}>
+                    <ListProductBasic productId={productId} />
+                  </S.Product>
+                ))}
+            </S.ProductList>
+          </>
+        )}
       </S.Page>
     </CommonPageAnimation>
   );

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { BrandProps } from '../../types/brand';
+import { FetchBrandProps } from '../../types/brand';
 import { queryAPI } from '../../constants/query';
 import { getBrandData } from '../../api/firebase/database/brand';
 
@@ -10,7 +10,7 @@ export const useBrand = () => {
 
   const queryKey = [queryAPI.queryKey.brands];
 
-  const brandQuery = useQuery<BrandProps[]>({
+  const brandQuery = useQuery<FetchBrandProps[]>({
     queryKey,
     queryFn: async () => {
       const result = await getBrandData();

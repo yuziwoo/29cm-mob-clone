@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useShowcase } from '../../../hooks/showcase/useShowcase';
-import CommonButton from '../../common/motion/CommonButton/CommonButton';
 import { ComponentStyle as S } from './ShowcaseSwiper.styled';
 import { ShowcaseProps } from '../../../types/showcase';
 import { Autoplay, Pagination, Virtual } from 'swiper/modules';
@@ -22,7 +21,8 @@ const ShowcaseSwiper = ({ showcaseIds }: ShowcaseSwiperProps) => {
 
   useEffect(() => {
     if (showcaseQuery.data === undefined || showcaseQuery.data === null) return;
-    setShowcase(Object.values(showcaseQuery.data).filter(({ id }) => showcaseIds.includes(id)));
+    const currentShowcase = showcaseQuery.data.filter(({ id }) => showcaseIds.includes(id));
+    setShowcase(currentShowcase);
   }, [showcaseQuery.data, showcaseIds]);
 
   const handleClickShowcase = useCallback(

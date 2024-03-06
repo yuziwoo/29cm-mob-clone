@@ -17,7 +17,9 @@ const AlertPage = () => {
   }, []);
   return (
     <CommonPageAnimation>
-      <S.Page>AlertPage</S.Page>
+      <S.Page>
+        <S.Text>현재 받은 알림이 없습니다.</S.Text>
+      </S.Page>
     </CommonPageAnimation>
   );
 };

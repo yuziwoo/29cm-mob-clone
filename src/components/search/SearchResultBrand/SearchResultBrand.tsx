@@ -7,7 +7,7 @@ import { motionStyle } from '../../../styles/motion';
 import { useRouter } from '../../../hooks/useRouter';
 import { useCallback } from 'react';
 import { ROUTE_PATH } from '../../../constants/path';
-import ShowcaseSwiper from '../../brand/ShowcaseSwiper/ShowcaseSwiper';
+import ShowcaseSwiper from '../../showcase/ShowcaseSwiper/ShowcaseSwiper';
 
 interface SearchResultBrandProps {
   brand: BrandProps;

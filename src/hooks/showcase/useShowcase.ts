@@ -8,7 +8,7 @@ export const useShowcase = () => {
    * firebase realtimeDB에서 쇼케이스 정보를 가져옵니다.
    */
 
-  const queryKey = [queryAPI.queryKey.brands];
+  const queryKey = [queryAPI.queryKey.showcase];
 
   const showcaseQuery = useQuery<ShowcaseProps[] | null>({
     queryKey,
