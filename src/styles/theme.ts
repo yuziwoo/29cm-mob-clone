@@ -9,6 +9,7 @@ const color = {
   GRAY4: '#CECECE',
   GRAY5: '#A1A1A1',
   GRAY7: '#7D7D7D',
+  GRAY15: '#1E1E1E',
   ACTIVE: '#000',
   SIGNATURE: '#FF4800',
   LIGHT_SIGNATURE: '#FDF0EC',
@@ -21,7 +22,7 @@ const color = {
   INPUT_INVALID: '#D30005',
   INPUT_GRAY: '#C5C5C5',
 
-  FOOTER_BG: 'rgba(246, 246, 246, 0.9)',
+  FOOTER_BG: 'rgba(246, 246, 246, 1)',
 };
 
 const gradient = {

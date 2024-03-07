@@ -7,6 +7,10 @@ import { useRouter } from '../../hooks/useRouter';
 import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const AlertPage = () => {
+  /**
+   * 알림 페이지입니다.
+   * 알림 없음으로 표시합니다.
+   */
   const [user] = useRecoilState(userState);
   const { navigate } = useRouter();
 

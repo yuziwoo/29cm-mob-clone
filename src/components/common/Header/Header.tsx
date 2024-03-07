@@ -8,6 +8,7 @@ import HeaderUIOnlyBackbutton from './HeaderUI/HeaderUIOnlyBackbutton';
 import HeaderUIBackbuttonAndIcons from './HeaderUI/HeaderUIBackbuttonAndIcons';
 import HeaderUISearch from './HeaderUI/HeaderUISearch';
 import HeaderUIAlert from './HeaderUI/HeaderUIAlert';
+import HeaderUIBestPage from './HeaderUI/HeaderUIBestPage';
 
 interface HeaderProps {
   firstPath: string;
@@ -35,6 +36,10 @@ const Header = ({ firstPath }: HeaderProps) => {
   // 메인 페이지의 헤더 (로고, 아이콘, 네비바, 반투명한 배경)
   if (headerUI.MAIN.includes(firstPath))
     return <HeaderUIMain firstPath={firstPath} height={height} />;
+
+  // BestPage의 헤더 (로고, 아이콘, 네비바, 회색 배경)
+  if (headerUI.BEST.includes(firstPath))
+    return <HeaderUIBestPage firstPath={firstPath} height={height} />;
 
   // 뒤로가기 버튼만 있는 헤더
   if (headerUI.ONLY_BACKBUTTON.includes(firstPath) || pathname.split('/').length >= 4)

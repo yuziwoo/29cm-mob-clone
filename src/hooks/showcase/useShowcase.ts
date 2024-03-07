@@ -2,11 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import { queryAPI } from '../../constants/query';
 import { ShowcaseProps } from '../../types/showcase';
 import { getShowcaseData } from '../../api/firebase/database/showcase';
+import { useEffect, useState } from 'react';
 
-export const useShowcase = () => {
+export const useShowcase = ({ showcaseIds = [] }: { showcaseIds?: number[] }) => {
   /**
    * firebase realtimeDB에서 쇼케이스 정보를 가져옵니다.
    */
+
+  const [currentShowcase, setCurrentShowcase] = useState<ShowcaseProps[]>([]);
 
   const queryKey = [queryAPI.queryKey.showcase];
 
@@ -20,5 +23,11 @@ export const useShowcase = () => {
     staleTime: queryAPI.staleTime.SHOWCASE,
   });
 
-  return { showcaseQuery };
+  useEffect(() => {
+    if (showcaseQuery.data === undefined || showcaseQuery.data === null) return;
+    const filteredShowcase = showcaseQuery.data.filter(({ id }) => showcaseIds.includes(id));
+    setCurrentShowcase(filteredShowcase);
+  }, [showcaseQuery.data, showcaseIds]);
+
+  return { showcaseQuery, currentShowcase };
 };

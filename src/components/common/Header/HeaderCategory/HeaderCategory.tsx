@@ -7,9 +7,10 @@ import { useRouter } from '../../../../hooks/useRouter';
 
 interface HeaderCategoryProps {
   location?: string;
+  themeBlack?: boolean;
 }
 
-const HeaderCategory = ({ location = '' }: HeaderCategoryProps) => {
+const HeaderCategory = ({ location = '', themeBlack = false }: HeaderCategoryProps) => {
   /**
    * 맨, 홈, 라이프, 우먼, 베스트 등의 선택지가 있는 메인 페이지에서 사용되는 카테고리 리스트 입니다.
    */
@@ -34,7 +35,7 @@ const HeaderCategory = ({ location = '' }: HeaderCategoryProps) => {
 
   return (
     <S.Category>
-      <S.Nav>
+      <S.Nav $themeBlack={themeBlack}>
         {category.map(({ path, locationKey, text }) => (
           <motion.div
             className={`list${location === locationKey ? ' active' : ''}`}

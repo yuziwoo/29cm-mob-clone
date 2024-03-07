@@ -1,11 +1,14 @@
 import { PageStyle as S } from './MainPage.styled';
 import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
+import MainShowcaseSwiper from '../../components/showcase/MainShowcaseSwiper/MainShowcaseSwiper';
+import { mockShowcaseIds } from '../../mock/showcase';
 
 const MainPage = () => {
   return (
     <CommonPageAnimation>
       <S.Page>
-        <h1 style={{ fontSize: '300px' }}>Main Page</h1>
+        <MainShowcaseSwiper showcaseIds={mockShowcaseIds} />
+        <div style={{paddingBottom: '5000px'}}></div>
       </S.Page>
     </CommonPageAnimation>
   );

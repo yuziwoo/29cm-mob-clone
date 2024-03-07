@@ -5,7 +5,9 @@ import { FIRST_PATH } from './firstPath';
  * path가 3개 이상 나열되면 뒤로가기 버튼을 보여줍니다. ('/my/edit/info/')
  */
 
-const MAIN = ['', FIRST_PATH.man, FIRST_PATH.woman, FIRST_PATH.life, FIRST_PATH.best];
+const MAIN = ['', FIRST_PATH.man, FIRST_PATH.woman, FIRST_PATH.life];
+
+const BEST = [FIRST_PATH.best];
 
 const HIDDEN: string[] = [];
 
@@ -25,6 +27,7 @@ const ALERT = [FIRST_PATH.alert];
 
 export const headerUI = {
   MAIN,
+  BEST,
   HIDDEN,
   ONLY_BACKBUTTON,
   BACKBUTTON_AND_ICONS,

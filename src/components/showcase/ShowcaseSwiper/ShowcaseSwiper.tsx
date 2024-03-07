@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { useShowcase } from '../../../hooks/showcase/useShowcase';
 import { ComponentStyle as S } from './ShowcaseSwiper.styled';
-import { ShowcaseProps } from '../../../types/showcase';
 import { Autoplay, Pagination, Virtual } from 'swiper/modules';
 import { Swiper as SwiperContainer, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -15,15 +14,8 @@ interface ShowcaseSwiperProps {
 }
 
 const ShowcaseSwiper = ({ showcaseIds }: ShowcaseSwiperProps) => {
-  const { showcaseQuery } = useShowcase();
-  const [showcase, setShowcase] = useState<ShowcaseProps[]>([]);
+  const { showcaseQuery, currentShowcase } = useShowcase({ showcaseIds });
   const { navigate } = useRouter();
-
-  useEffect(() => {
-    if (showcaseQuery.data === undefined || showcaseQuery.data === null) return;
-    const currentShowcase = showcaseQuery.data.filter(({ id }) => showcaseIds.includes(id));
-    setShowcase(currentShowcase);
-  }, [showcaseQuery.data, showcaseIds]);
 
   const handleClickShowcase = useCallback(
     (id: number) => {
@@ -32,22 +24,22 @@ const ShowcaseSwiper = ({ showcaseIds }: ShowcaseSwiperProps) => {
     [navigate]
   );
 
-  if (showcase.length === 0 || showcaseQuery.isPending) return <></>;
+  if (currentShowcase.length === 0 || showcaseQuery.isPending) return <></>;
 
-  if (showcase.length === 1)
+  if (currentShowcase.length === 1)
     return (
       <S.ShowcaseWrapSingle>
         <motion.div
           whileTap={motionStyle.scaleButton.whileTap}
           transition={motionStyle.scaleButton.transition}
           onClick={() => {
-            handleClickShowcase(showcase[0].id);
+            handleClickShowcase(currentShowcase[0].id);
           }}
         >
           <S.Showcase>
-            <S.Img src={`${showcase[0].thumb}`} alt={showcase[0].title} />
+            <S.Img src={`${currentShowcase[0].thumb}`} alt={currentShowcase[0].title} />
             <S.Shadow />
-            <S.Title>{showcase[0].title}</S.Title>
+            <S.Title>{currentShowcase[0].title}</S.Title>
           </S.Showcase>
         </motion.div>
       </S.ShowcaseWrapSingle>
@@ -66,7 +58,7 @@ const ShowcaseSwiper = ({ showcaseIds }: ShowcaseSwiperProps) => {
         }}
         className="swiper"
       >
-        {showcase.map(({ id, thumb, title }) => (
+        {currentShowcase.map(({ id, thumb, title }) => (
           <SwiperSlide key={id} virtualIndex={id}>
             <S.ShowcaseWrap>
               <motion.div

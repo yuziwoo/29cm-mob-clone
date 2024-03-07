@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-const Header = styled.header<{ $backgroundTransparent?: boolean }>`
+const Header = styled.header`
   width: 100%;
   max-width: ${theme.size.MAX_WIDTH};
   position: fixed;
@@ -11,10 +11,28 @@ const Header = styled.header<{ $backgroundTransparent?: boolean }>`
   top: 0;
   overflow: hidden;
   padding: ${theme.padding.BODY};
-  background: ${({ $backgroundTransparent }) =>
-    $backgroundTransparent ? 'transparent' : theme.color.WHITE};
+  background: ${theme.color.WHITE};
   -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
+
+  & section {
+    position: relative;
+  }
+`;
+
+const HeaderUIMain = styled.header<{ $blur: number; $useBackground?: string }>`
+  width: 100%;
+  max-width: ${theme.size.MAX_WIDTH};
+  position: fixed;
+  z-index: ${theme.zIndex.HEADER};
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  overflow: hidden;
+  padding: ${theme.padding.BODY};
+  background: ${({ $useBackground }) => ($useBackground ? $useBackground : 'transparent')};
+  -webkit-backdrop-filter: blur(${({ $blur }) => $blur}px);
+  backdrop-filter: blur(${({ $blur }) => $blur}px);
 
   & section {
     position: relative;
@@ -43,9 +61,21 @@ const Title = styled.h1`
   z-index: -1;
 `;
 
+const Shadow = styled.div<{ $opacity: number }>`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #6c6c6c;
+  opacity: ${({ $opacity }) => $opacity};
+`;
+
 export const ComponentStyle = {
   Header,
+  HeaderUIMain,
   MainHeader,
   RelatedHeight,
   Title,
+  Shadow,
 };
