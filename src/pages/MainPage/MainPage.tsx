@@ -9,8 +9,14 @@ const MainPage = () => {
     <CommonPageAnimation>
       <S.Page>
         <MainShowcaseSwiper showcaseIds={mockShowcaseIds} />
-        <ButtonSlider />
-        <div style={{ paddingBottom: '5000px' }}></div>
+
+        <S.ButtonWrap>
+          <ButtonSlider />
+        </S.ButtonWrap>
+        
+        <S.BrandIntroWrap>
+          
+        </S.BrandIntroWrap>
       </S.Page>
     </CommonPageAnimation>
   );

@@ -68,7 +68,11 @@ const Title = styled.h1<{ $isActive: boolean }>`
   opacity: ${({ $isActive }) => ($isActive ? '1' : '0')};
 
   @media screen and (max-width: 500px) {
-    font-size: 24px;
+    font-size: 28px;
+  }
+
+  @media screen and (max-width: 360px) {
+    font-size: 22px;
   }
 `;
 
