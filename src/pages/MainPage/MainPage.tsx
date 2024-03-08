@@ -3,8 +3,13 @@ import CommonPageAnimation from '../../components/common/motion/CommonPageAnimat
 import MainShowcaseSwiper from '../../components/showcase/MainShowcaseSwiper/MainShowcaseSwiper';
 import { mockShowcaseIds } from '../../mock/showcase';
 import ButtonSlider from '../../components/main/ButtonSlider/ButtonSlider';
+import BrandIntro from '../../components/main/BrandIntro/BrandIntro';
+import { mockMainPageBrandIntro } from '../../mock/mainPage';
 
 const MainPage = () => {
+  // brandIntro에 사용할 mock 데이터
+  const { imgURL, title, text, brandId, productIds } = mockMainPageBrandIntro[1];
+
   return (
     <CommonPageAnimation>
       <S.Page>
@@ -13,9 +18,15 @@ const MainPage = () => {
         <S.ButtonWrap>
           <ButtonSlider />
         </S.ButtonWrap>
-        
+
         <S.BrandIntroWrap>
-          
+          <BrandIntro
+            imgURL={imgURL}
+            title={title}
+            text={text}
+            brandId={brandId}
+            productIds={productIds}
+          />
         </S.BrandIntroWrap>
       </S.Page>
     </CommonPageAnimation>
