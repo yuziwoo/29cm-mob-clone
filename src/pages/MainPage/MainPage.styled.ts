@@ -10,11 +10,14 @@ const ButtonWrap = styled.div`
 `;
 
 const BrandIntroWrap = styled.div`
-  padding: 0 ${theme.padding.DEFAULT} 4rem;
+  padding: 0 ${theme.padding.DEFAULT};
 `;
+
+const RecommendedProducts = styled.div``;
 
 export const PageStyle = {
   Page,
   ButtonWrap,
   BrandIntroWrap,
+  RecommendedProducts,
 };

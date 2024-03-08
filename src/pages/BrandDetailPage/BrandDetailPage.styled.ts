@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
-const Page = styled.section``;
+const Page = styled.section`
+  padding-bottom: 150px;
+`;
 
 const Loading = styled.div`
   margin: 6rem auto;

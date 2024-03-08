@@ -7,6 +7,7 @@ const Component = styled.div`
 
 const Intro = styled.div`
   width: 100%;
+  cursor: pointer;
 `;
 
 const Img = styled.img`

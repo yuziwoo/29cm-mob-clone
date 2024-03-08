@@ -5,6 +5,7 @@ import { mockShowcaseIdsLife } from '../../mock/showcase';
 import ButtonSlider from '../../components/main/ButtonSlider/ButtonSlider';
 import { mockMainPageBrandIntro } from '../../mock/mainPage';
 import BrandIntro from '../../components/main/BrandIntro/BrandIntro';
+import MainRecomendedProducts from '../../components/main/MainRecomendedProducts/MainRecomendedProducts';
 
 const LifePage = () => {
   // brandIntro에 사용할 mock 데이터
@@ -28,6 +29,10 @@ const LifePage = () => {
             productIds={productIds}
           />
         </S.BrandIntroWrap>
+
+        <S.RecommendedProducts>
+          <MainRecomendedProducts />
+        </S.RecommendedProducts>
       </S.Page>
     </CommonPageAnimation>
   );
