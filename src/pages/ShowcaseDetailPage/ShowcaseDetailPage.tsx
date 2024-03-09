@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 import { ShowcaseModuleProps } from '../../types/showcase';
 import { PageStyle as S } from './ShowcaseDetailPage.styled';
@@ -13,10 +13,14 @@ import ScrollShrinkImg from '../../components/design/ScrollShrinkImg/ScrollShrin
 import ScrollFadeIn from '../../components/design/ScrollFadeIn/ScrollFadeIn';
 import CarouselImg from '../../components/design/CarouselImg/CarouselImg';
 import ScrollOpenDoor from '../../components/design/ScrollOpenDoor/ScrollOpenDoor';
+import ScrollComeUp from '../../components/design/ScrollComeUp/ScrollComeUp';
+import { useRouter } from '../../hooks/useRouter';
+import { ROUTE_PATH } from '../../constants/path';
 
 const ShowcaseDetailPage = () => {
   const { id } = useParams();
   const [showcase, setShowcase] = useState<ShowcaseModuleProps | null>(null);
+  const { navigate } = useRouter();
 
   useEffect(() => {
     const newShowcase = mockShowcase.find((showcase) => `${showcase.id}` === `${id}`);
@@ -26,6 +30,11 @@ const ShowcaseDetailPage = () => {
     }
     setShowcase(newShowcase);
   }, [id]);
+
+  const handleNavigateBrandPage = useCallback(() => {
+    if (showcase === null) return;
+    navigate(ROUTE_PATH.brandDetail.replace(':id', `${showcase.id}`));
+  }, [navigate, showcase]);
 
   if (showcase === null) return <NotFoundComponent />;
   return (
@@ -117,7 +126,16 @@ const ShowcaseDetailPage = () => {
           </S.OpenDoorImg>
         </S.OpenDoorImgWrap>
 
-        <div style={{ paddingTop: '1200px' }}></div>
+        <S.BrandBanner onClick={handleNavigateBrandPage}>
+          <S.BrandBannerImg src={showcase.brandBanner.img} alt="브랜드 배너 이미지" />
+          <S.Shadow />
+          <S.BrandBannerInfo>
+            <ScrollComeUp>
+              <S.BrandBannerLogo src={showcase.brandBanner.logo} alt="브랜드 로고" />
+            </ScrollComeUp>
+            <S.BrandBannerText>move to brand page</S.BrandBannerText>
+          </S.BrandBannerInfo>
+        </S.BrandBanner>
       </S.Page>
     </CommonPageAnimation>
   );

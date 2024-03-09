@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
 const Page = styled.section`
-  padding-bottom: 150px;
+  padding-bottom: 180px;
 `;
 
 const MainBanner = styled.div`
@@ -104,6 +104,50 @@ const OpenDoorImg = styled.div<{ $align: 'left' | 'right' }>`
   }
 `;
 
+const BrandBanner = styled.div`
+  width: 100%;
+  margin-top: 20rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
+const BrandBannerImg = styled.img`
+  width: 100%;
+`;
+
+const Shadow = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+`;
+
+const BrandBannerInfo = styled.div`
+  position: absolute;
+  width: 41.8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BrandBannerLogo = styled.img`
+  width: 100%;
+  display: block;
+`;
+
+const BrandBannerText = styled.p`
+  color: ${theme.color.WHITE};
+  padding-top: 2rem;
+  font-size: 12px;
+  font-weight: 700;
+`;
+
 export const PageStyle = {
   Page,
   MainBanner,
@@ -119,4 +163,10 @@ export const PageStyle = {
   ImgCarouselText,
   OpenDoorImgWrap,
   OpenDoorImg,
+  BrandBanner,
+  BrandBannerImg,
+  Shadow,
+  BrandBannerInfo,
+  BrandBannerLogo,
+  BrandBannerText,
 };
