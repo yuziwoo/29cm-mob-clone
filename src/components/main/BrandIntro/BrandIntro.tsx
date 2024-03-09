@@ -29,7 +29,7 @@ const BrandIntro = ({ imgURL, title, text, brandId, productIds }: BrandIntroProp
 
       <S.Products>
         {productIds.map((productId) => (
-          <ListProductOneLine productId={productId} />
+          <ListProductOneLine productId={productId} key={productId} />
         ))}
       </S.Products>
     </S.Component>

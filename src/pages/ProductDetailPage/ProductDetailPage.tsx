@@ -13,6 +13,7 @@ import ProductReview from '../../components/product/ProductReview/ProductReview'
 import { mockReview } from '../../mock/product';
 import ToggleText from '../../components/product/ToggleText/ToggleText';
 import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
+import NotFoundComponent from '../../components/common/NotFoundComponent/NotFoundComponent';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -31,7 +32,7 @@ const ProductDetailPage = () => {
   }, [getProduct, id, productQuery]);
 
   if (!productQuery.isSuccess) return <ProductDetailPageSkeleton />;
-  if (id === undefined || product === null) return <h1>상품을 찾을 수 없습니다.</h1>;
+  if (id === undefined || product === null) return <NotFoundComponent />;
 
   return (
     <CommonPageAnimation>

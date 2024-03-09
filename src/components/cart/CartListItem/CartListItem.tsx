@@ -52,8 +52,8 @@ const CartListItem = ({
   }, [navigate, productId]);
 
   const handleClickBrand = useCallback(() => {
-    const brandName = product?.brandName ? product?.brandName : '';
-    navigate(ROUTE_PATH.brandDetail.replace(':id', brandName));
+    const brandId = product?.brandId ? product?.brandId : '';
+    navigate(ROUTE_PATH.brandDetail.replace(':id', `${brandId}`));
   }, [navigate, product]);
 
   const handleIncreaseCount = useCallback(() => {

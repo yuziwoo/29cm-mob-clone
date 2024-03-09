@@ -3,7 +3,6 @@ import SkeletonProductList from '../../skeleton/product/SkeletonProductList';
 import { useProduct } from '../../../hooks/product/useProduct';
 import { useCallback, useEffect, useState } from 'react';
 import { ProductProps } from '../../../types/product';
-import CommonButton from '../../common/motion/CommonButton/CommonButton';
 import { useRouter } from '../../../hooks/useRouter';
 import { ROUTE_PATH } from '../../../constants/path';
 import ProductLikes from '../ProductLikes/ProductLikes';
