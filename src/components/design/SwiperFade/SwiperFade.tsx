@@ -25,10 +25,11 @@ const SwiperFade = (props: SwiperFadeProps) => {
         speed={speed}
         autoplay={{ delay }}
         modules={[EffectFade, Autoplay]}
+        className="swiper"
       >
         {imgURL.map((url, index) => (
-          <SwiperSlide key={index}>
-            <img src={url} alt="이미지" />
+          <SwiperSlide key={index} style={{ overflow: 'hidden' }}>
+            <img src={url} alt="이미지" style={{ width: '100%', display: 'block' }} />
           </SwiperSlide>
         ))}
       </SwiperContainer>

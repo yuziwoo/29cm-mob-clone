@@ -74,6 +74,36 @@ const animation = {
   100% {
     transform: translateY(100%);
   }`,
+
+  ZOOM_IN: keyframes`
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }`,
+  ZOOM_OUT: keyframes`
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }`,
+
+  CIRCLE_LEFT: keyframes`
+  0% {
+    transform: rotate(0eg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }`,
+  CIRCLE_RIGHT: keyframes`
+  0% {
+    transform: rotate(0eg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }`,
 };
 
 const lineHeight = {

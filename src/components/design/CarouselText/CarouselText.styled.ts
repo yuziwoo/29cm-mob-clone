@@ -204,15 +204,15 @@ const Text = styled.h2<{ $speed: number; $dir: 'left' | 'right' }>`
   min-width: 100%;
   text-wrap: nowrap;
   position: absolute;
-  left: 100%;
+  left: 0;
   top: 0;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: ${({ $speed }) => $speed}s;
+  text-indent: 4rem;
+  width: max-content;
 
   &:first-child {
-    position: relative;
-    left: 0;
     animation-name: ${({ $dir }) =>
       $dir === 'left' ? carouselLeft.keyframes1 : carouselRight.keyframes1};
   }
@@ -222,14 +222,19 @@ const Text = styled.h2<{ $speed: number; $dir: 'left' | 'right' }>`
       $dir === 'left' ? carouselLeft.keyframes2 : carouselRight.keyframes2};
   }
 
-  &:nth-child(2) {
+  &:nth-child(3) {
     animation-name: ${({ $dir }) =>
       $dir === 'left' ? carouselLeft.keyframes3 : carouselRight.keyframes3};
   }
 
-  &:nth-child(2) {
+  &:nth-child(4) {
     animation-name: ${({ $dir }) =>
       $dir === 'left' ? carouselLeft.keyframes4 : carouselRight.keyframes4};
+  }
+
+  &:nth-child(5) {
+    position: relative;
+    opacity: 0;
   }
 `;
 

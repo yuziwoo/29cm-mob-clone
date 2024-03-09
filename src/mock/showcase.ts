@@ -78,7 +78,7 @@ export const mockShowcase: ShowcaseModuleProps[] = [
         '../img/showcase/10002/main-4.jpg',
       ],
       circleText: '../img/showcase/10002/circletext.png',
-      carouselText: '이것은 작게 진화한 헤드폰 WF-1000XM%',
+      carouselText: 'COMPACT NOISE CANCELLING',
       footerText: 'SONY\nWF-1000XM5',
       logo: '../img/showcase/10002/logo.png',
     },

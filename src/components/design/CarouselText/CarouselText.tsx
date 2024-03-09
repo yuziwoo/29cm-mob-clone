@@ -34,6 +34,9 @@ const CarouselText = (props: CarouselTextProps) => {
       <S.Text style={fontStyle} $speed={speed} $dir={dir}>
         {text}
       </S.Text>
+      <S.Text style={fontStyle} $speed={speed} $dir={dir}>
+        {text}
+      </S.Text>
     </S.Component>
   );
 };
