@@ -78,6 +78,32 @@ const ShowcaseDescriptionText = styled.p`
   padding-top: 10px;
 `;
 
+const ImgCarousel = styled.div`
+  padding-top: 4rem;
+`;
+
+const ImgCarouselText = styled.div`
+  padding: 4rem 0 0 2rem;
+`;
+
+const OpenDoorImgWrap = styled.div`
+  width: 100%;
+  padding-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const OpenDoorImg = styled.div<{ $align: 'left' | 'right' }>`
+  width: 77.27%;
+  margin-top: 1rem;
+  align-self: ${({ $align }) => ($align === 'left' ? 'flex-start' : 'flex-end')};
+  & img {
+    width: 100%;
+  }
+`;
+
 export const PageStyle = {
   Page,
   MainBanner,
@@ -89,4 +115,8 @@ export const PageStyle = {
   ShowcaseDescription,
   ShowcaseDescriptionTitle,
   ShowcaseDescriptionText,
+  ImgCarousel,
+  ImgCarouselText,
+  OpenDoorImgWrap,
+  OpenDoorImg,
 };

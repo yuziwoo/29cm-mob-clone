@@ -8,8 +8,6 @@ import { mockMainPageBrandIntro } from '../../mock/mainPage';
 import MainRecomendedProducts from '../../components/main/MainRecomendedProducts/MainRecomendedProducts';
 
 const ManPage = () => {
-  // brandIntro에 사용할 mock 데이터
-  const { imgURL, title, text, brandId, productIds } = mockMainPageBrandIntro[0];
 
   return (
     <CommonPageAnimation>
@@ -22,17 +20,27 @@ const ManPage = () => {
 
         <S.BrandIntroWrap>
           <BrandIntro
-            imgURL={imgURL}
-            title={title}
-            text={text}
-            brandId={brandId}
-            productIds={productIds}
+            imgURL={mockMainPageBrandIntro[0].imgURL}
+            title={mockMainPageBrandIntro[0].title}
+            text={mockMainPageBrandIntro[0].text}
+            brandId={mockMainPageBrandIntro[0].brandId}
+            productIds={mockMainPageBrandIntro[0].productIds}
           />
         </S.BrandIntroWrap>
 
         <S.RecommendedProducts>
           <MainRecomendedProducts />
         </S.RecommendedProducts>
+
+        <S.BrandIntroWrap style={{ paddingTop: '4rem' }}>
+          <BrandIntro
+            imgURL={mockMainPageBrandIntro[2].imgURL}
+            title={mockMainPageBrandIntro[2].title}
+            text={mockMainPageBrandIntro[2].text}
+            brandId={mockMainPageBrandIntro[2].brandId}
+            productIds={mockMainPageBrandIntro[2].productIds}
+          />
+        </S.BrandIntroWrap>
       </S.Page>
     </CommonPageAnimation>
   );

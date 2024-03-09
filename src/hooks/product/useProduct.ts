@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { queryAPI } from '../../constants/query';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
@@ -16,6 +16,7 @@ export const useProduct = () => {
 
   const [user] = useRecoilState(userState);
   const uid = user?.uid || '';
+  const queryClient = useQueryClient();
   const queryKey = [queryAPI.queryKey.product, uid];
 
   const productQuery = useQuery<Products>({
@@ -31,11 +32,17 @@ export const useProduct = () => {
     mutationFn: async (productId: string) => {
       return addProductLike({ productId });
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey });
+    },
   });
 
   const subtractLikes = useMutation({
     mutationFn: async (productId: string) => {
       return subtractProductLike({ productId });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey });
     },
   });
 
