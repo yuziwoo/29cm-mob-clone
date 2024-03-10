@@ -1,3 +1,4 @@
+// Form Data
 export type InputData = {
   state: string;
   isValid: null | boolean;

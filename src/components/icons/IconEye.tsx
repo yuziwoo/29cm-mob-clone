@@ -10,10 +10,10 @@ const IconEye = ({ color = theme.color.BLACK }: IconEyeProps) => {
       <path
         d="M2.5 13.9997C6 8.16632 15.5 -0.000344753 25.5 13.9997C22 19.4995 12.5 27.1994 2.5 13.9997Z"
         stroke={color}
-        stroke-width="2"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinejoin="round"
       />
-      <circle cx="14" cy="14" r="4" stroke={color} stroke-width="2" />
+      <circle cx="14" cy="14" r="4" stroke={color} strokeWidth="2" />
     </svg>
   );
 };

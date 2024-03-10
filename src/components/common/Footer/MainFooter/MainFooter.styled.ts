@@ -1,31 +1,36 @@
 import styled from 'styled-components';
 import { theme } from '../../../../styles/theme';
 
-export const MainFooterBlock = styled.div`
-  padding: 0 0 10px;
+const Component = styled.div`
+  padding: 0 0 1rem;
   display: flex;
   justify-content: space-between;
 `;
 
-export const button = styled.button<{ $active?: boolean }>`
+const Button = styled.button`
   width: 20%;
 
   & .wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0 10px;
+    padding: 2rem 0 1rem;
   }
   & .wrap svg {
-    width: 24px;
-    height: 24px;
+    width: 2.4rem;
+    height: 2.4rem;
     transition: all 0.2s;
   }
   & .wrap p {
     font-size: 10px;
     text-transform: uppercase;
-    padding-top: 8px;
-    color: ${({ $active = false }) => ($active ? theme.color.ACTIVE : theme.color.FOOTER_INACTIVE)};
+    padding-top: 0.8rem;
+    color: ${theme.color.BLACK};
     transition: color 0.2s;
   }
 `;
+
+export const ComponentStyle = {
+  Button,
+  Component,
+};

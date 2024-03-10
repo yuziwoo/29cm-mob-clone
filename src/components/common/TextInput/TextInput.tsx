@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { theme } from '../../../styles/theme';
 import IconEye from '../../icons/IconEye';
 import IconEyeSlash from '../../icons/IconEyeSlash';
-import * as S from './TextInput.styled';
+import { ComponentStyle as S } from './TextInput.styled';
 
 interface TextInputProps {
   type: 'email' | 'text' | 'password';
@@ -18,12 +18,15 @@ interface TextInputProps {
   invalidMessage?: string;
 }
 
-/**
- * type === 'password'인 경우 PasswordSecurity 버튼이 생성됩니다. 버튼을 눌러 패스워드의 *표처리 여부를 정합니다.
- * fixedPaddingBottom : 설정하지 않은 경우 기본 값으로 validator를 통과하면 20px, false인 경우 40px이 적용됩니다.
- */
-
 const TextInput = (props: TextInputProps) => {
+  /**
+   * Textinput 사용 방법
+   * - isValid 파라미터를 이용하여 유효한 값인지 여부를 전달해주세요.
+   * - onChange 파라미터를 통해 input value를 전달 받을 수 있습니다.
+   * - type을 'password'로 설정한 경우 PasswordSecurity 버튼이 활성화됩니다. (텍스트 *표시 여부)
+   * - fixedPaddingBottom을 설정하지 않으면 valid한 경우 20px, Invalid한 경우 40px의 padding-bottom이 주어집니다.
+   */
+  
   const {
     type,
     id,
@@ -76,7 +79,7 @@ const TextInput = (props: TextInputProps) => {
   }, []);
 
   return (
-    <S.InputWrap style={{ paddingBottom: paddingBottom }}>
+    <S.Component style={{ paddingBottom: paddingBottom }}>
       <S.Label htmlFor={id} $isValid={isValid} $smallLabel={smallLabel}>
         {placeholder}
       </S.Label>
@@ -102,7 +105,7 @@ const TextInput = (props: TextInputProps) => {
           )}
         </S.PasswordSecurity>
       )}
-    </S.InputWrap>
+    </S.Component>
   );
 };
 

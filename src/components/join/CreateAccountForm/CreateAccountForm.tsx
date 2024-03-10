@@ -1,6 +1,5 @@
-import { useCallback, useState } from 'react';
-import * as S from './CreateAccountForm.styled';
-import { createEmailUser } from '../../../api/firebase';
+import { useCallback, useId, useState } from 'react';
+import { ComponentStyle as S } from './CreateAccountForm.styled';
 import { useRouter } from '../../../hooks/useRouter';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
@@ -8,11 +7,19 @@ import TextInput from '../../common/TextInput/TextInput';
 import { validateEmail } from '../../../utils/validateEmail';
 import { validatePassword } from '../../../utils/validatePassword';
 import { FormData } from '../../../types/login';
+import { useAuth } from '../../../hooks/auth/useAuth';
 
 const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
-  const { navigate } = useRouter();
+  /**
+   * 회원가입 Form 입니다.
+   * id, password 입력 후 유효성 검사를 하여 회원가입이 가능합니다.
+   */
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { navigate } = useRouter();
+  const { createAccount } = useAuth();
+  const uniqueId = useId();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.id.isValid || !formData.password.isValid) {
       window.alert(
@@ -20,9 +27,10 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
       );
       return;
     }
-    createEmailUser({ email: formData.id.state, password: formData.password.state }, () => {
+    await createAccount.mutate({ email: formData.id.state, password: formData.password.state });
+    if (createAccount.isSuccess) {
       navigate(redirectPath);
-    });
+    }
   };
 
   const [formData, setFormData] = useState<FormData>({
@@ -51,10 +59,10 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
   }, []);
 
   return (
-    <S.CreateAccount onSubmit={handleSubmit}>
+    <S.Component onSubmit={handleSubmit}>
       <TextInput
         type="email"
-        id="login-form-id"
+        id={`${uniqueId}-id`}
         onChange={handleIdInputChange}
         isValid={formData.id.isValid}
         placeholder="이메일*"
@@ -64,7 +72,7 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
       />
       <TextInput
         type="password"
-        id="login-form-password"
+        id={`${uniqueId}-password`}
         isValid={formData.password.isValid}
         onChange={handlePasswordInputChange}
         placeholder="패스워드*"
@@ -79,11 +87,11 @@ const CreateAccountForm = ({ redirectPath }: { redirectPath: string }) => {
         whileTap={motionStyle.scaleButton.whileTap}
         transition={motionStyle.scaleButton.transition}
       >
-        <S.Submit>
+        <S.SubmitButton>
           <p>회원가입</p>
-        </S.Submit>
+        </S.SubmitButton>
       </motion.div>
-    </S.CreateAccount>
+    </S.Component>
   );
 };
 

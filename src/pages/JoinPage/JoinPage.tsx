@@ -1,6 +1,4 @@
-import { motion } from 'framer-motion';
-import { motionStyle } from '../../styles/motion';
-import * as S from './JoinPage.styled';
+import { PageStyle as S } from './JoinPage.styled';
 import IconLogo from '../../components/icons/IconLogo';
 import { theme } from '../../styles/theme';
 import { useRecoilState } from 'recoil';
@@ -8,10 +6,9 @@ import { userState } from '../../recoil/auth';
 import { useRouter } from '../../hooks/useRouter';
 import { useEffect, useState } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
-import useSetHeaderState from '../../hooks/useSetHeaderState';
-import { headerStateOnlyBackButton } from '../../recoil/headerState';
 import { useLocation } from 'react-router-dom';
 import CreateAccountForm from '../../components/join/CreateAccountForm/CreateAccountForm';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const JoinPage = () => {
   // login 유저 redirect
@@ -25,9 +22,6 @@ const JoinPage = () => {
     // eslint-disable-next-line
   }, []);
 
-  // 헤더 상태 변경
-  useSetHeaderState(headerStateOnlyBackButton);
-
   // 이전에 방문하려던 페이지 저장
   const location = useLocation();
   const [redirectPath, setRedirectPath] = useState(ROUTE_PATH.root);
@@ -39,12 +33,8 @@ const JoinPage = () => {
   }, [location?.state]);
 
   return (
-    <motion.div
-      initial={motionStyle.pageOpen.initial}
-      animate={motionStyle.pageOpen.animate}
-      transition={motionStyle.pageOpen.transition}
-    >
-      <S.SectionJoin>
+    <CommonPageAnimation>
+      <S.Page>
         <S.Logo
           onClick={() => {
             navigate(ROUTE_PATH.root);
@@ -66,8 +56,8 @@ const JoinPage = () => {
         </S.Intro>
 
         <CreateAccountForm redirectPath={redirectPath} />
-      </S.SectionJoin>
-    </motion.div>
+      </S.Page>
+    </CommonPageAnimation>
   );
 };
 

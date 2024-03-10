@@ -1,97 +1,67 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import * as S from './Header.styled';
-import { ROUTE_PATH } from '../../../constants/path';
-import { formatLocation } from '../../../utils/formatLocation';
-import IconLogo from '../../icons/IconLogo';
-import HeaderShadow from './HeaderShadow/HeaderShadow';
-import HeaderIcons from './HeaderIcons/HeaderIcons';
-import HeaderCategory from './HeaderCategory/HeaderCategory';
-import { motion } from 'framer-motion';
-import { motionStyle } from '../../../styles/motion';
-import { scrollTop } from '../../../utils/scrollTop';
-import { useRecoilState } from 'recoil';
-import { headerStateRecoil } from '../../../recoil/headerState';
-import IconLeftArrow from '../../icons/IconLeftArrow';
-import { useRouter } from '../../../hooks/useRouter';
+import { headerUI } from '../../../constants/headerUI';
+import { elementId } from '../../../constants/elementId';
+import HeaderUIDefault from './HeaderUI/HeaderUIDefault';
+import HeaderUIMain from './HeaderUI/HeaderUIMain';
+import HeaderUIOnlyBackbutton from './HeaderUI/HeaderUIOnlyBackbutton';
+import HeaderUIBackbuttonAndIcons from './HeaderUI/HeaderUIBackbuttonAndIcons';
+import HeaderUISearch from './HeaderUI/HeaderUISearch';
+import HeaderUIAlert from './HeaderUI/HeaderUIAlert';
+import HeaderUIBestPage from './HeaderUI/HeaderUIBestPage';
+import HeaderUISearchModelAndIcons from './HeaderUI/HeaderUISearchModelAndIcons';
 
-const Header = () => {
-  // location에 맞춰서 header 카테고리 강조 효과
+interface HeaderProps {
+  firstPath: string;
+}
+
+const Header = ({ firstPath }: HeaderProps) => {
+  /**
+   * header는 (pathname의 첫번째 패스)에 따라 다르게 다양한 UI를 보여줍니다.
+   * 패스의 수가 3개 이상인 경우, 뒤로가기 버튼만 보여줍니다. (ex. 'my/edit/info')
+   * 컴포넌트 수정의 편의성을 위해 경우에 따라 달라지는 Header를 모두 따로따로 분리하여 관리합니다.
+   */
+
   const { pathname } = useLocation();
-  const [location, setLocation] = useState('');
 
+  const [height, setHeight] = useState<undefined | number>(undefined);
   useEffect(() => {
-    setLocation(formatLocation(pathname));
-  }, [pathname]);
-
-  // header height만큼 content padding 적용하기
-  const headerRef = useRef<null | HTMLElement>(null);
-  const [headerHeight, setHeaderHeight] = useState<null | number>(null);
-
-  const handleSetHeaderHeight = () => {
-    if (headerRef.current !== null) {
-      setHeaderHeight(headerRef.current.offsetHeight);
-    }
-  };
-  useEffect(() => {
-    handleSetHeaderHeight();
     setTimeout(() => {
-      handleSetHeaderHeight();
+      setHeight(document.getElementById(elementId.common.HEADER)?.offsetHeight);
     }, 100);
   }, [pathname]);
 
-  // 로고 클릭 이벤트 핸들링
-  const { navigate } = useRouter();
-  const handleClickLogo = () => {
-    if (location === '') {
-      scrollTop();
-      return;
-    }
-    navigate(ROUTE_PATH.root);
-  };
+  // 헤더를 숨기는 경우
+  if (headerUI.HIDDEN.includes(firstPath)) return <></>;
 
-  // header view State
-  const [{ color, viewLogo, viewBackButton, viewShadow, viewCategory, viewIcons }] =
-    useRecoilState(headerStateRecoil);
+  // 메인 페이지의 헤더 (로고, 아이콘, 네비바, 반투명한 배경)
+  if (headerUI.MAIN.includes(firstPath))
+    return <HeaderUIMain firstPath={firstPath} height={height} />;
 
-  return (
-    <>
-      <S.RelatedHeaderPosition $height={headerHeight} />
+  // BestPage의 헤더 (로고, 아이콘, 네비바, 회색 배경)
+  if (headerUI.BEST.includes(firstPath))
+    return <HeaderUIBestPage firstPath={firstPath} height={height} />;
 
-      <S.Header ref={headerRef} $location={location}>
-        {viewShadow && <HeaderShadow />}
-        <S.MainHeader className="main-header">
-          {viewLogo && (
-            <motion.button
-              whileTap={motionStyle.primaryButton.whileTap}
-              transition={motionStyle.primaryButton.transition}
-              onClick={handleClickLogo}
-            >
-              <S.Logo>
-                <IconLogo color={color} />
-              </S.Logo>
-            </motion.button>
-          )}
+  // 뒤로가기 버튼만 있는 헤더
+  if (headerUI.ONLY_BACKBUTTON.includes(firstPath) || pathname.split('/').length >= 4)
+    return <HeaderUIOnlyBackbutton height={height} />;
 
-          {viewBackButton && (
-            <motion.button
-              whileTap={motionStyle.primaryButton.whileTap}
-              transition={motionStyle.primaryButton.transition}
-              onClick={() => navigate(-1)}
-            >
-              <S.BackButton>
-                <IconLeftArrow color={color} />
-              </S.BackButton>
-            </motion.button>
-          )}
+  // 뒤로가기 버튼과 아이콘을 가진 헤더
+  if (headerUI.BACKBUTTON_AND_ICONS.includes(firstPath))
+    return <HeaderUIBackbuttonAndIcons height={height} />;
 
-          {viewIcons && <HeaderIcons color={color} />}
-        </S.MainHeader>
+  // 뒤로가기와 검색 Input을 가진 헤더
+  if (headerUI.SEARCH.includes(firstPath)) return <HeaderUISearch height={height} />;
 
-        {viewCategory && <HeaderCategory location={location} />}
-      </S.Header>
-    </>
-  );
+  // Search 모형과 아이콘을 가진 헤더
+  if (headerUI.SEARCH_MODEL_AND_ICONS.includes(firstPath))
+    return <HeaderUISearchModelAndIcons height={height} />;
+
+  // 뒤로가기와 "알림" 타이틀 문구를 가진 헤더
+  if (headerUI.ALERT.includes(firstPath)) return <HeaderUIAlert height={height} />;
+
+  // 기본 메인 헤더 (로고, 아이콘)
+  return <HeaderUIDefault firstPath={firstPath} height={height} />;
 };
 
 export default Header;

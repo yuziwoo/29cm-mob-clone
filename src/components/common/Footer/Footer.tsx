@@ -1,25 +1,32 @@
-import { useLocation } from 'react-router-dom';
-import * as S from './Footer.styled';
-import { useEffect, useState } from 'react';
-import { formatLocation } from '../../../utils/formatLocation';
+import { ComponentStyle as S } from './Footer.styled';
 import MainFooter from './MainFooter/MainFooter';
+import { footerUI } from '../../../constants/footerUI';
+import ProductFooter from './ProductFooter/ProductFooter';
+import { useParams } from 'react-router-dom';
 
-const Footer = () => {
-  const { pathname } = useLocation();
-  const [location, setLocation] = useState('');
+interface FooterProps {
+  firstPath: string;
+}
 
-  useEffect(() => {
-    setLocation(formatLocation(pathname));
-  }, [pathname]);
+const Footer = ({ firstPath }: FooterProps) => {
+  /**
+   * Footer는 firstPath에 따라 다른 UI를 유저에게 보여줍니다.
+   */
 
-  const hideFooterPage = ['login', 'join'];
+  const { id } = useParams();
+
+  if (footerUI.HIDDEN.includes(firstPath)) return <></>;
+  if (footerUI.PRODUCT.includes(firstPath))
+    return (
+      <S.Footer>
+        <ProductFooter id={id} />
+      </S.Footer>
+    );
 
   return (
-    <S.SectionFooter
-      style={{ transform: `translate(-50%, ${hideFooterPage.includes(location) ? 100 : 0}%)` }}
-    >
-      <MainFooter location={location} />
-    </S.SectionFooter>
+    <S.Footer>
+      <MainFooter firstPath={firstPath} />
+    </S.Footer>
   );
 };
 

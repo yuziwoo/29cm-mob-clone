@@ -12,14 +12,14 @@ const getInputColor = (isValid: boolean | null) => {
   }
 };
 
-export const InputWrap = styled.div`
+const Component = styled.div`
   width: 100%;
   position: relative;
   background: ${theme.color.WHITE};
   transition: padding 0.2s;
 `;
 
-export const Label = styled.label<{ $isValid: boolean | null; $smallLabel: boolean }>`
+const Label = styled.label<{ $isValid: boolean | null; $smallLabel: boolean }>`
   font-size: 16px;
   font-weight: 500;
   background: ${theme.color.WHITE};
@@ -35,7 +35,7 @@ export const Label = styled.label<{ $isValid: boolean | null; $smallLabel: boole
   color: ${({ $isValid }) => getInputColor($isValid)};
 `;
 
-export const Input = styled.input<{ $isValid: boolean | null }>`
+const Input = styled.input<{ $isValid: boolean | null }>`
   position: relative;
   width: 100%;
   padding: 20px;
@@ -47,7 +47,7 @@ export const Input = styled.input<{ $isValid: boolean | null }>`
   border: 1px solid ${({ $isValid }) => getInputColor($isValid)};
 `;
 
-export const Message = styled.p`
+const Message = styled.p`
   position: absolute;
   left: 20px;
   top: 68px;
@@ -55,7 +55,7 @@ export const Message = styled.p`
   color: ${theme.color.INPUT_INVALID};
 `;
 
-export const PasswordSecurity = styled.div`
+const PasswordSecurity = styled.div`
   position: absolute;
   right: 20px;
   top: 16px;
@@ -70,3 +70,11 @@ export const PasswordSecurity = styled.div`
     height: 70%;
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+  Label,
+  Input,
+  Message,
+  PasswordSecurity,
+};

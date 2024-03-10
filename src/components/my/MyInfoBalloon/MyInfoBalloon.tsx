@@ -1,10 +1,15 @@
+import { ComponentStyle as S } from './MyInfoBalloon.styled';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import IconRightArrow2 from '../../icons/IconRightArrow2';
 import { theme } from '../../../styles/theme';
-import * as S from './MyInfoBalloon.styled'
 
 const MyInfoBalloon = () => {
+  /**
+   * 마이페이지에서 고객 정보 풍선을 보여주는 컴포넌트입니다.
+   * 회원등급, 사용 가능 쿠폰, 포인트를 보여주며, 현재는 API없이 임의의 데이터를 보여줍니다.
+   */
+
   return (
     <div>
       <motion.div
@@ -13,16 +18,16 @@ const MyInfoBalloon = () => {
         style={{ marginTop: '40px' }}
       >
         <S.Balloon>
-          <div className="info">
-            <p>
+          <S.Info>
+            <S.TextSmall>
               회원 등급 <img src="../img/icon/icon_membership.png" alt="멤버쉽 아이콘" />
-            </p>
-            <h1>회원님은 VIP 등급이에요.</h1>
-          </div>
+            </S.TextSmall>
+            <S.TextBig>회원님은 VIP 등급이에요.</S.TextBig>
+          </S.Info>
 
-          <div className="text-small">
-            <h6>등급별 혜택</h6>
-          </div>
+          <S.TextBoxSmall>
+            <span>등급별 혜택</span>
+          </S.TextBoxSmall>
         </S.Balloon>
       </motion.div>
 
@@ -33,14 +38,14 @@ const MyInfoBalloon = () => {
           transition={motionStyle.primaryButton.transition}
         >
           <S.Balloon>
-            <div className="info">
-              <p>사용가능 쿠폰</p>
-              <h1>1</h1>
-            </div>
+            <S.Info>
+              <S.TextSmall>사용가능 쿠폰</S.TextSmall>
+              <S.TextBig>1</S.TextBig>
+            </S.Info>
 
-            <div className="icon-arrow">
+            <S.Arrow>
               <IconRightArrow2 color={theme.color.BLACK} />
-            </div>
+            </S.Arrow>
           </S.Balloon>
         </motion.div>
 
@@ -50,14 +55,14 @@ const MyInfoBalloon = () => {
           transition={motionStyle.primaryButton.transition}
         >
           <S.Balloon>
-            <div className="info">
-              <p>포인트</p>
-              <h1>30,000</h1>
-            </div>
+            <S.Info>
+              <S.TextSmall>포인트</S.TextSmall>
+              <S.TextBig>30,000</S.TextBig>
+            </S.Info>
 
-            <div className="icon-arrow">
+            <S.Arrow>
               <IconRightArrow2 color={theme.color.BLACK} />
-            </div>
+            </S.Arrow>
           </S.Balloon>
         </motion.div>
       </S.BalloonContainer>

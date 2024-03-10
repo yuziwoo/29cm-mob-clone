@@ -1,33 +1,37 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const ListButton = styled.button`
+const Component = styled.button`
   width: 100%;
   padding: 15px 0;
   display: flex;
   justify-content: space-between;
+`;
 
-  & p {
-    font-size: 18px;
-    font-weight: 500;
-    color: ${theme.color.BLACK};
+const Text = styled.p`
+  font-size: 18px;
+  font-weight: 500;
+  color: ${theme.color.BLACK};
+
+  @media screen and (max-width: 400px) {
+    font-size: 17px;
   }
+`;
 
-  & .arrow {
-    width: 2.8rem;
-    height: 2.8rem;
-  }
+const Arrow = styled.div`
+  width: 2.4rem;
+  height: 2.4rem;
+  min-width: 20px;
+  min-height: 20px;
 
-  & .arrow svg {
+  & svg {
     width: 100%;
     height: 100%;
   }
-
-  @media screen and (max-width: 400px) {
-    padding: 13px 0;
-
-    & p {
-      font-size: 17px;
-    }
-  }
 `;
+
+export const ComponentStyle = {
+  Component,
+  Text,
+  Arrow,
+};

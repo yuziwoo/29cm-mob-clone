@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const Header = styled.header<{ $location: string }>`
+const Header = styled.header`
   width: 100%;
   max-width: ${theme.size.MAX_WIDTH};
   position: fixed;
@@ -15,50 +15,67 @@ export const Header = styled.header<{ $location: string }>`
   -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
 
-  ${({ $location }) => {
-    if ($location === '') {
-      return css`
-        background: transparent;
-      `;
-    }
-  }}
+  & section {
+    position: relative;
+  }
+`;
+
+const HeaderUIMain = styled.header<{ $blur: number; $useBackground?: string }>`
+  width: 100%;
+  max-width: ${theme.size.MAX_WIDTH};
+  position: fixed;
+  z-index: ${theme.zIndex.HEADER};
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  overflow: hidden;
+  padding: ${theme.padding.BODY};
+  background: ${({ $useBackground }) => ($useBackground ? $useBackground : 'transparent')};
+  -webkit-backdrop-filter: blur(${({ $blur }) => $blur}px);
+  backdrop-filter: blur(${({ $blur }) => $blur}px);
 
   & section {
     position: relative;
   }
 `;
 
-export const RelatedHeaderPosition = styled.div<{ $height: number | null }>`
-  height: ${({ $height }) => ($height === null ? '100vh' : `${$height}px`)};
-`;
-
-export const MainHeader = styled.section`
+const MainHeader = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   padding: 20px 0;
 `;
 
-export const Logo = styled.div`
-  height: 1.9rem;
-  min-height: 17px;
-
-  & svg {
-    display: block;
-    height: 100%;
-  }
+const RelatedHeight = styled.div<{ $height: undefined | number }>`
+  height: ${({ $height }) => ($height !== undefined ? `${$height}px` : '100vh')};
 `;
 
-export const BackButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.2rem;
-  height: 3.2rem;
-  min-width: 28px;
-  min-height: 28px;
-  & svg {
-    width: 87.5%;
-    height: 87.5%;
-  }
+const Title = styled.h1`
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
 `;
+
+const Shadow = styled.div<{ $opacity: number }>`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #6c6c6c;
+  opacity: ${({ $opacity }) => $opacity};
+`;
+
+export const ComponentStyle = {
+  Header,
+  HeaderUIMain,
+  MainHeader,
+  RelatedHeight,
+  Title,
+  Shadow,
+};

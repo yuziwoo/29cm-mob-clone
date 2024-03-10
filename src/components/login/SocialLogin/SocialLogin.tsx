@@ -1,46 +1,52 @@
-import * as S from './SocialLogin.styled';
+import { ComponentStyle as S } from './SocialLogin.styled';
 import IconGoogle from '../../icons/IconGoogle';
-import { fetchEmailLogin, fetchGoogleLogin } from '../../../api/firebase';
 import { testEmail } from '../../../mock/testEmail';
-import { UserCredential } from 'firebase/auth';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import { useRouter } from '../../../hooks/useRouter';
+import { useAuth } from '../../../hooks/auth/useAuth';
 
 const SocialLogin = ({ redirectPath }: { redirectPath: string }) => {
+  /**
+   * 소셜 로그인 버튼을 모아둔 컴포넌트입니다.
+   */
+
   const { navigate } = useRouter();
-  const handleTestAccountLogin = () => {
-    fetchEmailLogin(testEmail, () => {
+  const { loginGoogle, loginEmail } = useAuth();
+  const handleTestAccountLogin = async () => {
+    await loginEmail.mutate(testEmail);
+    if (loginEmail.isSuccess) {
       navigate(redirectPath);
-    });
+    }
   };
 
-  const handleGoogleLogin = () => {
-    fetchGoogleLogin((result: UserCredential) => {
-      if (result.user) {
-        navigate(redirectPath);
-      }
-    });
+  const handleGoogleLogin = async () => {
+    await loginGoogle.mutate();
+    if (loginGoogle.isSuccess) {
+      navigate(redirectPath);
+    }
   };
 
   return (
-    <S.SocialLoginArticle>
+    <S.Component>
       <motion.button
         whileTap={motionStyle.primaryButton.whileTap}
         transition={motionStyle.primaryButton.transition}
         onClick={handleTestAccountLogin}
       >
-        <p>테스트 계정 로그인</p>
+        <S.Text>테스트 계정 로그인</S.Text>
       </motion.button>
       <motion.button
         whileTap={motionStyle.primaryButton.whileTap}
         transition={motionStyle.primaryButton.transition}
         onClick={handleGoogleLogin}
       >
-        <IconGoogle />
-        <p>구글 로그인</p>
+        <S.Icon>
+          <IconGoogle />
+        </S.Icon>
+        <S.Text>구글 로그인</S.Text>
       </motion.button>
-    </S.SocialLoginArticle>
+    </S.Component>
   );
 };
 

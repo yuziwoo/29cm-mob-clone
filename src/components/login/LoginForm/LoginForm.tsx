@@ -1,17 +1,24 @@
-import { useCallback, useState } from 'react';
-import * as S from './LoginForm.styled';
+import { useCallback, useId, useState } from 'react';
+import { ComponentStyle as S } from './LoginForm.styled';
 import { validateEmail } from '../../../utils/validateEmail';
 import { FormData } from '../../../types/login';
-import { fetchEmailLogin } from '../../../api/firebase';
 import { useRouter } from '../../../hooks/useRouter';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../../styles/motion';
 import TextInput from '../../common/TextInput/TextInput';
+import { useAuth } from '../../../hooks/auth/useAuth';
 
 const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
-  const { navigate } = useRouter();
+  /**
+   * 로그인 폼입니다.
+   * id, password의 유효성 검사를 실행한 후 로그인 할 수 있습니다.
+   */
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { navigate } = useRouter();
+  const { loginEmail } = useAuth();
+  const uniqueId = useId();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.id.isValid || !formData.password.isValid) {
       window.alert(
@@ -19,9 +26,10 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
       );
       return;
     }
-    fetchEmailLogin({ email: formData.id.state, password: formData.password.state }, () => {
+    await loginEmail.mutate({ email: formData.id.state, password: formData.password.state });
+    if (loginEmail.isSuccess) {
       navigate(redirectPath);
-    });
+    }
   };
 
   const [formData, setFormData] = useState<FormData>({
@@ -53,7 +61,7 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
     <form onSubmit={handleSubmit}>
       <TextInput
         type="email"
-        id="login-form-id"
+        id={`${uniqueId}-id`}
         onChange={handleIdInputChange}
         isValid={formData.id.isValid}
         placeholder="이메일*"
@@ -63,7 +71,7 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
       />
       <TextInput
         type="password"
-        id="login-form-password"
+        id={`${uniqueId}-password`}
         isValid={formData.password.isValid}
         onChange={handlePasswordInputChange}
         placeholder="패스워드*"
@@ -77,9 +85,9 @@ const LoginForm = ({ redirectPath }: { redirectPath: string }) => {
         whileTap={motionStyle.scaleButton.whileTap}
         transition={motionStyle.scaleButton.transition}
       >
-        <S.Submit>
+        <S.SubmitButton>
           <p>로그인</p>
-        </S.Submit>
+        </S.SubmitButton>
       </motion.div>
     </form>
   );

@@ -1,9 +1,5 @@
 const MainPageSkeleton = () => {
-  return (
-    <div>
-      <h1>Main Page</h1>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default MainPageSkeleton;

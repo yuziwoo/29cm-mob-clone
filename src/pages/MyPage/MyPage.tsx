@@ -1,22 +1,23 @@
-import { headerStateBlack } from '../../recoil/headerState';
-import useSetHeaderState from '../../hooks/useSetHeaderState';
-import { useRecoilState } from 'recoil';
-import { userState } from '../../recoil/auth';
 import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { useRouter } from '../../hooks/useRouter';
-import * as S from './MyPage.styled';
+import { PageStyle as S } from './MyPage.styled';
 import MyUserInfo from '../../components/my/MyUserInfo/MyUserInfo';
 import MyInfoBalloon from '../../components/my/MyInfoBalloon/MyInfoBalloon';
 import MyListButton from '../../components/my/MyListButton/MyListButton';
 import { motion } from 'framer-motion';
 import { motionStyle } from '../../styles/motion';
-import { fetchDeleteUser, fetchLogout } from '../../api/firebase';
+import { useAuth } from '../../hooks/auth/useAuth';
+import MyPageSkeleton from './MyPageSkeleton';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const MyPage = () => {
-  useSetHeaderState(headerStateBlack);
+  /**
+   * 마이페이지입니다.
+   * 로그인하지 않은 유저가 접근 시 로그인 페이지로 redirect합니다.
+   */
 
-  const [user] = useRecoilState(userState);
+  const { user, logout, deleteAccount } = useAuth();
   const { navigate } = useRouter();
 
   useEffect(() => {
@@ -45,38 +46,22 @@ const MyPage = () => {
       text: '로그아웃',
       onClick: async () => {
         const confirm = await window.confirm('로그아웃하시겠습니까?');
-        if (confirm) {
-          fetchLogout();
-          navigate(ROUTE_PATH.root);
-        }
+        if (confirm) logout.mutate();
       },
     },
     {
       text: '회원 탈퇴',
       onClick: async () => {
-        if (user?.isAdmin) {
-          window.alert('어드민 계정은 삭제할 수 없습니다.');
-          return;
-        }
         const confirm = await window.confirm('정말로 탈퇴하시겠습니까?');
-        if (confirm) {
-          fetchDeleteUser(() => {
-            window.alert('정상적으로 삭제되었습니다. 이용해주셔서 감사합니다.');
-            navigate(ROUTE_PATH.root);
-          });
-        }
+        if (confirm) deleteAccount.mutate();
       },
     },
   ];
 
-  if (user === null) return <div></div>;
+  if (user === null) return <MyPageSkeleton></MyPageSkeleton>;
   return (
-    <S.SectionMyPage>
-      <motion.div
-        initial={motionStyle.pageOpen.initial}
-        animate={motionStyle.pageOpen.animate}
-        transition={motionStyle.pageOpen.transition}
-      >
+    <CommonPageAnimation>
+      <S.Page>
         <MyUserInfo user={user} />
         <MyInfoBalloon />
 
@@ -95,17 +80,11 @@ const MyPage = () => {
         <S.ListWrap>
           <S.ListTitle>나의 계정</S.ListTitle>
           {accountList.map(({ text, onClick }, idx) => (
-            <motion.li
-              key={idx}
-              whileTap={motionStyle.scaleButton.whileTap}
-              transition={motionStyle.scaleButton.transition}
-            >
-              <MyListButton text={text} onClick={onClick} />
-            </motion.li>
+            <MyListButton text={text} onClick={onClick} key={idx} />
           ))}
         </S.ListWrap>
-      </motion.div>
-    </S.SectionMyPage>
+      </S.Page>
+    </CommonPageAnimation>
   );
 };
 

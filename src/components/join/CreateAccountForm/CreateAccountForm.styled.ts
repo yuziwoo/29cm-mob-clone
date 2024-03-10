@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
-export const CreateAccount = styled.form`
+const Component = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 `;
 
-export const Submit = styled.button`
+const SubmitButton = styled.button`
   padding: 20px 50px;
   background: ${theme.color.BLACK};
   border-radius: 32px;
@@ -20,3 +20,8 @@ export const Submit = styled.button`
     color: ${theme.color.WHITE};
   }
 `;
+
+export const ComponentStyle = {
+  Component,
+  SubmitButton,
+};

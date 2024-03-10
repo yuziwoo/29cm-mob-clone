@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
-export const SectionMyEditInfo = styled.section`
+const Page = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@ export const SectionMyEditInfo = styled.section`
   padding: 4rem 16px 120px;
 `;
 
-export const Confirm = styled.div`
+const Confirm = styled.div`
   width: 100%;
   padding-top: 8rem;
   display: flex;
@@ -45,3 +45,8 @@ export const Confirm = styled.div`
     color: ${theme.color.WHITE};
   }
 `;
+
+export const PageStyle = {
+  Page,
+  Confirm
+};

@@ -1,6 +1,4 @@
-import { headerStateOnlyBackButton } from '../../recoil/headerState';
-import useSetHeaderState from '../../hooks/useSetHeaderState';
-import * as S from './LoginPage.styled';
+import { PageStyle as S } from './LoginPage.styled';
 import IconLogo from '../../components/icons/IconLogo';
 import { theme } from '../../styles/theme';
 import LoginForm from '../../components/login/LoginForm/LoginForm';
@@ -10,24 +8,20 @@ import { ROUTE_PATH } from '../../constants/path';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../recoil/auth';
-import { motion } from 'framer-motion';
 import { useRouter } from '../../hooks/useRouter';
-import { motionStyle } from '../../styles/motion';
+import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 
 const LoginPage = () => {
   // login 유저 redirect
   const [user] = useRecoilState(userState);
   const { navigate } = useRouter();
 
-  // 헤더 상태 변경
-  useSetHeaderState(headerStateOnlyBackButton);
-
   // 이전에 방문하려던 페이지 저장
   const location = useLocation();
   const [redirectPath, setRedirectPath] = useState(ROUTE_PATH.root);
 
   useEffect(() => {
-    if (location?.state?.path !== null) {
+    if (location?.state?.path !== undefined) {
       setRedirectPath(location?.state?.path);
     }
   }, [location?.state]);
@@ -40,12 +34,8 @@ const LoginPage = () => {
   }, [user]);
 
   return (
-    <S.SectionLogin>
-      <motion.div
-        initial={motionStyle.pageOpen.initial}
-        animate={motionStyle.pageOpen.animate}
-        transition={{ duration: 0.55, delay: 0.3 }}
-      >
+    <CommonPageAnimation>
+      <S.Page>
         <S.Logo
           onClick={() => {
             navigate(ROUTE_PATH.root);
@@ -77,8 +67,8 @@ const LoginPage = () => {
         </S.Title>
 
         <SocialLogin redirectPath={redirectPath} />
-      </motion.div>
-    </S.SectionLogin>
+      </S.Page>
+    </CommonPageAnimation>
   );
 };
 

@@ -1,6 +1,10 @@
 import { Http } from './http';
 
-// https://cloudinary.com/documentation/upload_images#landingpage
+/**
+ * 클라우디너리 이미지 저장 [https://cloudinary.com/documentation/upload_images#landingpage]
+ * 상품 썸네일, 상세 이미지 저장 목적으로 사용하였습니다.
+ */
+
 export const uploadeImage = async (file: File) => {
   const data = new FormData();
   data.append('file', file);

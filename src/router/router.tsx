@@ -21,6 +21,9 @@ import LoginPageSkeleton from '../pages/LoginPage/LoginPageSkeleton';
 import JoinPageSkeleton from '../pages/JoinPage/JoinPageSkeleton';
 import MyPageSkeleton from '../pages/MyPage/MyPageSkeleton';
 import MyEditInfoPageSkeleton from '../pages/MyEditInfoPage/MyEditInfoPageSkeleton';
+import LikePageSkeleton from '../pages/LikePage/LikePageSkeleton';
+import CategoryPageSkeleton from '../pages/CategoryPage/CategoryPageSkeleton';
+import CategoryDetailPageSkeleton from '../pages/CategoryDetailPage/CategoryDetailPageSkeleton';
 
 const router = createBrowserRouter([
   {
@@ -61,6 +64,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: ROUTE_PATH.like,
+        element: (
+          <Suspense fallback={<LikePageSkeleton />}>
+            <Lazy.LazyLikePage />
+          </Suspense>
+        ),
+      },
+      {
         path: ROUTE_PATH.best,
         element: (
           <Suspense fallback={<BestPageSkeleton />}>
@@ -89,6 +100,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<CartPageSkeleton />}>
             <Lazy.LazyCartPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.category,
+        element: (
+          <Suspense fallback={<CategoryPageSkeleton />}>
+            <Lazy.LazyCategoryPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.categoryDetail,
+        element: (
+          <Suspense fallback={<CategoryDetailPageSkeleton />}>
+            <Lazy.LazyCategoryDetailPage />
           </Suspense>
         ),
       },
