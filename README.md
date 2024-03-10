@@ -34,9 +34,9 @@
 
 |                                                        쇼케이스 기능                                                         |                                                         상품, 좋아요 기능                                                         |
 | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
-| <img src='https://github.com/yuziwoo/29cm-mob-clone/blob/main/public/public/readme-showcase.png?raw=true'> | <img src='https://github.com/yuziwoo/29cm-mob-clone/blob/main/public/public/readme-product.png?raw=true'> |
+| <img src='https://github.com/yuziwoo/29cm-mob-clone/blob/main/public/readme/readme-showcase.png?raw=true'> | <img src='https://github.com/yuziwoo/29cm-mob-clone/blob/main/public/readme/readme-product.png?raw=true'> |
 |                                                     <b>장바구니 기능</b>                                                      |                                                <b>검색과 계정 관리 기능</b>                                                |
-| <img src='https://github.com/yuziwoo/29cm-mob-clone/blob/main/public/public/readme-cart.png?raw=true'> | <img src='https://github.com/yuziwoo/29cm-mob-clone/blob/main/public/public/readme-search.png?raw=true'> |
+| <img src='https://github.com/yuziwoo/29cm-mob-clone/blob/main/public/readme/readme-cart.png?raw=true'> | <img src='https://github.com/yuziwoo/29cm-mob-clone/blob/main/public/readme/readme-search.png?raw=true'> |
 
 ## 🤙🏻 커밋 컨벤션
 

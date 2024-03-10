@@ -1,0 +1,201 @@
+{
+  "p1001": {
+    "name": "크롭 패디드 숄더 해링턴 자켓 (브라운)",
+    "categoryLarge": "man",
+    "categoryMedium": "아우터",
+    "option": {
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
+    },
+    "salesVolume": 0,
+    "thumb": {
+      "0": "../img/products/p1001-1.jpg",
+      "1": "../img/products/p1001-2.jpg"
+    },
+    "imgURL": "../img/products/p1001-detail.jpg",
+    "brandId": 100,
+    "brandName": "쿠어",
+    "price": 210000,
+    "discount": 190000,
+    "likes": 321,
+    "review": 276,
+    "reviewRating": 95
+  },
+  "p1002": {
+    "name": "크롭 패디드 숄더 해링턴 자켓 (베이지)",
+    "categoryLarge": "man",
+    "categoryMedium": "아우터",
+    "option": {
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
+    },
+    "salesVolume": 3,
+    "thumb": {
+      "0": "../img/products/p1002-1.jpg",
+      "1": "../img/products/p1002-2.jpg"
+    },
+    "imgURL": "../img/products/p1002-detail.jpg",
+    "brandId": 100,
+    "brandName": "쿠어",
+    "price": 210000,
+    "discount": 190000,
+    "likes": 192,
+    "review": 176,
+    "reviewRating": 85
+  },
+  "p1003": {
+    "name": "로우 컷 쓰리 플리트 트라우저 (차콜그레이멜란지)",
+    "categoryLarge": "man",
+    "categoryMedium": "하의",
+    "option": {
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
+    },
+    "salesVolume": 10,
+    "thumb": {
+      "0": "../img/products/p1003-1.jpg"
+    },
+    "imgURL": "../img/products/p1003-detail.jpg",
+    "brandId": 100,
+    "brandName": "쿠어",
+    "price": 195000,
+    "discount": 185000,
+    "likes": 362,
+    "review": 406,
+    "reviewRating": 98
+  },
+  "p1004": {
+    "name": "트위스트 터틀넥 니트 (드라이 핑크)",
+    "categoryLarge": "woman",
+    "categoryMedium": "상의",
+    "option": {
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
+    },
+    "salesVolume": 32,
+    "thumb": {
+      "0": "../img/products/p1004-1.jpg",
+      "1": "../img/products/p1004-2.jpg"
+    },
+    "imgURL": "../img/products/p1004-detail.jpg",
+    "brandId": 101,
+    "brandName": "어랜",
+    "price": 56000,
+    "discount": 50000,
+    "likes": 860,
+    "review": 326,
+    "reviewRating": 94
+  },
+  "p1005": {
+    "name": "부클 가디건 (크림)",
+    "categoryLarge": "woman",
+    "categoryMedium": "상의",
+    "option": {
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
+    },
+    "salesVolume": 2,
+    "thumb": {
+      "0": "../img/products/p1005-1.jpg",
+      "1": "../img/products/p1005-2.jpg"
+    },
+    "imgURL": "../img/products/p1005-detail.jpg",
+    "brandId": 101,
+    "brandName": "어랜",
+    "price": 93000,
+    "discount": 76000,
+    "likes": 10,
+    "review": 0,
+    "reviewRating": 80
+  },
+  "p1006": {
+    "name": "코듀로이 부츠컷 팬츠 (블랙)",
+    "categoryLarge": "woman",
+    "categoryMedium": "하의",
+    "option": {
+      "size": {
+        "0": "S",
+        "1": "M",
+        "2": "L"
+      }
+    },
+    "salesVolume": 62,
+    "thumb": {
+      "0": "../img/products/p1006-1.jpg",
+      "1": "../img/products/p1006-2.jpg"
+    },
+    "imgURL": "../img/products/p1006-detail.jpg",
+    "brandId": 101,
+    "brandName": "어랜",
+    "price": 76000,
+    "discount": 53000,
+    "likes": 982,
+    "review": 663,
+    "reviewRating": 95
+  },
+  "p1007": {
+    "name": "소니 노이즈캔슬링 헤드폰 (WH-1000XM5)",
+    "categoryLarge": "life",
+    "categoryMedium": "컴퓨터/디지털",
+    "option": {
+      "색상": {
+        "0": "실버",
+        "1": "블랙",
+        "2": "미드나잇 블루"
+      }
+    },
+    "salesVolume": 13,
+    "thumb": {
+      "0": "../img/products/p1007-1.jpg",
+      "1": "../img/products/p1007-2.jpg",
+      "2": "../img/products/p1007-3.jpg"
+    },
+    "imgURL": "../img/products/p1007-detail.jpg",
+    "brandId": 102,
+    "brandName": "소니",
+    "price": 499000,
+    "discount": 399000,
+    "likes": 982,
+    "review": 663,
+    "reviewRating": 95
+  },
+  "p1008": {
+    "name": "소니 노이즈캔슬링 헤드폰 (WH-1000XM5)",
+    "categoryLarge": "life",
+    "categoryMedium": "컴퓨터/디지털",
+    "option": {
+      "색상": {
+        "0": "블랙",
+        "1": "플래티넘 실버"
+      }
+    },
+    "salesVolume": 60,
+    "thumb": {
+      "0": "../img/products/p1008-1.jpg",
+      "1": "../img/products/p1008-2.jpg"
+    },
+    "imgURL": "../img/products/p1008-detail.jpg",
+    "brandId": 102,
+    "brandName": "소니",
+    "price": 359000,
+    "discount": 299000,
+    "likes": 284,
+    "review": 36,
+    "reviewRating": 100
+  }
+}
