@@ -9,7 +9,8 @@ const MainRecomendedProducts = () => {
 
   const { productQuery } = useProduct();
 
-  if (!productQuery.isSuccess) return <></>;
+  if (!productQuery.isSuccess || productQuery.data === null || productQuery.data === undefined)
+    return <></>;
   return (
     <S.Component>
       <RecommendedProducts title="당신을 위한 추천 상품" products={productQuery.data} />

@@ -17,7 +17,11 @@ const SearchPage = () => {
     addRecentSearch(keyword);
   };
 
-  if (!searchWordRankingQuery.isSuccess)
+  if (
+    !searchWordRankingQuery.isSuccess ||
+    searchWordRankingQuery.data === undefined ||
+    searchWordRankingQuery.data === null
+  )
     return (
       <S.Page>
         <S.Loading>

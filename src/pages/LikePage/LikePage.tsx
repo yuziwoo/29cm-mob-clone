@@ -8,6 +8,7 @@ import { useRouter } from '../../hooks/useRouter';
 import { useEffect } from 'react';
 import { ROUTE_PATH } from '../../constants/path';
 import { userState } from '../../recoil/auth';
+import NotFoundComponent from '../../components/common/NotFoundComponent/NotFoundComponent';
 
 const LikePage = () => {
   const [user] = useRecoilState(userState);
@@ -22,6 +23,7 @@ const LikePage = () => {
   const { likeQuery } = useLikeList();
 
   if (!likeQuery.isSuccess) return <LikePageSkeleton></LikePageSkeleton>;
+  if (likeQuery.data === undefined || likeQuery.data === null) return <NotFoundComponent />;
   return (
     <CommonPageAnimation>
       <S.Page>

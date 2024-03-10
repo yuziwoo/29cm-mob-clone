@@ -33,10 +33,10 @@ const HeaderIcons = ({
   const [cartQuantity, setCartQuantity] = useState(0);
 
   useEffect(() => {
-    if (cartQuery.isSuccess) {
+    if (cartQuery.isSuccess && cartQuery.data !== undefined && cartQuery.data !== null) {
       setCartQuantity(Object.keys(cartQuery.data).length);
     }
-  }, [cartQuery]);
+  }, [cartQuery.isSuccess, cartQuery.data]);
 
   const handleClickSearch = () => {
     navigate(ROUTE_PATH.search);
