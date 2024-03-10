@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useCart from '../../../hooks/cart/useCart';
 import CartListItem from '../CartListItem/CartListItem';
 import { ComponentStyle as S } from './CartListWrap.styled';
@@ -18,6 +18,12 @@ const CartListWrap = () => {
   const [selectedItemKeys, setSelectedItemKeys] = useState<string[]>(
     cartQuery.data !== undefined ? Object.keys(cartQuery.data) : []
   );
+
+  useEffect(() => {
+    if (cartQuery.isSuccess && cartQuery.data !== undefined && cartQuery.data !== null) {
+      setSelectedItemKeys(Object.keys(cartQuery.data));
+    }
+  }, [cartQuery.isSuccess, cartQuery.data]);
 
   const handleCheckItem = useCallback(
     (itemKey: string) => {

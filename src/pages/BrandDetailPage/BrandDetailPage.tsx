@@ -16,7 +16,7 @@ const BrandDetailPage = () => {
   const [brand, setBrand] = useState<FetchBrandProps | null>(null);
 
   useEffect(() => {
-    if (!brandQuery.isSuccess || brandQuery.data === null) return;
+    if (!brandQuery.isSuccess || brandQuery.data === null || brandQuery.data === undefined) return;
     const currentBrand = brandQuery.data.find(({ id: brandId }) => `${brandId}` === id);
     if (currentBrand !== undefined) {
       setBrand(currentBrand);
