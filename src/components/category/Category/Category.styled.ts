@@ -23,29 +23,33 @@ const Groups = styled.ul`
 `;
 
 const Group = styled.li<{ $isActive: boolean }>`
-  padding: 24px ${theme.padding.DEFAULT};
+  padding: 20px ${theme.padding.DEFAULT};
   background: ${({ $isActive }) => ($isActive ? theme.color.WHITE : 'transparent')};
   cursor: pointer;
 `;
 
 const font = css`
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
+  color: ${theme.color.BLACK};
+
+  @media screen and (max-width: 400px) {
+    font-size: 13px;
+  }
 `;
 
 const GroupText = styled.p`
   ${font}
-  color: ${theme.color.BLACK};
 `;
 
 const CategoryWrap = styled.div`
-  flex: 1;
-  padding: 0 ${theme.padding.DEFAULT};
+  width: calc(100% - 120px);
   display: flex;
   flex-direction: column;
 `;
 
 const CategoryLarges = styled.ul`
+  padding: 0 ${theme.padding.DEFAULT};
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -53,6 +57,7 @@ const CategoryLarges = styled.ul`
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  min-height: 63px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -63,10 +68,14 @@ const CategoryLarge = styled.li<{ $isActive: boolean }>`
   cursor: pointer;
   border: 1px solid ${theme.color.BLACK};
   margin: 16px 0;
-  padding: 8px 20px;
+  padding: 4px 14px;
   border-radius: 28px;
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.35)};
   transition: opacity 0.15s;
+
+  @media screen and (max-width: 400px) {
+    padding: 3px 12px;
+  }
 `;
 
 const CategoryLargeText = styled.p`
@@ -81,7 +90,7 @@ const CategoryMediums = styled.ul`
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-bottom: 150px;
+  padding: 0 ${theme.padding.DEFAULT} 150px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -94,6 +103,11 @@ const CategoryMedium = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
+  cursor: pointer;
+
+  @media screen and (max-width: 400px) {
+    padding: 16px 0;
+  }
 `;
 
 const CategoryMediumText = styled.p`

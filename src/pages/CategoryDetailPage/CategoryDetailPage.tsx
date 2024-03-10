@@ -8,11 +8,11 @@ const CategoryPage = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const url = pathname;
+    const url = window.location.href;
     const params = new URLSearchParams(url.split('?')[1]);
     console.log(params);
     setParams(params);
-  }, [pathname]);
+  }, []);
 
   return (
     <CommonPageAnimation>

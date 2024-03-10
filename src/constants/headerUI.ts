@@ -19,6 +19,7 @@ const BACKBUTTON_AND_ICONS = [
   FIRST_PATH.productDetail,
   FIRST_PATH.brandDetail,
   FIRST_PATH.showcaseDetail,
+  FIRST_PATH.categoryDetail,
 ];
 
 const SEARCH = [FIRST_PATH.search, FIRST_PATH.searchDetail];

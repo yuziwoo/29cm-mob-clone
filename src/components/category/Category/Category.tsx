@@ -54,8 +54,9 @@ const Category = () => {
 
       const queryString = [];
       for (const [categoryClass, value] of Object.entries(activeCategory)) {
-        if (value === null) return;
-        queryString.push(`${categoryClass}=${value}`);
+        if (value !== null) {
+          queryString.push(`${categoryClass}=${value}`);
+        }
       }
 
       navigate(ROUTE_PATH.categoryDetail + '/?' + queryString.join('&'));
@@ -81,11 +82,11 @@ const Category = () => {
 
       <S.CategoryWrap>
         <S.CategoryLarges>
-          {categoryLarges.length > 0 &&
+          {categoryLarges.length > 0 ? (
             categoryLarges.map(({ category, active }) => (
               <CommonButton
                 key={category}
-                style={{ marginRight: '10px' }}
+                style={{ marginRight: '8px' }}
                 onClick={() => {
                   handleClickCategoryLarge(category);
                 }}
@@ -94,7 +95,14 @@ const Category = () => {
                   <S.CategoryLargeText>{category}</S.CategoryLargeText>
                 </S.CategoryLarge>
               </CommonButton>
-            ))}
+            ))
+          ) : (
+            <CommonButton>
+              <S.CategoryLarge $isActive={true}>
+                <S.CategoryLargeText>ALL</S.CategoryLargeText>
+              </S.CategoryLarge>
+            </CommonButton>
+          )}
         </S.CategoryLarges>
 
         <S.CategoryMediums>
