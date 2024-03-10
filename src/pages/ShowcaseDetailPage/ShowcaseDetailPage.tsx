@@ -33,7 +33,7 @@ const ShowcaseDetailPage = () => {
 
   const handleNavigateBrandPage = useCallback(() => {
     if (showcase === null) return;
-    navigate(ROUTE_PATH.brandDetail.replace(':id', `${showcase.id}`));
+    navigate(ROUTE_PATH.brandDetail.replace(':id', `${showcase.brandId}`));
   }, [navigate, showcase]);
 
   if (showcase === null) return <NotFoundComponent />;

@@ -11,6 +11,7 @@ export const mockShowcaseIdsLife = [10002];
 export const mockShowcase: ShowcaseModuleProps[] = [
   {
     id: 10000,
+    brandId: 100,
     mainSwiper: {
       img: [
         '../img/showcase/10000/main-1.jpg',
@@ -39,6 +40,7 @@ export const mockShowcase: ShowcaseModuleProps[] = [
   },
   {
     id: 10001,
+    brandId: 101,
     mainSwiper: {
       img: [
         '../img/showcase/10001/main-1.jpg',
@@ -67,6 +69,7 @@ export const mockShowcase: ShowcaseModuleProps[] = [
   },
   {
     id: 10002,
+    brandId: 102,
     mainSwiper: {
       img: [
         '../img/showcase/10002/main-1.jpg',

@@ -9,6 +9,7 @@ export type ShowcaseProps = {
 
 export type ShowcaseModuleProps = {
   id: number;
+  brandId: number,
   mainSwiper: {
     img: string[];
     circleText: string;

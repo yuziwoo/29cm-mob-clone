@@ -18,9 +18,9 @@ const BrandDetailPage = () => {
   useEffect(() => {
     if (!brandQuery.isSuccess || brandQuery.data === null) return;
     const currentBrand = brandQuery.data.find(({ id: brandId }) => `${brandId}` === id);
-    if (currentBrand === undefined) return;
-
-    setBrand(currentBrand);
+    if (currentBrand !== undefined) {
+      setBrand(currentBrand);
+    }
   }, [brandQuery.data, id, brandQuery.isSuccess]);
 
   if (!brandQuery.isSuccess)
