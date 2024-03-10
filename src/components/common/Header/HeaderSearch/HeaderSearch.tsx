@@ -9,7 +9,19 @@ import { ROUTE_PATH } from '../../../../constants/path';
 import { useSearch } from '../../../../hooks/search/useSearch';
 import { elementId } from '../../../../constants/elementId';
 
-const HeaderSearch = () => {
+interface HeaderSearchProps {
+  placeholder?: string;
+  noFocus?: boolean;
+}
+
+const HeaderSearch = ({ placeholder = '', noFocus = false }: HeaderSearchProps) => {
+  /**
+   * 검색 Input 컴포넌트입니다.
+   * 
+   * @params
+   * placeholder: placeholder string
+   * noFocus: true 설정시 input이 생성될때 자동 포커싱 되지 않습니다.
+   */
   const { navigate } = useRouter();
   const { keyword } = useParams();
   const { addRecentSearch } = useSearch();
@@ -19,13 +31,13 @@ const HeaderSearch = () => {
     if (keyword === undefined) {
       setInputText('');
       const input = document.getElementById(elementId.search.INPUT);
-      if (input) {
+      if (input && !noFocus) {
         input.focus();
       }
       return;
     }
     setInputText(keyword);
-  }, [keyword]);
+  }, [keyword, noFocus]);
 
   const handleSearch = useCallback(() => {
     if (inputText.length > 0) {
@@ -62,6 +74,7 @@ const HeaderSearch = () => {
         id={elementId.search.INPUT}
         onChange={handleChangeInput}
         onKeyDown={handleKeyDownInput}
+        placeholder={placeholder}
       />
       <S.ButtonWrap>
         {inputText.length > 0 && (

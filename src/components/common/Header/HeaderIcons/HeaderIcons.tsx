@@ -9,13 +9,23 @@ import useCart from '../../../../hooks/cart/useCart';
 import { useEffect, useState } from 'react';
 import CommonButton from '../../motion/CommonButton/CommonButton';
 
+type DisplayIcon = 'search' | 'alert' | 'cart';
+
 interface HeaderIconsProps {
   color: string;
+  displayIcons?: DisplayIcon[];
 }
 
-const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
+const HeaderIcons = ({
+  color = theme.color.WHITE,
+  displayIcons = ['search', 'alert', 'cart'],
+}: HeaderIconsProps) => {
   /**
    * Search, Alert, Cart 아이콘 묶음입니다.
+   *
+   * @params
+   * color: icon의 색을 지정합니다.
+   * displayIcons: ['search', 'alert', 'cart'] 3가지 아이콘 중 보여줄 아이콘을 넣어줍니다.
    */
 
   const { navigate } = useRouter();
@@ -41,28 +51,40 @@ const HeaderIcons = ({ color = theme.color.WHITE }: HeaderIconsProps) => {
 
   return (
     <S.Component>
-      <S.ButtonWrap onClick={handleClickSearch}>
-        <CommonButton>
-          <IconSearch color={color} />
-        </CommonButton>
-      </S.ButtonWrap>
+      {displayIcons.includes('search') && (
+        <S.ButtonWrap onClick={handleClickSearch}>
+          <CommonButton>
+            <S.IconWrap>
+              <IconSearch color={color} />
+            </S.IconWrap>
+          </CommonButton>
+        </S.ButtonWrap>
+      )}
 
-      <S.ButtonWrap onClick={handleClickAlert}>
-        <CommonButton>
-          <IconAlert color={color} />
-        </CommonButton>
-      </S.ButtonWrap>
+      {displayIcons.includes('alert') && (
+        <S.ButtonWrap onClick={handleClickAlert}>
+          <CommonButton>
+            <S.IconWrap>
+              <IconAlert color={color} />
+            </S.IconWrap>
+          </CommonButton>
+        </S.ButtonWrap>
+      )}
 
-      <S.ButtonWrap onClick={handleClickCart}>
-        <CommonButton>
-          <IconCart color={color} />
-        </CommonButton>
-        {cartQuantity > 0 && (
-          <S.Count>
-            <p>{cartQuantity}</p>
-          </S.Count>
-        )}
-      </S.ButtonWrap>
+      {displayIcons.includes('cart') && (
+        <S.ButtonWrap onClick={handleClickCart}>
+          <CommonButton>
+            <S.IconWrap>
+              <IconCart color={color} />
+            </S.IconWrap>
+          </CommonButton>
+          {cartQuantity > 0 && (
+            <S.Count>
+              <S.CountText>{cartQuantity}</S.CountText>
+            </S.Count>
+          )}
+        </S.ButtonWrap>
+      )}
     </S.Component>
   );
 };

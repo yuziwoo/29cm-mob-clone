@@ -1,16 +1,16 @@
 import { ComponentStyle as S } from './HeaderCategory.styled';
 import { ROUTE_PATH } from '../../../../constants/path';
-import { motion } from 'framer-motion';
-import { motionStyle } from '../../../../styles/motion';
 import { scrollTop } from '../../../../utils/scrollTop';
 import { useRouter } from '../../../../hooks/useRouter';
+import CommonButton from '../../motion/CommonButton/CommonButton';
+import { theme } from '../../../../styles/theme';
 
 interface HeaderCategoryProps {
   location?: string;
-  themeBlack?: boolean;
+  color?: string;
 }
 
-const HeaderCategory = ({ location = '', themeBlack = false }: HeaderCategoryProps) => {
+const HeaderCategory = ({ location = '', color = theme.color.WHITE }: HeaderCategoryProps) => {
   /**
    * 맨, 홈, 라이프, 우먼, 베스트 등의 선택지가 있는 메인 페이지에서 사용되는 카테고리 리스트 입니다.
    */
@@ -35,18 +35,13 @@ const HeaderCategory = ({ location = '', themeBlack = false }: HeaderCategoryPro
 
   return (
     <S.Category>
-      <S.Nav $themeBlack={themeBlack}>
+      <S.Nav>
         {category.map(({ path, locationKey, text }) => (
-          <motion.div
-            className={`list${location === locationKey ? ' active' : ''}`}
-            key={text}
-            whileTap={motionStyle.primaryButton.whileTap}
-            transition={motionStyle.primaryButton.transition}
-          >
-            <button onClick={() => handleClickButton({ path, locationKey })}>
-              <p>{text}</p>
-            </button>
-          </motion.div>
+          <CommonButton key={text} onClick={() => handleClickButton({ path, locationKey })}>
+            <S.TextWrap $isActive={location === locationKey} $color={color}>
+              <S.Text $color={color}>{text}</S.Text>
+            </S.TextWrap>
+          </CommonButton>
         ))}
       </S.Nav>
     </S.Category>

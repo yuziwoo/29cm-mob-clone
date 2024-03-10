@@ -9,6 +9,7 @@ export const ROUTE_PATH = {
   login: '/login',
   join: '/join',
   category: '/category',
+  categoryDetail: '/categoryDetail',
   like: '/like',
   productDetail: '/product/:id',
   brandDetail: '/brand/:id',

@@ -23,7 +23,7 @@ const HeaderUIBestPage = ({ firstPath, height }: HeaderUIBestPageProps) => {
           <HeaderLogoButton firstPath={firstPath} color={theme.color.BLACK} />
           <HeaderIcons color={theme.color.BLACK} />
         </S.MainHeader>
-        <HeaderCategory location={firstPath} themeBlack={true} />
+        <HeaderCategory location={firstPath} color={theme.color.BLACK} />
       </S.HeaderUIMain>
     </>
   );

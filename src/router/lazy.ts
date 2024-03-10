@@ -17,16 +17,20 @@ export const LazyShowcaseDetailPage = lazy(
 );
 export const LazyLoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 export const LazyJoinPage = lazy(() => import('../pages/JoinPage/JoinPage'));
-
 export const LazyLikePage = lazy(() => import('../pages/LikePage/LikePage'));
-export const LazyCategoryPage = lazy(() => import('../pages/CategoryPage/CategoryPage'));
 
-// search page
+// 카테고리 페이지
+export const LazyCategoryPage = lazy(() => import('../pages/CategoryPage/CategoryPage'));
+export const LazyCategoryDetailPage = lazy(
+  () => import('../pages/CategoryDetailPage/CategoryDetailPage')
+);
+
+// 검색 페이지
 export const LazySearchPage = lazy(() => import('../pages/SearchPage/SearchPage'));
 export const LazySearchDetailPage = lazy(
   () => import('../pages/SearchDetailPage/SearchDetailPage')
 );
 
-// my page
+// 마이페이지
 export const LazyMyPage = lazy(() => import('../pages/MyPage/MyPage'));
 export const LazyMyEditInfoPage = lazy(() => import('../pages/MyEditInfoPage/MyEditInfoPage'));

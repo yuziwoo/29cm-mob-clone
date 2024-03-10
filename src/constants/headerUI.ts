@@ -23,6 +23,8 @@ const BACKBUTTON_AND_ICONS = [
 
 const SEARCH = [FIRST_PATH.search, FIRST_PATH.searchDetail];
 
+const SEARCH_MODEL_AND_ICONS = [FIRST_PATH.category];
+
 const ALERT = [FIRST_PATH.alert];
 
 export const headerUI = {
@@ -32,5 +34,6 @@ export const headerUI = {
   ONLY_BACKBUTTON,
   BACKBUTTON_AND_ICONS,
   SEARCH,
+  SEARCH_MODEL_AND_ICONS,
   ALERT,
 } as const;

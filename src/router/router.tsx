@@ -23,6 +23,7 @@ import MyPageSkeleton from '../pages/MyPage/MyPageSkeleton';
 import MyEditInfoPageSkeleton from '../pages/MyEditInfoPage/MyEditInfoPageSkeleton';
 import LikePageSkeleton from '../pages/LikePage/LikePageSkeleton';
 import CategoryPageSkeleton from '../pages/CategoryPage/CategoryPageSkeleton';
+import CategoryDetailPageSkeleton from '../pages/CategoryDetailPage/CategoryDetailPageSkeleton';
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<CategoryPageSkeleton />}>
             <Lazy.LazyCategoryPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTE_PATH.categoryDetail,
+        element: (
+          <Suspense fallback={<CategoryDetailPageSkeleton />}>
+            <Lazy.LazyCategoryDetailPage />
           </Suspense>
         ),
       },
