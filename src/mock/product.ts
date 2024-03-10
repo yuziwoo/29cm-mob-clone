@@ -1,4 +1,13 @@
-import { ProductProps, ReviewInfo } from '../types/product';
+import { CategoryDataProps, ProductProps, ReviewInfo } from '../types/product';
+
+export const mockCategory: CategoryDataProps[] = [
+  {
+    group: '의류',
+    categoryLarge: ['all', 'man', 'woman'],
+    categoryMedium: ['아우터', '상의', '하의'],
+  },
+  { group: '컴퓨터/디지털', categoryLarge: [], categoryMedium: ['컴퓨터/디지털'] },
+];
 
 export const mockCouponDiscount = [
   { name: '신규 고객 30% 할인쿠폰', discount: 30 },

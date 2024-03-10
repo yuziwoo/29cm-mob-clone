@@ -40,3 +40,9 @@ export type ReviewInfo = {
 
 // 상품 상세페이지에서 상품의 옵션을 고를 때 사용하는 타입
 export type SelectedOption = { count: number; option: Record<string, string> };
+
+export type CategoryDataProps = {
+  group: string;
+  categoryLarge: string[];
+  categoryMedium: string[];
+};
