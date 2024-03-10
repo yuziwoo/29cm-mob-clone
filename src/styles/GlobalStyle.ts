@@ -128,6 +128,16 @@ img {
   color: white; ${theme.color.SELECTION_COLOR};
 }
 
+:root {
+  font-size: ${theme.size.PRIMARY_FONT_SIZE};
+}
+
+@media screen and (max-width: ${theme.size.MAX_WIDTH}) {
+  :root {
+    font-size: ${theme.size.VIEWPORT_FONT_SIZE};
+  }
+}
+
 `;
 
 export default GlobalStyle;

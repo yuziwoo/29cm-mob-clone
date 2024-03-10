@@ -1,0 +1,29 @@
+{
+  "0": {
+    "nameKo": "쿠어",
+    "nameEn": "COOR",
+    "id": 100,
+    "thumb": "img/brand/100/thumb.jpg",
+    "mainImg": "img/brand/100/main.jpg",
+    "showcase": { "0": 10000 },
+    "introduce": "쿠어는 간결하고 조화로운 아름다움을 추구합니다. 동시대 누구나 공유할 수 있는 자연스러움을 담아내는 브랜드입니다."
+  },
+  "1": {
+    "nameKo": "어랜",
+    "nameEn": "AARAN",
+    "id": 101,
+    "thumb": "img/brand/101/thumb.jpg",
+    "mainImg": "img/brand/101/main.jpg",
+    "showcase": { "0": 10001 },
+    "introduce": "브랜드 어랜은 'around land'의 줄임말로 우리들의 공간이라는 뜻입니다"
+  },
+  "2": {
+    "nameKo": "소니",
+    "nameEn": "SONY",
+    "id": 102,
+    "thumb": "img/brand/102/thumb.jpg",
+    "mainImg": "img/brand/102/main.jpg",
+    "showcase": { "0": 10002 },
+    "introduce": "소니는 디지털카메라, 캠코더, 헤드폰, 음향기기 등 다양한 컨슈머 프로덕트 분야에서 많은 사랑을 받는 브랜드입니다."
+  }
+}
