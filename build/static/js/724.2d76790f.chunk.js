@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunk_28cm=self.webpackChunk_28cm||[]).push([[724],{343:(e,t,a)=>{a.r(t),a.d(t,{default:()=>h});var c=a(352),s=a(72),n=a(60),r=a(484),u=a(940),f=a(496);const h=()=>{const[e]=(0,c.aS)(s.g),{navigate:t}=(0,u.K)();return(0,n.useEffect)((()=>{e||t(r.Q.login,{state:{path:r.Q.cart}})}),[]),(0,f.jsx)("div",{children:"CartPage"})}}}]);
-//# sourceMappingURL=724.2d76790f.chunk.js.map

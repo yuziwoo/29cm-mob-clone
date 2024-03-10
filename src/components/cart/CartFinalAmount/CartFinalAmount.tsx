@@ -1,5 +1,5 @@
 import { ComponentStyle as S } from './CartFinalAmount.styled';
-import { CartItemProps } from '../../../../../../테스트/스토리북가자/src/types/cart';
+import { CartItemProps } from '../../../types/cart';
 import { useEffect, useState } from 'react';
 import { useProduct } from '../../../hooks/product/useProduct';
 import { theme } from '../../../styles/theme';

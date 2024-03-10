@@ -6,7 +6,8 @@ import { PageStyle as S } from './BestPage.styled';
 const BestPage = () => {
   const { productQuery } = useProduct();
 
-  if (!productQuery.isSuccess) return <></>;
+  if (!productQuery.isSuccess || productQuery.data === undefined || productQuery.data === null)
+    return <></>;
 
   return (
     <CommonPageAnimation>

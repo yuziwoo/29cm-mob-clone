@@ -1,4 +1,4 @@
-import { ProductProps, ProductWithId, SelectedOption } from './product';
+import { ProductProps, SelectedOption } from './product';
 
 export type CartItemKey = string;
 

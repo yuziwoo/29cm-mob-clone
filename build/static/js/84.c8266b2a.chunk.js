@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunk_28cm=self.webpackChunk_28cm||[]).push([[84],{84:(e,s,c)=>{c.r(s),c.d(s,{default:()=>n});var a=c(560),t=c(496);const n=()=>{const{id:e}=(0,a.W4)();return(0,t.jsxs)("div",{children:["ShowcaseDetailPage ",e]})}}}]);
-//# sourceMappingURL=84.c8266b2a.chunk.js.map

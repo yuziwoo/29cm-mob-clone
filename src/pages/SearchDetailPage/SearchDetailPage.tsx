@@ -18,13 +18,25 @@ const SearchDetailPage = () => {
   const [products, setProducts] = useState<null | FormatedProductProps[]>(null);
 
   useEffect(() => {
-    if (keyword === undefined || keyword === '' || searchBrand.data === undefined) return;
+    if (
+      keyword === undefined ||
+      keyword === '' ||
+      searchBrand.data === undefined ||
+      searchBrand.data == null
+    )
+      return;
     const result = searchBrand.data.length > 0 ? searchBrand.data : null;
     setBrands(result);
   }, [searchBrand.data, keyword]);
 
   useEffect(() => {
-    if (keyword === undefined || keyword === '' || searchProduct.data === undefined) return;
+    if (
+      keyword === undefined ||
+      keyword === '' ||
+      searchProduct.data === undefined ||
+      searchProduct.data == null
+    )
+      return;
     const result = searchProduct.data.length > 0 ? searchProduct.data : null;
     setProducts(result);
   }, [searchProduct.data, keyword]);
