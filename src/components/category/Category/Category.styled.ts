@@ -32,6 +32,7 @@ const font = css`
   font-size: 15px;
   font-weight: 600;
   color: ${theme.color.BLACK};
+  user-select: none;
 
   @media screen and (max-width: 400px) {
     font-size: 13px;

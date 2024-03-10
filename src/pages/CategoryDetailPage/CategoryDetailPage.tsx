@@ -1,22 +1,30 @@
 import { useEffect, useState } from 'react';
 import CommonPageAnimation from '../../components/common/motion/CommonPageAnimation/CommonPageAnimation';
 import { PageStyle as S } from './CategoryDetailPage.styled';
-import { useLocation } from 'react-router-dom';
+import CategoryProducts from '../../components/category/CategoryProducts/CategoryProducts';
+import NotFoundComponent from '../../components/common/NotFoundComponent/NotFoundComponent';
 
 const CategoryPage = () => {
   const [params, setParams] = useState<URLSearchParams | null>(null);
-  const { pathname } = useLocation();
 
   useEffect(() => {
     const url = window.location.href;
     const params = new URLSearchParams(url.split('?')[1]);
-    console.log(params);
     setParams(params);
   }, []);
 
+  if (params === null)
+    return (
+      <CommonPageAnimation>
+        <NotFoundComponent />
+      </CommonPageAnimation>
+    );
+
   return (
     <CommonPageAnimation>
-      <S.Page>Category Detail Page </S.Page>
+      <S.Page>
+        <CategoryProducts params={params} />
+      </S.Page>
     </CommonPageAnimation>
   );
 };

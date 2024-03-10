@@ -21,3 +21,9 @@ export const ROUTE_PATH = {
   my: '/my',
   myEditInfo: '/my/edit/info',
 } as const;
+
+export const CATEGORY_PARAMS = {
+  group: 'group',
+  categoryLarge: 'categoryLarge',
+  categoryMedium: 'categoryMedium',
+} as const;

@@ -62,7 +62,7 @@ const Category = () => {
 
       navigate(ROUTE_PATH.categoryDetail + '/?' + queryString.join('&'));
     },
-    [categoryLarges, navigate]
+    [categoryLarges, navigate, activeGroup]
   );
 
   return (
