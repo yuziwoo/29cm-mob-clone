@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { ComponentStyle as S } from './ScrollComeUp.styled';
-import { theme } from '../../../styles/theme';
 
 interface ScrollComeUpProps {
   children: React.ReactNode;
-  transition?: string;
+  duration?: number;
+  delay?: number;
 }
 
-const ScrollComeUp = ({ children, transition = `all 0.6s ${theme.transition.EASE_INOUT}` }: ScrollComeUpProps) => {
+const ScrollComeUp = ({ children, duration = 0.6, delay = 0 }: ScrollComeUpProps) => {
   /**
    * 화면에 요소가 나타나면 위로 올라오며 나타납니다.
+   *
+   * @params
+   * duration: 단위 s
+   * delay: 단위 s
    */
 
   const [active, setActive] = useState(false);
@@ -39,7 +43,9 @@ const ScrollComeUp = ({ children, transition = `all 0.6s ${theme.transition.EASE
 
   return (
     <S.Component ref={elementRef}>
-      <S.Inner $active={active} $transition={transition}>{children}</S.Inner>
+      <S.Inner $active={active} $duration={duration} $delay={delay}>
+        {children}
+      </S.Inner>
     </S.Component>
   );
 };

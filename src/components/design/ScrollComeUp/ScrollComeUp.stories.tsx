@@ -28,7 +28,7 @@ export const Default: Story = {
 export const Slower: Story = {
   args: {
     children: <h1>천천히 나타나기</h1>,
-    transition: 'all 1.2s',
+    duration: 1.2,
   },
 };
 

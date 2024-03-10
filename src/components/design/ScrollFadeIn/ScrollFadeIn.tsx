@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion';
-import { motionStyle } from '../../../styles/motion';
+import { ComponentStyle as S } from './ScrollFadeIn.styled';
+import { useEffect, useRef, useState } from 'react';
 
 interface ScrollFadeInProps {
   children: React.ReactNode;
-  duration?: number | null;
-  delay?: number | null;
+  duration?: number;
+  delay?: number;
 }
 
-const ScrollFadeIn = ({ children, duration = null, delay = null }: ScrollFadeInProps) => {
+const ScrollFadeIn = ({ children, duration = 0.6, delay = 0 }: ScrollFadeInProps) => {
   /**
    * 화면에 요소가 보여지면 FadeIn 효과와 함께 나타납니다.
    *
@@ -16,25 +16,37 @@ const ScrollFadeIn = ({ children, duration = null, delay = null }: ScrollFadeInP
    * delay: 단위 s
    */
 
-  const customDuration =
-    duration === null ? motionStyle.scrollFadeIn.transition.duration : duration;
-  const customDelay = delay === null ? motionStyle.scrollFadeIn.transition.delay : delay;
+  const [active, setActive] = useState(false);
+  const elementRef = useRef<null | HTMLDivElement>(null);
 
-  const transition = {
-    ...motionStyle.scrollFadeIn.transition,
-    duration: customDuration,
-    delay: customDelay,
-  };
+  useEffect(() => {
+    if (elementRef.current === null) return;
+
+    const handleActiveEvent = (e: Event) => {
+      if (elementRef.current?.getBoundingClientRect() === undefined) return;
+
+      const rectTop = elementRef.current?.getBoundingClientRect().top;
+      const triggerPoint = (window.innerHeight / 3) * 2;
+
+      if (rectTop < triggerPoint) {
+        setActive(true);
+        window.removeEventListener('scroll', handleActiveEvent);
+      }
+    };
+
+    window.addEventListener('scroll', handleActiveEvent);
+
+    return () => {
+      window.removeEventListener('scroll', handleActiveEvent);
+    };
+  }, [elementRef]);
 
   return (
-    <motion.div
-      initial={motionStyle.scrollFadeIn.initial}
-      whileInView={motionStyle.scrollFadeIn.whileInView}
-      transition={transition}
-      viewport={motionStyle.scrollFadeIn.viewport}
-    >
-      {children}
-    </motion.div>
+    <S.Component ref={elementRef}>
+      <S.Inner $active={active} $duration={duration} $delay={delay}>
+        {children}
+      </S.Inner>
+    </S.Component>
   );
 };
 
