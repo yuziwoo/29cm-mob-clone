@@ -47,6 +47,7 @@ const Category = () => {
   const handleClickCategoryMedium = useCallback(
     (categoryMedium: string) => {
       const activeCategory = {
+        group: activeGroup,
         categoryLarge:
           categoryLarges.length > 0 ? categoryLarges.find(({ active }) => active)?.category : null,
         categoryMedium,
