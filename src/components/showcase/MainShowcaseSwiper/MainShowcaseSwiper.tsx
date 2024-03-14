@@ -99,6 +99,7 @@ const MainShowcaseSwiper = ({ showcaseIds }: MainShowcaseSwiperProps) => {
           <S.BackgroundImg src={bannerURL} alt="배너 이미지" key={index} />
         ))}
         <S.Shadow />
+        <S.Gradient />
       </S.Background>
     </S.Component>
   );

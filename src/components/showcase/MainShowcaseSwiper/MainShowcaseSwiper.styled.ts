@@ -141,9 +141,19 @@ const Shadow = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 30%, ${theme.color.WHITE} 70%);
+  background: rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
+`;
+
+const Gradient = styled.div`
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 30%, ${theme.color.WHITE} 70%);
 `;
 
 const Loading = styled.div`
@@ -166,5 +176,6 @@ export const ComponentStyle = {
   Background,
   BackgroundImg,
   Shadow,
+  Gradient,
   Loading,
 };
