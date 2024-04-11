@@ -124,6 +124,7 @@ const Background = styled.div<{ $index: number }>`
   bottom: 0;
   transform-origin: center bottom;
   transform: scale(1.2);
+  filter: blur(100px);
 
   & img {
     opacity: 0;
