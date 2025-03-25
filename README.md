@@ -4,7 +4,7 @@
 
 <h1 align="middle">28CM [29CM 모바일 클론 코딩]</h1>
 
-<p align="middle">29CM의 어플리케이션을 클론 + 업그레이드한 웹 어플리케이션 28CM를 이용해보세요!</p>
+<p align="middle">29CM의 어플리케이션을 참고하여 업그레이드한 웹 어플리케이션 28CM를 이용해보세요!</p>
 <p align="middle"><a href="https://yuziwoo.netlify.com" target="_blank">어플리케이션 보러가기</a></p>
 <p align="middle"><a href="https://yuziwoo2.notion.site/2024-03-02-29cm-Clone-6d878d55288d4e65940cb9223f30a358?pvs=4" target="_blank">노션 블로그 보러가기</a></p>
 
